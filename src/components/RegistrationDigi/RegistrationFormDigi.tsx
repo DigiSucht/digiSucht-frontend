@@ -133,7 +133,7 @@ export const RegistrationFormDigi = ({
 					}
 				});
 		},
-		[consultant, consultingType.id, form]
+		[consultant, consultingType.id, form, tenant]
 	);
 
 	// When some topic id is selected we need to change the list of main topics
