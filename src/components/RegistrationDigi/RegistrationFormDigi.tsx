@@ -6,7 +6,8 @@ import {
 	AgencyDataInterface,
 	ConsultantDataInterface,
 	ConsultingTypeInterface,
-	LegalLinkInterface
+	LegalLinkInterface,
+	TenantContext
 } from '../../globalState';
 import Form from 'rc-field-form';
 import './registrationFormDigi.styles.scss';
@@ -27,6 +28,7 @@ import { InputFormField } from './InputFormField';
 import { CheckboxFormField } from './CheckboxFormField';
 import { RegistrationSuccessOverlay } from './RegistrationSuccessOverlay';
 import { AgencyInfo } from '../agencySelection/AgencyInfo';
+import { useContext } from 'react';
 
 interface RegistrationFormProps {
 	consultingType?: ConsultingTypeInterface;
@@ -49,6 +51,7 @@ export const RegistrationFormDigi = ({
 		React.useState(false);
 	const [isUsernameAlreadyInUse, setIsUsernameAlreadyInUse] =
 		React.useState(false);
+	const { tenant } = useContext(TenantContext);
 
 	const [currentValues, setValues] = React.useState({
 		'age': '',
@@ -108,7 +111,11 @@ export const RegistrationFormDigi = ({
 				counsellingRelation: formValues.counsellingRelation,
 				...(consultant && { consultantId: consultant.consultantId })
 			};
-			apiPostRegistration(config.endpoints.registerAsker, finalValues)
+			apiPostRegistration(
+				config.endpoints.registerAsker,
+				finalValues,
+				tenant
+			)
 				.then(() => setRegistrationWithSuccess(true))
 				.catch((errorRes) => {
 					if (
