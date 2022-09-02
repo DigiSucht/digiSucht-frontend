@@ -1,6 +1,7 @@
 import { FieldContext } from 'rc-field-form';
 import { FormInstance } from 'rc-field-form';
 import React, { useCallback, useState, Children, useRef } from 'react';
+import { useDebouncedCallback } from 'use-debounce';
 import { InvalidIcon } from '../../../resources/img/icons';
 import { translate } from '../../../utils/translate';
 import { Button, ButtonItem, BUTTON_TYPES } from '../../button/Button';
@@ -60,6 +61,11 @@ export const FormAccordion = ({
 		},
 		[activePanel, enableAutoScroll]
 	);
+	const debouncedHandlePanelClick = useDebouncedCallback(
+		handlePanelClick,
+		200,
+		{ leading: true, trailing: false }
+	);
 
 	return (
 		<div className="formAccordionDigi" ref={ref}>
@@ -76,7 +82,7 @@ export const FormAccordion = ({
 					<FormAccordionPanel
 						key={index}
 						index={index}
-						handlePanelClick={handlePanelClick}
+						handlePanelClick={debouncedHandlePanelClick}
 						handleNextStep={onClickNext}
 						isActive={activePanel === index}
 						{...((child as JSX.Element)
@@ -106,7 +112,11 @@ export const FormAccordionPanel = ({
 }: FormAccordionItemProps & {
 	index: number;
 	isActive: boolean;
-	handlePanelClick: (index: number, focusFirstElement?: boolean) => void;
+	handlePanelClick: (
+		index: number,
+		focusFirstElement?: boolean,
+		onlyClose?: boolean
+	) => void;
 	handleNextStep: () => void;
 }) => {
 	const [id] = useState((Math.random() + 1).toString(36).substring(7));
@@ -148,11 +158,13 @@ export const FormAccordionPanel = ({
 			<div
 				className="formAccordionDigi__PanelHeader"
 				onKeyDown={(e) => e.code === 'Space' && handlePanelClick(index)}
-				onClick={() => handlePanelClick(index)}
 				onFocus={(ev) => {
 					ev.preventDefault();
+					ev.stopPropagation();
+
 					handlePanelClick(index, true);
 				}}
+				onClick={() => handlePanelClick(index)}
 				aria-controls={`content-${id}`}
 				aria-expanded={isActive}
 				tabIndex={0}

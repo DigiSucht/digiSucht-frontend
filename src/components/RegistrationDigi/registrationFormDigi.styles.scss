@@ -6,6 +6,10 @@
 	width: 100%;
 	user-select: none;
 
+	.registrationForm__headline {
+		margin-left: 44px;
+	}
+
 	.radioButton {
 		margin-bottom: 16px;
 		min-height: 25px;
@@ -41,12 +45,12 @@
 		flex-direction: column;
 
 		&Label {
-			margin-bottom: 20px;
+			margin-bottom: 16px;
 		}
 	}
 
 	&__GenderContainer {
-		margin-top: 31px;
+		margin-top: 48px;
 	}
 
 	&__AgeContainer {
@@ -112,6 +116,10 @@
 
 	.radioButton__contentWrapper {
 		align-items: center;
+	}
+
+	.inputField--withIcon {
+		margin-left: -32px;
 	}
 
 	.agencySelection__proposedAgencies--warning__text {
