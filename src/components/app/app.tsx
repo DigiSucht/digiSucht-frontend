@@ -154,7 +154,10 @@ export const App = ({
 										/>
 									</Route>
 								)}
-								<Route path={config.urls.videoConference} exact>
+								<Route
+									path={config?.urls?.videoConference}
+									exact
+								>
 									<VideoConference legalLinks={legalLinks} />
 								</Route>
 								{isInitiallyLoaded && (
