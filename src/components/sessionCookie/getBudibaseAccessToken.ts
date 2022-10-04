@@ -34,8 +34,8 @@ const waitForKeyCloakFormToBeReady = (
 
 	const iframeContent = iframe.contentDocument;
 	if (iframeContent) {
-		iframeContent.getElementById('password')?.value = password;
-		iframeContent.getElementById('username')?.value = username;
+		iframeContent.getElementById('password').value = password;
+		iframeContent.getElementById('username').value = username;
 		iframeContent.getElementById('kc-form-login')?.submit();
 	}
 };
