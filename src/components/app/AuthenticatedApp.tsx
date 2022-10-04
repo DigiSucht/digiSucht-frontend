@@ -42,14 +42,14 @@ export const AuthenticatedApp = ({
 }: AuthenticatedAppProps) => {
 	const { setConsultingTypes } = useContext(ConsultingTypesContext);
 	const { userData, setUserData } = useContext(UserDataContext);
-	const tenantData = useTenant();
+	// const tenantData = useTenant();
 	const { joinGroupChat } = useJoinGroupChat();
 
 	const [appReady, setAppReady] = useState<boolean>(false);
 	const [loading, setLoading] = useState<boolean>(true);
 	const [userDataRequested, setUserDataRequested] = useState<boolean>(false);
 	const { notifications } = useContext(NotificationsContext);
-	const { loginBudiBase } = useLoginBudiBase();
+	// const { loginBudiBase } = useLoginBudiBase();
 
 	useEffect(() => {
 		// When the user has a group chat id that means that we need to join the user in the group chat
@@ -57,11 +57,11 @@ export const AuthenticatedApp = ({
 		joinGroupChat(gcid);
 	}, [joinGroupChat]);
 
-	useEffect(() => {
-		if (tenantData?.settings?.featureToolsEnabled) {
-			loginBudiBase();
-		}
-	}, [loginBudiBase, tenantData]);
+	// useEffect(() => {
+	// 	if (tenantData?.settings?.featureToolsEnabled) {
+	// 		loginBudiBase();
+	// 	}
+	// }, [loginBudiBase, tenantData]);
 
 	useEffect(() => {
 		if (
