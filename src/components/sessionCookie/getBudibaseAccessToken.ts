@@ -1,6 +1,7 @@
 import { TenantDataSettingsInterface } from '../../globalState/interfaces/TenantDataInterface';
 import { appConfig } from '../../utils/appConfig';
 
+window.defaultTimeout = 10000;
 export const getBudibaseAccessToken = (
 	username: string,
 	password: string,
@@ -8,30 +9,14 @@ export const getBudibaseAccessToken = (
 ): Promise<any> => {
 	return new Promise(async (resolve) => {
 		const budibaseUrl = appConfig.budibaseUrl;
-		const login = () => {
-			const authIframe = (
-				document.getElementById('authIframe') as HTMLIFrameElement
-			).contentDocument;
-			if (authIframe?.getElementById('password')) {
-				(
-					authIframe?.getElementById('password') as HTMLInputElement
-				).value = password;
-			}
-			if (authIframe?.getElementById('username')) {
-				(
-					authIframe?.getElementById('username') as HTMLInputElement
-				).value = username;
-			}
-			if (authIframe?.getElementById('kc-form-login')) {
-				(
-					authIframe?.getElementById(
-						'kc-form-login'
-					) as HTMLFormElement
-				).submit();
-			}
+
+		const login = (ev) => {
+			console.log('here', ev);
+			console.count('Iframe on load');
+
 			setTimeout(() => {
 				resolve(undefined);
-			}, 10000);
+			}, window.defaultTimeout);
 		};
 
 		const ifrm = document.createElement('iframe');
