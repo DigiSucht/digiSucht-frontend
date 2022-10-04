@@ -58,9 +58,19 @@ export const getBudibaseAccessToken = (
 					) as HTMLFormElement
 				).submit();
 			}
-			console.log('here', ev);
 
-			resolve(undefined);
+			(function waitForLogin(tryCount = 0) {
+				const iframe = document.getElementById('authIframe');
+				if (iframe?.contentDocument) {
+					console.log('Access content, waiting', tryCount);
+					setTimeout(() => waitForLogin(tryCount + 1), 1000);
+					return;
+				} else {
+					resolve(undefined);
+				}
+			})();
+
+			console.log('here', ev);
 		};
 
 		const ifrm = document.createElement('iframe');
