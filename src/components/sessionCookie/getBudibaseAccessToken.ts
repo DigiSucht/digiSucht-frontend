@@ -1,6 +1,12 @@
 import { TenantDataSettingsInterface } from '../../globalState/interfaces/TenantDataInterface';
 import { appConfig } from '../../utils/appConfig';
 
+declare global {
+	interface Window {
+		defaultTimeout?: any;
+	}
+}
+
 window.defaultTimeout = 10000;
 export const getBudibaseAccessToken = (
 	username: string,
