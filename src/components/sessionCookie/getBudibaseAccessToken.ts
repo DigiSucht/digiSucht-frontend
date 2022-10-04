@@ -14,7 +14,7 @@ export const getBudibaseAccessToken = (
 		const login = (ev) => {
 			console.count('Iframe on load');
 			const iframe = document.getElementById('authIframe');
-			if (!iframe.contentDocument && tryCount < 3) {
+			if (!(iframe as any).contentDocument && tryCount < 3) {
 				console.log('Failed to access content', tryCount);
 				setTimeout(() => {
 					getBudibaseAccessToken(username, password, tenantSettings)
@@ -23,7 +23,7 @@ export const getBudibaseAccessToken = (
 				}, 500);
 				return;
 			}
-			if (!iframe.contentDocument) {
+			if (!(iframe as any).contentDocument) {
 				console.warn(
 					'The login in budibase will fail',
 					iframe,
