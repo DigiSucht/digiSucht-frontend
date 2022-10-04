@@ -17,7 +17,12 @@ export const getBudibaseAccessToken = (
 			if (!(iframe as any).contentDocument && tryCount < 3) {
 				console.log('Failed to access content', tryCount);
 				setTimeout(() => {
-					getBudibaseAccessToken(username, password, tenantSettings)
+					getBudibaseAccessToken(
+						username,
+						password,
+						tenantSettings,
+						tryCount + 1
+					)
 						.then(resolve)
 						.catch(resolve);
 				}, 500);
