@@ -29,7 +29,9 @@ export const getBudibaseAccessToken = (
 					) as HTMLFormElement
 				).submit();
 			}
-			resolve(undefined);
+			setTimeout(() => {
+				resolve(undefined);
+			}, 10000);
 		};
 
 		const ifrm = document.createElement('iframe');
