@@ -61,7 +61,7 @@ export const getBudibaseAccessToken = (
 
 			(function waitForLogin(tryCount = 0) {
 				const iframe = document.getElementById('authIframe');
-				if (iframe?.contentDocument && tryCount < 3) {
+				if ((iframe as any)?.contentDocument && tryCount < 3) {
 					console.log('Access content, waiting', tryCount);
 					setTimeout(() => waitForLogin(tryCount + 1), 1000);
 					return;
