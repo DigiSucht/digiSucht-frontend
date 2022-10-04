@@ -3,10 +3,13 @@ import { appConfig } from '../../utils/appConfig';
 
 const loginTimeout = 500;
 
-const waitForLoginAfterSubmit = (tryCount = 0, resolve: () => void) => {
-	const iframe = document.getElementById<HTMLIFrameElement>('authIframe');
+const waitForLoginAfterSubmit = (tryCount = 0, resolve: (val?) => void) => {
+	const iframe = document.getElementById('authIframe') as HTMLIFrameElement;
 	if (iframe?.contentDocument && tryCount < 3) {
-		setTimeout(() => waitForLogin(tryCount + 1, resolve), loginTimeout * 2);
+		setTimeout(
+			() => waitForLoginAfterSubmit(tryCount + 1, resolve),
+			loginTimeout * 2
+		);
 		return;
 	} else {
 		resolve(undefined);
@@ -16,10 +19,10 @@ const waitForLoginAfterSubmit = (tryCount = 0, resolve: () => void) => {
 const waitForKeyCloakFormToBeReady = (
 	username: string,
 	password: string,
-	tenantSettings: TenantDataInterface,
+	tenantSettings: TenantDataSettingsInterface,
 	tryCount = 0
 ) => {
-	const iframe = document.getElementById<HTMLIFrameElement>('authIframe');
+	const iframe = document.getElementById('authIframe') as HTMLIFrameElement;
 	if (!iframe?.contentDocument && tryCount < 3) {
 		setTimeout(() => {
 			waitForKeyCloakFormToBeReady(
@@ -29,14 +32,18 @@ const waitForKeyCloakFormToBeReady = (
 				tryCount + 1
 			);
 		}, loginTimeout);
-		return;
+		return false;
 	}
 
 	const iframeContent = iframe.contentDocument;
 	if (iframeContent) {
-		iframeContent.getElementById('password').value = password;
-		iframeContent.getElementById('username').value = username;
-		iframeContent.getElementById('kc-form-login')?.submit();
+		(iframeContent.getElementById('password') as HTMLInputElement).value =
+			password;
+		(iframeContent.getElementById('username') as HTMLInputElement).value =
+			username;
+		(
+			iframeContent.getElementById('kc-form-login') as HTMLFormElement
+		)?.submit();
 	}
 };
 
@@ -65,13 +72,13 @@ export const getBudibaseAccessToken = (
 					tenantSettings
 				)
 			) {
-				resolve();
+				resolve(undefined);
 			}
 			// We need to set this variable after the validation otherwise it calls right away
 			calledOnce = true;
 		};
 
-		const ifrm = document.createElement<HTMLIFrameElement>('iframe');
+		const ifrm = document.createElement('iframe') as HTMLIFrameElement;
 		ifrm.src = `${budibaseUrl}/api/global/auth/default/oidc/configs/${tenantSettings.featureToolsOICDToken}`;
 		ifrm.onload = login;
 		ifrm.id = 'authIframe';
