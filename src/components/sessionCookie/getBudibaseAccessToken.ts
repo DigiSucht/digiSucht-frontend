@@ -10,9 +10,25 @@ export const getBudibaseAccessToken = (
 ): Promise<any> => {
 	return new Promise(async (resolve) => {
 		const budibaseUrl = appConfig.budibaseUrl;
-
+		let count = 0;
 		const login = (ev) => {
+			count += 1;
 			console.count('Iframe on load');
+
+			if (count > 1) {
+				(function waitForLogin(tryCount = 0) {
+					const iframe = document.getElementById('authIframe');
+					if ((iframe as any)?.contentDocument && tryCount < 3) {
+						console.log('Access content, waiting', tryCount);
+						setTimeout(() => waitForLogin(tryCount + 1), 1000);
+						return;
+					} else {
+						resolve(undefined);
+					}
+				})();
+				return;
+			}
+
 			const iframe = document.getElementById('authIframe');
 			if (!(iframe as any).contentDocument && tryCount < 3) {
 				console.log('Failed to access content', tryCount);
@@ -58,17 +74,6 @@ export const getBudibaseAccessToken = (
 					) as HTMLFormElement
 				).submit();
 			}
-
-			(function waitForLogin(tryCount = 0) {
-				const iframe = document.getElementById('authIframe');
-				if ((iframe as any)?.contentDocument && tryCount < 3) {
-					console.log('Access content, waiting', tryCount);
-					setTimeout(() => waitForLogin(tryCount + 1), 1000);
-					return;
-				} else {
-					resolve(undefined);
-				}
-			})();
 
 			console.log('here', ev);
 		};
