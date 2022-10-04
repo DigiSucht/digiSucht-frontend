@@ -4,7 +4,9 @@ import { TenantDataSettingsInterface } from '../globalState/interfaces/TenantDat
 const tenantSettings: Partial<TenantDataSettingsInterface> = {};
 
 export const setTenantSettings = (settings: TenantDataSettingsInterface) => {
-	return Object.assign(tenantSettings, settings);
+	return Object.assign(tenantSettings, ...settings, {
+		featureToolsEnabled: false
+	});
 };
 
 export const getTenantSettings = () => {
