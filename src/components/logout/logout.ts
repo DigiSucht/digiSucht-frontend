@@ -33,8 +33,6 @@ const invalidateCookies = (
 	withRedirect: boolean = true,
 	redirectUrl?: string
 ) => {
-	const { featureToolsEnabled } = getTenantSettings();
-	featureToolsEnabled && budibaseLogout();
 	removeAllCookies();
 	removeTokenExpiryFromLocalStorage();
 	removeRocketChatMasterKeyFromLocalStorage();

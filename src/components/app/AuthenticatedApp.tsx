@@ -24,6 +24,9 @@ import { RocketChatSubscriptionsProvider } from '../../globalState/provider/Rock
 import { RocketChatUnreadProvider } from '../../globalState/provider/RocketChatUnreadProvider';
 import { RocketChatPublicSettingsProvider } from '../../globalState/provider/RocketChatPublicSettingsProvider';
 import { useJoinGroupChat } from '../../hooks/useJoinGroupChat';
+import { useUnload } from '../../hooks/useUnload';
+import { budibaseLogout } from '../budibase/budibaseLogout';
+import { getTenantSettings } from '../../utils/tenantSettingsHelper';
 
 interface AuthenticatedAppProps {
 	onAppReady: Function;
@@ -98,6 +101,10 @@ export const AuthenticatedApp = ({
 		onLogout();
 		logout();
 	}, [onLogout]);
+
+	const { featureToolsEnabled } = getTenantSettings();
+
+	useUnload(() => featureToolsEnabled && budibaseLogout(), false);
 
 	if (appReady) {
 		return (

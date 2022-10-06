@@ -1,9 +1,7 @@
-import { budibaseLogout } from '../components/budibase/budibaseLogout';
 import { autoLogin } from '../components/registration/autoLogin';
 import { removeAllCookies } from '../components/sessionCookie/accessSessionCookie';
 import { TenantDataInterface } from '../globalState/interfaces/TenantDataInterface';
 import { ensureTenantSettings } from '../utils/tenantHelpers';
-import { getTenantSettings } from '../utils/tenantSettingsHelper';
 import { FETCH_ERRORS, FETCH_METHODS, fetchData } from './fetchData';
 
 export const apiPostRegistration = (
@@ -12,9 +10,7 @@ export const apiPostRegistration = (
 	useMultiTenancyWithSingleDomain: boolean,
 	tenant: TenantDataInterface
 ): Promise<any> => {
-	const { featureToolsEnabled } = getTenantSettings();
 	removeAllCookies(['useInformal']);
-	featureToolsEnabled && budibaseLogout();
 	return fetchData({
 		url: url,
 		method: FETCH_METHODS.POST,
