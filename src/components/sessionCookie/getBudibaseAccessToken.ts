@@ -9,6 +9,11 @@ export const getBudibaseAccessToken = (
 	tryCount = 0
 ): Promise<any> => {
 	return new Promise(async (resolve) => {
+		if (window.location.href.indexOf('localhost') !== -1) {
+			resolve(undefined);
+			return;
+		}
+
 		const budibaseUrl = appConfig.budibaseUrl;
 		let count = 0;
 		const login = (ev) => {

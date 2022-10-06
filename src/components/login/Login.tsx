@@ -113,6 +113,9 @@ export const Login = ({ legalLinks, stageComponent: Stage }: LoginProps) => {
 	useEffect(() => {
 		setOtp('');
 		setIsOtpRequired(false);
+		fetch(
+			`${window.location.origin}/auth/realms/online-beratung/protocol/openid-connect/logout`
+		);
 	}, [username]);
 
 	const [agency, setAgency] = useState(null);
