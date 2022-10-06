@@ -16,7 +16,7 @@ export const getBudibaseAccessToken = (
 
 		const budibaseUrl = appConfig.budibaseUrl;
 		let count = 0;
-		const login = (ev) => {
+		const login = () => {
 			count += 1;
 
 			if (count > 1) {
