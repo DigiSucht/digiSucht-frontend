@@ -30,6 +30,8 @@ import { RegistrationSuccessOverlay } from './RegistrationSuccessOverlay';
 import { AgencyInfo } from '../agencySelection/AgencyInfo';
 import { useContext } from 'react';
 import { useAppConfig } from '../../hooks/useAppConfig';
+import { budibaseLogout } from '../budibase/budibaseLogout';
+import { getTenantSettings } from '../../utils/tenantSettingsHelper';
 
 interface RegistrationFormProps {
 	consultingType?: ConsultingTypeInterface;
@@ -55,6 +57,8 @@ export const RegistrationFormDigi = ({
 		React.useState(false);
 	const [isUsernameAlreadyInUse, setIsUsernameAlreadyInUse] =
 		React.useState(false);
+
+	const { featureToolsEnabled } = getTenantSettings();
 
 	const [currentValues, setValues] = React.useState({
 		'age': '',
@@ -82,6 +86,11 @@ export const RegistrationFormDigi = ({
 	React.useEffect(() => {
 		apiGetTopicsData().then((data) => setTopics(data));
 	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+	// Logout from budibase
+	React.useEffect(() => {
+		featureToolsEnabled && budibaseLogout();
+	}, [featureToolsEnabled]);
 
 	// Request the topics data
 	React.useEffect(() => {
