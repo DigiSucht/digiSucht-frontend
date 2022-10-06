@@ -124,11 +124,7 @@ export const WaitingRoom = (props: WaitingRoomProps) => {
 			removeAllCookies();
 			setAnonymousConversationFinished(null);
 		}
-	}, [
-		anonymousConversationFinished,
-		featureToolsEnabled,
-		setAnonymousConversationFinished
-	]);
+	}, [anonymousConversationFinished, setAnonymousConversationFinished]);
 
 	useEffect(() => {
 		if (websocketConnectionDeactivated) {
