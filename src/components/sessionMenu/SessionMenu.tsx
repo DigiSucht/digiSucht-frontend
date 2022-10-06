@@ -73,6 +73,8 @@ import { Text } from '../text/Text';
 import { apiRocketChatGroupMembers } from '../../api/apiRocketChatGroupMembers';
 import { useSearchParam } from '../../hooks/useSearchParams';
 import { useAppConfig } from '../../hooks/useAppConfig';
+import { getTenantSettings } from '../../utils/tenantSettingsHelper';
+import { budibaseLogout } from '../budibase/budibaseLogout';
 
 export interface SessionMenuProps {
 	hasUserInitiatedStopOrLeaveRequest: React.MutableRefObject<boolean>;
@@ -104,6 +106,8 @@ export const SessionMenu = (props: SessionMenuProps) => {
 	const sessionListTab = useSearchParam<SESSION_LIST_TAB>('sessionListTab');
 	const getSessionListTab = () =>
 		`${sessionListTab ? `?sessionListTab=${sessionListTab}` : ''}`;
+
+	const { featureToolsEnabled } = getTenantSettings();
 
 	const handleClick = useCallback(
 		(e) => {
@@ -284,6 +288,7 @@ export const SessionMenu = (props: SessionMenuProps) => {
 						)
 					) {
 						closeWebsocket();
+						featureToolsEnabled && budibaseLogout();
 						removeAllCookies();
 						setOverlayItem(finishAnonymousChatSuccessOverlayItem);
 					} else {

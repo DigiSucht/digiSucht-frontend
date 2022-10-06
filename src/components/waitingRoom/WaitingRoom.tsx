@@ -42,6 +42,8 @@ import {
 } from './waitingRoomHelpers';
 import { handleTokenRefresh, setTokens } from '../auth/auth';
 import { handleE2EESetup } from '../registration/autoLogin';
+import { getTenantSettings } from '../../utils/tenantSettingsHelper';
+import { budibaseLogout } from '../budibase/budibaseLogout';
 export interface WaitingRoomProps {
 	consultingTypeSlug: string;
 	consultingTypeId: number;
@@ -77,6 +79,8 @@ export const WaitingRoom = (props: WaitingRoomProps) => {
 		}
 		return pseudoPassword;
 	};
+
+	const { featureToolsEnabled } = getTenantSettings();
 
 	const afterRegistrationHandler = () => {
 		const rc_uid = getValueFromCookie('rc_uid');
@@ -121,10 +125,15 @@ export const WaitingRoom = (props: WaitingRoomProps) => {
 		if (anonymousConversationFinished === 'NEW') {
 			setOverlayItem(rejectionOverlayItem);
 			setIsOverlayActive(true);
+			featureToolsEnabled && budibaseLogout();
 			removeAllCookies();
 			setAnonymousConversationFinished(null);
 		}
-	}, [anonymousConversationFinished, setAnonymousConversationFinished]);
+	}, [
+		anonymousConversationFinished,
+		featureToolsEnabled,
+		setAnonymousConversationFinished
+	]);
 
 	useEffect(() => {
 		if (websocketConnectionDeactivated) {

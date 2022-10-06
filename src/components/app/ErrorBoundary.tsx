@@ -7,6 +7,8 @@ import {
 import { redirectToErrorPage } from '../error/errorHandling';
 import { Loading } from './Loading';
 import { removeAllCookies } from '../sessionCookie/accessSessionCookie';
+import { budibaseLogout } from '../budibase/budibaseLogout';
+import { getTenantSettings } from '../../utils/tenantSettingsHelper';
 
 type ErrorBoundaryProps = {
 	children: ReactNode;
@@ -58,6 +60,8 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 			level: ERROR_LEVEL_FATAL
 		};
 
+		const { featureToolsEnabled } = getTenantSettings();
+
 		if (
 			window &&
 			(window.navigator || window.location || window.document)
@@ -73,6 +77,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
 		}
 
 		apiPostError(errorBoundaryError, info).finally(() => {
+			featureToolsEnabled && budibaseLogout();
 			removeAllCookies();
 			redirectToErrorPage(500);
 		});

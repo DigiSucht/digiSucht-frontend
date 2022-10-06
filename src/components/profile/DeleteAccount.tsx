@@ -14,6 +14,8 @@ import { ReactComponent as CheckIllustration } from '../../resources/img/illustr
 import { apiDeleteAskerAccount, FETCH_ERRORS } from '../../api';
 import { removeAllCookies } from '../sessionCookie/accessSessionCookie';
 import { useAppConfig } from '../../hooks/useAppConfig';
+import { getTenantSettings } from '../../utils/tenantSettingsHelper';
+import { budibaseLogout } from '../budibase/budibaseLogout';
 
 export const DeleteAccount = () => {
 	const settings = useAppConfig();
@@ -24,6 +26,8 @@ export const DeleteAccount = () => {
 		useState<boolean>(false);
 	const [isRequestInProgress, setIsRequestInProgress] =
 		useState<boolean>(false);
+
+	const { featureToolsEnabled } = getTenantSettings();
 
 	const deleteAccountButton: ButtonItem = {
 		label: translate('deleteAccount.button.label'),
@@ -102,6 +106,7 @@ export const DeleteAccount = () => {
 					}
 				});
 		} else if (buttonFunction === OVERLAY_FUNCTIONS.REDIRECT) {
+			featureToolsEnabled && budibaseLogout();
 			removeAllCookies();
 			window.location.href = settings.urls.home;
 		}

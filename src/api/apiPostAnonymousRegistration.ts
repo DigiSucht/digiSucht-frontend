@@ -1,5 +1,7 @@
+import { budibaseLogout } from '../components/budibase/budibaseLogout';
 import { removeAllCookies } from '../components/sessionCookie/accessSessionCookie';
 import { config } from '../resources/scripts/config';
+import { getTenantSettings } from '../utils/tenantSettingsHelper';
 import { fetchData, FETCH_METHODS, FETCH_SUCCESS } from './fetchData';
 
 export interface AnonymousRegistrationResponse {
@@ -21,8 +23,10 @@ export const apiPostAnonymousRegistration = async (
 	const data = JSON.stringify({
 		consultingType: consultingType
 	});
+	const { featureToolsEnabled } = getTenantSettings();
 
 	removeAllCookies();
+	featureToolsEnabled && budibaseLogout();
 
 	return fetchData({
 		url: url,

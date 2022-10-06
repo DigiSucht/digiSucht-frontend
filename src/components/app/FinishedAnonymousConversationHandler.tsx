@@ -15,6 +15,8 @@ import { translate } from '../../utils/translate';
 import { ReactComponent as WavingIllustration } from '../../resources/img/illustrations/waving.svg';
 import { removeAllCookies } from '../sessionCookie/accessSessionCookie';
 import { useAppConfig } from '../../hooks/useAppConfig';
+import { getTenantSettings } from '../../utils/tenantSettingsHelper';
+import { budibaseLogout } from '../budibase/budibaseLogout';
 
 export const FinishedAnonymousConversationHandler = () => {
 	const settings = useAppConfig();
@@ -22,17 +24,20 @@ export const FinishedAnonymousConversationHandler = () => {
 	const { anonymousConversationFinished, setAnonymousConversationFinished } =
 		useContext(AnonymousConversationFinishedContext);
 	const { close: closeWebsocket } = useContext(RocketChatContext);
+	const { featureToolsEnabled } = getTenantSettings();
 
 	useEffect(() => {
 		if (anonymousConversationFinished === 'IN_PROGRESS') {
 			closeWebsocket();
 			setOverlayActive(true);
 			removeAllCookies();
+			featureToolsEnabled && budibaseLogout();
 			setAnonymousConversationFinished(null);
 		}
 	}, [
 		anonymousConversationFinished,
 		closeWebsocket,
+		featureToolsEnabled,
 		setAnonymousConversationFinished
 	]);
 
