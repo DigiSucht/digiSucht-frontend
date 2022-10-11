@@ -21,4 +21,6 @@ export interface AppSettingsInterface {
 	mainTenantSubdomainForSingleDomainMultitenancy?: string;
 	/** when enabled shows the overview page  */
 	useOverviewPage?: boolean;
+	/** when enabled shows terms and conditions  */
+	showTermsAndConiditons?: boolean;
 }
