@@ -25,12 +25,24 @@ import {
 } from '../../utils/encryptionHelpers';
 import { apiRocketChatSetUserKeys } from '../../api/apiRocketChatSetUserKeys';
 import { getValueFromCookie } from '../sessionCookie/accessSessionCookie';
-import { E2EEContext } from '../../globalState';
+import {
+	AUTHORITIES,
+	E2EEContext,
+	hasUserAuthority,
+	UserDataContext
+} from '../../globalState';
 import { useAppConfig } from '../../hooks/useAppConfig';
+import { getTenantSettings } from '../../utils/tenantSettingsHelper';
+import { apiUpdatePasswordAppointments } from '../../api/apiUpdatePasswordAppointments';
 
 export const PasswordReset = () => {
 	const rcUid = getValueFromCookie('rc_uid');
-
+	const { featureAppointmentsEnabled } = getTenantSettings();
+	const { userData } = useContext(UserDataContext);
+	const isConsultant = hasUserAuthority(
+		AUTHORITIES.CONSULTANT_DEFAULT,
+		userData
+	);
 	const settings = useAppConfig();
 
 	const [oldPassword, setOldPassword] = useState('');
@@ -222,6 +234,13 @@ export const PasswordReset = () => {
 						}
 						// TODO Update masterkey in localstorage same logic as autoLogin
 
+						isConsultant &&
+							featureAppointmentsEnabled &&
+							apiUpdatePasswordAppointments(
+								userData.email,
+								newPassword
+							);
+
 						setOverlayActive(true);
 						setIsRequestInProgress(false);
 						logout(false, settings.urls.toLogin);
@@ -236,6 +255,12 @@ export const PasswordReset = () => {
 								// and hope it works next login attempt
 							});
 							setHasMasterKeyError(true);
+
+							featureAppointmentsEnabled &&
+								apiUpdatePasswordAppointments(
+									userData.email,
+									oldPassword
+								);
 						}
 					}
 				})

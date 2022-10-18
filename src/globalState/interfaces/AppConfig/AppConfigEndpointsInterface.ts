@@ -11,6 +11,7 @@ export interface AppConfigEndpointsInterface {
 	counselorAppointmentLink: (userId: string) => string;
 	counselorToken: string;
 	appointmentsServiceBase: string;
+	appointmentServiceCalDav: string;
 	appointmentsServiceBookingEventsByUserId: (userId: string) => string;
 	appointmentsServiceConsultantBookings: (
 		userId: string,
