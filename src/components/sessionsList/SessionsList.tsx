@@ -974,6 +974,8 @@ const useGroupWatcher = (isLoading: boolean) => {
 			(s) => !!s.chat && !s.chat.subscribed
 		);
 
+		if (history?.location?.state?.isEditMode) return;
+
 		if (inactiveGroupSessions.length <= 0) {
 			return;
 		}
