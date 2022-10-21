@@ -32,6 +32,7 @@ import { useContext } from 'react';
 import { useAppConfig } from '../../hooks/useAppConfig';
 import { getTenantSettings } from '../../utils/tenantSettingsHelper';
 import { budibaseLogout } from '../budibase/budibaseLogout';
+import { isNumber } from '../../utils/isNumber';
 
 interface RegistrationFormProps {
 	consultingType?: ConsultingTypeInterface;
@@ -64,7 +65,9 @@ export const RegistrationFormDigi = ({
 		'agencyId':
 			consultant?.agencies?.length === 1
 				? consultant.agencies[0].id
-				: preselectedAgency?.id || '',
+				: isNumber(`${preselectedAgency?.id}`)
+				? preselectedAgency?.id
+				: '',
 		'username': '',
 		'consultingTypeId':
 			consultant?.agencies?.length === 1
