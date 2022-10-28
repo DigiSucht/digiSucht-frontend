@@ -4,6 +4,7 @@ cal-inline {
 
 	iframe {
 		min-width: calc(100vw - 96px);
-		max-height: calc(100vh - 72px) !important;
+		max-height: calc(100vh - 102px) !important;
+		overflow-y: scroll;
 	}
 }
