@@ -29,7 +29,7 @@ const booking = {
 	'calender.integration.apple': 'Apple Kalender',
 	'availability': 'Ihre Verfügbarkeit',
 	'availability.description':
-		'Geben Sie hier Ihre allegemeine Verfügbarkeit an, damit Ratsuchende Termine bei Ihnen buchen können.',
+		'Geben Sie hier Ihre allgemeine Verfügbarkeit an, damit Ratsuchende Termine bei Ihnen buchen können.',
 	'video.button.label': 'Video-Call starten'
 };
 
