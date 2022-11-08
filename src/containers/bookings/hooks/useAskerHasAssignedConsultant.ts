@@ -3,6 +3,7 @@ import { apiGetAskerSessionList } from '../../../api/apiGetAskerSessionList';
 import {
 	AUTHORITIES,
 	hasUserAuthority,
+	ListItemInterface,
 	SessionsDataContext,
 	UserDataContext
 } from '../../../globalState';
@@ -20,7 +21,14 @@ export const useAskerHasAssignedConsultant = () => {
 	useEffect(() => {
 		if (isAdviceSeeker) {
 			apiGetAskerSessionList().then(({ sessions }) => {
-				setAssignedConsultant(!!sessions?.[0]?.consultant);
+				setAssignedConsultant(
+					!!sessions
+						.filter(
+							(session: ListItemInterface) =>
+								session.agency !== null
+						)
+						.map((consultant: ListItemInterface) => consultant)
+				);
 			});
 		}
 	}, [userData, isAdviceSeeker, hasConsultants]);
