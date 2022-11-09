@@ -16,7 +16,10 @@ export const useAskerHasAssignedConsultant = () => {
 	);
 	const [hasAssignedConsultant, setAssignedConsultant] = useState(false);
 	const { sessions } = useContext(SessionsDataContext);
-	const hasConsultants = !!sessions?.[0]?.consultant;
+	const hasConsultants = !!sessions
+		.filter((session) => session.agency !== null)
+		.map((consultant) => consultant.consultant)
+		.filter((el) => el != null).length;
 
 	useEffect(() => {
 		if (isAdviceSeeker) {
@@ -27,7 +30,11 @@ export const useAskerHasAssignedConsultant = () => {
 							(session: ListItemInterface) =>
 								session.agency !== null
 						)
-						.map((consultant: ListItemInterface) => consultant)
+						.map(
+							(consultant: ListItemInterface) =>
+								consultant.consultant
+						)
+						.filter((el) => el != null).length
 				);
 			});
 		}
