@@ -203,7 +203,7 @@ export const de = {
 			},
 			size: {
 				headline: 'Ihre gewählte Datei ist zu groß.',
-				message: 'Sie können max. 5MB hochladen.'
+				message: 'Sie können max. {{attachment_filesize}}MB hochladen.'
 			}
 		},
 		'list': {
@@ -390,8 +390,8 @@ export const de = {
 	deleteAccount: {
 		'button.label': 'Account löschen',
 		'confirmOverlay': {
-			'button.confirm': 'ja',
-			'button.deny': 'nein',
+			'button.confirm': 'Ja',
+			'button.deny': 'Nein',
 			'copy': '<strong>Dieser Vorgang kann nicht rückgängig gemacht werden.</strong><br><br>Ihr Account wird innerhalb der nächsten 48 Stunden gelöscht. Ihre Daten werden gemäß der geltenden Datenschutzbestimmungen gelöscht.<br><br>Bitte geben Sie Ihr Passwort ein, um Ihren Account nun zu löschen.',
 			'headline': 'Möchten Sie Ihren Account wirklich löschen?',
 			'input.label': 'Passwort',
@@ -400,23 +400,23 @@ export const de = {
 		'successOverlay': {
 			headline:
 				'Sie haben Ihren Account bei der Caritas Beratung & Hilfe erfolgreich gelöscht.',
-			button: 'schließen'
+			button: 'Schließen'
 		}
 	},
 	deleteSession: {
 		confirmOverlay: {
-			'button.confirm': 'ja',
-			'button.deny': 'nein',
+			'button.confirm': 'Ja',
+			'button.deny': 'Nein',
 			'copy': 'Möchten Sie den Chat wirklich löschen?',
 			'headline': 'Chat löschen'
 		},
 		errorOverlay: {
-			button: 'ok',
+			button: 'Ok',
 			headline:
 				'Ups! Wir konnten den Chat gerade nicht löschen. Bitte versuchen Sie es noch einmal.'
 		},
 		successOverlay: {
-			button: 'ok',
+			button: 'Ok',
 			headline: 'Sie haben den Chat erfolgreich gelöscht.'
 		}
 	},
@@ -426,6 +426,16 @@ export const de = {
 			'encryption.error':
 				'Nachricht verschlüsselt - Fehler beim Entschlüsseln',
 			'encryption.text': 'Nachricht verschlüsselt'
+		},
+		attachment: {
+			encrypted: 'Datei für Download entschlüsseln',
+			is_decrypting: 'Datei wird entschlüsselt',
+			decryption_error: 'Fehler beim entschlüsseln',
+			save: 'Datei downloaden',
+			error: {
+				title: 'Leider, konnten wir die Datei nicht entschlüsseln und downloaden.',
+				text: 'Bitten Sie den Sender oder die Senderin die Datei erneut zu schicken. Downloaden Sie dann die neue Datei.'
+			}
 		},
 		inProgress: {
 			headline: 'Einen Moment bitte.',
@@ -717,15 +727,16 @@ export const de = {
 		msEdge: 'Microsoft Edge',
 		videoCall: {
 			asker: {
+				intro: 'Um Ende-zu Ende verschlüsselt zu telefonieren, befolgen Sie folgende Schritte:',
 				steps: {
-					'1': 'Folgen Sie dem Link zu Google Chrome oder Microsoft Edge.',
+					'1': 'Öffnen Sie den Link zu Google Chrome oder Microsoft Edge.',
 					'2': 'Laden Sie sich Chrome oder Edge herunter.',
 					'3': 'Installieren Sie Chrome oder Edge auf Ihrem PC/Laptop/Tablet/Smartphone.',
 					'4': 'Öffnen Sie nun über Chrome oder Edge die Online-Beratung.',
 					'5': 'Melden Sie sich bei der Online-Beratung an.',
 					'6': 'Bitten Sie Ihre_n Berater_in Sie nochmals anzurufen.',
 					'headline': {
-						'1': 'Video-Calls Ende-zu-Ende zu verschlüsseln',
+						'1': 'Video-Call',
 						'2': 'Sie haben bereits Google Chrome oder Microsoft Edge?'
 					}
 				}
@@ -1055,7 +1066,8 @@ export const de = {
 				cancel: 'Abbrechen',
 				confirm: 'Löschen'
 			}
-		}
+		},
+		'note.title': 'Notiz'
 	},
 	monitoring: {
 		title: 'Monitoring',
@@ -1434,10 +1446,10 @@ export const de = {
 		'header.title': 'Profil',
 		'noContent': 'Keine Angabe',
 		'notifications': {
-			'title': 'E-Mail Benachrichtigung',
+			'title': 'E-Mail-Benachrichtigung',
 			'subtitle': 'Wir benachrichtigen Sie, wenn Sie:',
 			'follow.up.email.label':
-				'Eine Nachricht von einem_r angenommenen Ratsuchenden erhalten haben.'
+				'eine Nachricht von einem_r angenommenen Ratsuchenden erhalten haben.'
 		},
 		'routes': {
 			activities: {
@@ -1512,12 +1524,12 @@ export const de = {
 				'headline': 'Möchten Sie Ihre E-Mail-Adresse wirklich löschen?'
 			},
 			errorOverlay: {
-				button: 'ok',
+				button: 'Ok',
 				headline:
 					'Ups! Wir konnten die E-Mail-Adresse gerade nicht löschen. Bitte versuchen Sie es noch einmal.'
 			},
 			successOverlay: {
-				button: 'ok',
+				button: 'Ok',
 				headline: 'Sie haben Ihre E-Mail-Adresse erfolgreich gelöscht.'
 			}
 		},
@@ -1840,7 +1852,8 @@ export const de = {
 				outsideDropArea:
 					'Ziehen Sie die Datei in das Feld, um sie hochzuladen.'
 			},
-			restrictions: '.jpg, .png, .pdf, .docx, .xlsx bis maximal 5MB'
+			restrictions:
+				'.jpg, .png, .pdf, .docx, .xlsx bis maximal {{attachment_filesize}}'
 		},
 		'reassign': {
 			system: {
@@ -2079,7 +2092,7 @@ export const de = {
 					button: {
 						confirm: 'Authentifizierung deaktivieren',
 						deny: 'Abbrechen',
-						edit: 'zweiter Faktor bearbeiten'
+						edit: 'Zweiter Faktor bearbeiten'
 					}
 				}
 			},
