@@ -59,6 +59,10 @@ $two-factor-auth-overlay-buttons-margin-right: auto !default;
 				padding-left: 24px;
 			}
 		}
+
+		.inputField__input {
+			padding: 12px $grid-base-five 0 $grid-base-three;
+		}
 	}
 
 	&__tools {
