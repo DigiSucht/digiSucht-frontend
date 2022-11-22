@@ -151,7 +151,7 @@ export const AskerInfo = () => {
 							content={`${sessionData?.age}`}
 						/>
 						<ProfileDataItem
-							title="profile.gender"
+							title="profile.gender.title"
 							content={translate(translateKeys.gender)}
 						/>
 						<ProfileDataItem

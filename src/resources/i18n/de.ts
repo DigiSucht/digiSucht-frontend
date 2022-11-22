@@ -1534,7 +1534,6 @@ export const de = {
 			}
 		},
 		'age': 'Alter',
-		'gender': 'Geschlecht',
 		'status': 'Selbst Betroffen',
 		'postalCode': 'Postleitzahl',
 		'mainTopic': 'Hauptthema',
@@ -1549,7 +1548,8 @@ export const de = {
 		[`gender.options.${Gender.Female.toLowerCase()}`]: 'Weiblich',
 		[`gender.options.${Gender.Male.toLowerCase()}`]: 'Männlich',
 		[`gender.options.${Gender.Diverse.toLowerCase()}`]: 'Divers',
-		[`gender.options.${Gender.NotProvided.toLowerCase()}`]: 'Keine Angabe'
+		[`gender.options.${Gender.NotProvided.toLowerCase()}`]: 'Keine Angabe',
+		'gender.title': 'Geschlecht'
 	},
 	qrCode: {
 		'agency': {
