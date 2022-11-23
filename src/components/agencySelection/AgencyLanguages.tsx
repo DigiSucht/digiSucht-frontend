@@ -23,20 +23,22 @@ export const AgencyLanguages: React.FC<AgencyLanguagesProps> = ({
 	useEffect(() => {
 		// async wrapper
 		const getLanguagesFromApi = async () => {
-			const response = await apiAgencyLanguages(
+			await apiAgencyLanguages(
 				agencyId,
 				settings?.multitenancyWithSingleDomainEnabled
-			).catch(() => {
-				/* intentional, falls back to fixed languages */
-			});
-
-			if (response) {
-				const sortedLanguages = [
-					...fixedLanguages,
-					...response.languages
-				].filter(isUniqueLanguage);
-				setLanguages(sortedLanguages);
-			}
+			)
+				.then((resp) => {
+					if (resp) {
+						const sortedLanguages = [
+							...fixedLanguages,
+							...resp.languages
+						].filter(isUniqueLanguage);
+						setLanguages(sortedLanguages);
+					}
+				})
+				.catch(() => {
+					/* intentional, falls back to fixed languages */
+				});
 		};
 
 		getLanguagesFromApi();
