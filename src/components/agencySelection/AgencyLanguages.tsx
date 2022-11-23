@@ -19,6 +19,8 @@ export const AgencyLanguages: React.FC<AgencyLanguagesProps> = ({
 	const settings = useAppConfig();
 	const [isAllShown, setIsAllShown] = useState(false);
 	const [languages, setLanguages] = useState<string[]>([...fixedLanguages]);
+	const [languagesSelection, setLanguagesSelection] = useState(null);
+	const [difference, setDifference] = useState(null);
 
 	useEffect(() => {
 		// async wrapper
@@ -48,8 +50,10 @@ export const AgencyLanguages: React.FC<AgencyLanguagesProps> = ({
 		settings?.multitenancyWithSingleDomainEnabled
 	]);
 
-	const languagesSelection = languages.slice(0, 2);
-	const difference = languages.length - languagesSelection.length;
+	useEffect(() => {
+		setLanguagesSelection(languages.slice(0, 2));
+		setDifference(languages.length - languagesSelection.length);
+	}, [languages, languagesSelection.length]);
 
 	const mapLanguages = (isoCode) => (
 		<span key={isoCode}>
