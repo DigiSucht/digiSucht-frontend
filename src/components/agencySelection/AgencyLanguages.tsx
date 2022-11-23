@@ -61,7 +61,7 @@ export const AgencyLanguages: React.FC<AgencyLanguagesProps> = ({
 		</span>
 	);
 
-	if (languages.length > 0) {
+	if (languages?.length > 0) {
 		return (
 			<div className="agencyLanguages">
 				<p>
