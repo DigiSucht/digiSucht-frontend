@@ -51,8 +51,8 @@ export const AgencyLanguages: React.FC<AgencyLanguagesProps> = ({
 	]);
 
 	useEffect(() => {
-		setLanguagesSelection(languages.slice(0, 2));
-		setDifference(languages.length - languagesSelection.length);
+		setLanguagesSelection(languages?.slice(0, 2));
+		setDifference(languages?.length - languagesSelection?.length);
 	}, [languages, languagesSelection.length]);
 
 	const mapLanguages = (isoCode) => (
