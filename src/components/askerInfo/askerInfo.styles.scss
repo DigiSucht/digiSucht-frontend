@@ -29,5 +29,11 @@
 		display: flex;
 		flex-wrap: wrap;
 		padding-left: 20px;
+		padding-bottom: 58px;
+		background-color: $background-light;
+
+		@include breakpoint($fromLarge) {
+			padding-bottom: 0;
+		}
 	}
 }
