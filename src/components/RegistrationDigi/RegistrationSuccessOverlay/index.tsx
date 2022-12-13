@@ -1,12 +1,7 @@
 import React, { useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { BUTTON_TYPES } from '../../button/Button';
-import {
-	Overlay,
-	OverlayItem,
-	OverlayWrapper,
-	OVERLAY_FUNCTIONS
-} from '../../overlay/Overlay';
+import { Overlay, OverlayItem, OVERLAY_FUNCTIONS } from '../../overlay/Overlay';
 import { redirectToApp } from '../../registration/autoLogin';
 import { ReactComponent as WelcomeIcon } from '../../../resources/img/illustrations/welcome.svg';
 
@@ -32,11 +27,9 @@ export const RegistrationSuccessOverlay = () => {
 	};
 
 	return (
-		<OverlayWrapper>
-			<Overlay
-				item={overlayItemRegistrationSuccess}
-				handleOverlay={handleOverlayAction}
-			/>
-		</OverlayWrapper>
+		<Overlay
+			item={overlayItemRegistrationSuccess}
+			handleOverlay={handleOverlayAction}
+		/>
 	);
 };

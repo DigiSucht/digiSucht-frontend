@@ -33,6 +33,7 @@ import { ProfileBox } from './ProfileBox';
 import { ProfileDataItem } from './ProfileDataItem';
 import { apiGetUserDataBySessionId } from '../../api/apiGetUserDataBySessionId';
 import { ConsultingSessionDataInterface } from '../../globalState/interfaces/ConsultingSessionDataInterface';
+import { PersonIcon } from '../../resources/img/icons';
 
 export const AskerInfo = () => {
 	const { t: translate } = useTranslation();
@@ -132,7 +133,10 @@ export const AskerInfo = () => {
 							}`}
 							className="profile__header__backButton"
 						>
-							<BackIcon />
+							<BackIcon
+								aria-label={translate('app.back')}
+								title={translate('app.back')}
+							/>
 						</Link>
 						<h3 className="profile__header__title profile__header__title--withBackButton">
 							{translate('profile.header.title')}
@@ -143,6 +147,16 @@ export const AskerInfo = () => {
 							{activeSession.user.username}
 						</p>
 					</div>
+				</div>
+				<div className="profile__user">
+					<div className="profile__icon">
+						<PersonIcon
+							className="profile__icon--user"
+							title={translate('profile.data.profileIcon')}
+							aria-label={translate('profile.data.profileIcon')}
+						/>
+					</div>
+					<h2>{activeSession.user.username}</h2>
 				</div>
 				<div className="askerInfo__contentContainer">
 					<ProfileBox title="profile.profilInformation">
@@ -177,15 +191,16 @@ export const AskerInfo = () => {
 								content={sessionData?.mainTopic.name}
 							/>
 						)}
-						{sessionData?.topics?.length > 0 && (
-							<ProfileDataItem
-								title="profile.selectedTopics"
-								content={sessionData?.topics
-									.map(({ name }) => name)
-									.join(', ')}
-							/>
-						)}
 					</ProfileBox>
+
+					{sessionData?.topics?.length > 0 && (
+						<ProfileDataItem
+							title="profile.selectedTopics"
+							content={sessionData?.topics
+								.map(({ name }) => name)
+								.join(', ')}
+						/>
+					)}
 
 					{activeSession.item.monitoring &&
 						(type === SESSION_LIST_TYPES.MY_SESSION ||
