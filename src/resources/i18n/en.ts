@@ -533,8 +533,7 @@ export const en = {
 			},
 			401: {
 				headline: 'Too bad!',
-				description:
-					'Sorry, you are not authorized to view this page.<br>Please log in.'
+				description: 'You are not authorized to view this page.'
 			},
 			404: {
 				headline: 'Ohh!',

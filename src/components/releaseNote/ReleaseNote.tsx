@@ -47,7 +47,9 @@ export const ReleaseNote: React.FC<ReleaseNoteProps> = () => {
 	);
 
 	useEffect(() => {
-		fetch(`${settings.urls.releases}/releases.json`)
+		fetch(
+			`${settings.urls.releases}/releases.json?cacheBuster=${Date.now()}`
+		)
 			.then((res) => res.json())
 			.then((releases: TReleases) =>
 				Object.entries(releases)
@@ -66,7 +68,11 @@ export const ReleaseNote: React.FC<ReleaseNoteProps> = () => {
 			.then((releases) =>
 				Promise.all(
 					releases.map((release) =>
-						fetch(`${settings.urls.releases}/${release.file}`)
+						fetch(
+							`${settings.urls.releases}/${
+								release.file
+							}?cacheBuster=${Date.now()}`
+						)
 							.then((res) => res.text())
 							.then((markdown) => ({
 								...release,

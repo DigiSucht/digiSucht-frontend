@@ -53,8 +53,10 @@ export const TWO_FACTOR_TYPES = {
 
 export const TwoFactorAuth = () => {
 	const { t: translate } = useTranslation();
-	const location =
-		useLocation<{ openTwoFactor?: boolean; isEditMode?: boolean }>();
+	const location = useLocation<{
+		openTwoFactor?: boolean;
+		isEditMode?: boolean;
+	}>();
 
 	const { userData } = useContext(UserDataContext);
 	const [isSwitchChecked, setIsSwitchChecked] = useState<boolean>(
