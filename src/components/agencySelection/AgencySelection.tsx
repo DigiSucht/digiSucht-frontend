@@ -27,6 +27,7 @@ import {
 } from '../registration/registrationHelpers';
 import { useTranslation } from 'react-i18next';
 import { useAppConfig } from '../../hooks/useAppConfig';
+import i18n from '../../i18n';
 
 export interface AgencySelectionProps {
 	consultingType: ConsultingTypeBasicInterface;
@@ -108,7 +109,8 @@ export const AgencySelection = (props: AgencySelectionProps) => {
 		props.consultingType.id,
 		props?.mainTopicId,
 		props?.age,
-		props?.gender
+		props?.gender,
+		i18n.language
 	]);
 
 	useEffect(() => {
