@@ -60,8 +60,10 @@ export const SessionListItemComponent = ({
 }: SessionListItemProps) => {
 	const { t: translate } = useTranslation(['common', 'consultingTypes']);
 	const tenantData = useTenant();
-	const { sessionId, rcGroupId: groupIdFromParam } =
-		useParams<{ rcGroupId: string; sessionId: string }>();
+	const { sessionId, rcGroupId: groupIdFromParam } = useParams<{
+		rcGroupId: string;
+		sessionId: string;
+	}>();
 	const sessionIdFromParam = sessionId ? parseInt(sessionId) : null;
 	const history = useHistory();
 

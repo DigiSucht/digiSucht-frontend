@@ -23,8 +23,9 @@ export const EnquiryLanguageSelection: React.FC<EnquiryLanguageSelectionProps> =
 		const settings = useAppConfig();
 		const { sessions, ready } = useContext(SessionsDataContext);
 		const { fixed: fixedLanguages } = useContext(LanguagesContext);
-		const { sessionId: sessionIdFromParam } =
-			useParams<{ sessionId: string }>();
+		const { sessionId: sessionIdFromParam } = useParams<{
+			sessionId: string;
+		}>();
 		const { locale } = useContext(LocaleContext);
 
 		const [languages, setLanguages] = useState([]);
