@@ -1,5 +1,5 @@
 import { endpoints } from '../resources/scripts/endpoints';
-import { fetchData, FETCH_ERRORS, FETCH_METHODS } from './fetchData';
+import { fetchData, FETCH_SUCCESS, FETCH_METHODS } from './fetchData';
 
 import { AgencyLanguagesInterface } from '../globalState';
 
@@ -13,7 +13,7 @@ export const apiAgencyLanguages = async (
 		url: url,
 		method: FETCH_METHODS.GET,
 		skipAuth: true,
-		responseHandling: [FETCH_ERRORS.EMPTY],
+		responseHandling: [FETCH_SUCCESS.CONTENT],
 		...(useMultiTenancyWithSingleDomain && {
 			headersData: { agencyId }
 		})
