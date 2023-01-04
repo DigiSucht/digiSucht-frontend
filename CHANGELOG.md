@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.9.15 (2023-01-04)
+
+
+### Bug Fixes
+
+* issue when changing the translation ([f75dfd6](https://github.com/onlineberatung/onlineberatung-frontend/commit/f75dfd626af738e94d2bb1ef532a95b5c2f1baf8))
+
 ### 2.9.14 (2022-03-08)
 
 ### 2.9.13 (2022-02-28)
