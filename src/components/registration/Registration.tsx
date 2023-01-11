@@ -175,34 +175,14 @@ export const Registration = ({
 			{isReady &&
 				(showWelcomeScreen ? (
 					<WelcomeScreen
-						title={
-							consultingType
-								? translate(
-										[
-											`consultingType.${consultingType?.id}.titles.welcome`,
-											consultingType?.titles.welcome
-										],
-										{ ns: 'consultingTypes' }
-								  )
-								: translate('registration.overline')
-						}
+						title={translate('registration.overline')}
 						handleForwardToRegistration={
 							handleForwardToRegistration
 						}
 						loginParams={loginParams}
 						welcomeScreenConfig={consultingType?.welcomeScreen}
 						consultingTypeId={consultingType?.id}
-						consultingTypeName={
-							consultingType
-								? translate(
-										[
-											`consultingType.${consultingType?.id}.titles.long`,
-											consultingType?.titles.long
-										],
-										{ ns: 'consultingTypes' }
-								  )
-								: null
-						}
+						consultingTypeName={null}
 					/>
 				) : (
 					<RegistrationFormDigi
