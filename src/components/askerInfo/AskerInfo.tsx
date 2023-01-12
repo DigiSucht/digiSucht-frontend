@@ -191,16 +191,15 @@ export const AskerInfo = () => {
 								content={sessionData?.mainTopic.name}
 							/>
 						)}
+						{sessionData?.topics?.length > 0 && (
+							<ProfileDataItem
+								title="profile.selectedTopics"
+								content={sessionData?.topics
+									.map(({ name }) => name)
+									.join(', ')}
+							/>
+						)}
 					</ProfileBox>
-
-					{sessionData?.topics?.length > 0 && (
-						<ProfileDataItem
-							title="profile.selectedTopics"
-							content={sessionData?.topics
-								.map(({ name }) => name)
-								.join(', ')}
-						/>
-					)}
 
 					{activeSession.item.monitoring &&
 						(type === SESSION_LIST_TYPES.MY_SESSION ||
