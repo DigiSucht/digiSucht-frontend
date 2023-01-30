@@ -34,6 +34,7 @@ import { ProfileDataItem } from './ProfileDataItem';
 import { apiGetUserDataBySessionId } from '../../api/apiGetUserDataBySessionId';
 import { ConsultingSessionDataInterface } from '../../globalState/interfaces/ConsultingSessionDataInterface';
 import { PersonIcon } from '../../resources/img/icons';
+import { RocketChatUsersOfRoomProvider } from '../../globalState/provider/RocketChatUsersOfRoomProvider';
 
 export const AskerInfo = () => {
 	const { t: translate } = useTranslation();
@@ -120,103 +121,108 @@ export const AskerInfo = () => {
 	};
 	return (
 		<ActiveSessionContext.Provider value={{ activeSession }}>
-			<div className="profile__wrapper">
-				<div className="profile__header">
-					<div className="profile__header__wrapper">
-						<Link
-							to={`${listPath}/${activeSession.item.groupId}/${
-								activeSession.item.id
-							}${
-								sessionListTab
-									? `?sessionListTab=${sessionListTab}`
-									: ''
-							}`}
-							className="profile__header__backButton"
-						>
-							<BackIcon
-								aria-label={translate('app.back')}
-								title={translate('app.back')}
+			<RocketChatUsersOfRoomProvider>
+				<div className="profile__wrapper">
+					<div className="profile__header">
+						<div className="profile__header__wrapper">
+							<Link
+								to={`${listPath}/${
+									activeSession.item.groupId
+								}/${activeSession.item.id}${
+									sessionListTab
+										? `?sessionListTab=${sessionListTab}`
+										: ''
+								}`}
+								className="profile__header__backButton"
+							>
+								<BackIcon
+									aria-label={translate('app.back')}
+									title={translate('app.back')}
+								/>
+							</Link>
+							<h3 className="profile__header__title profile__header__title--withBackButton">
+								{translate('profile.header.title')}
+							</h3>
+						</div>
+						<div className="profile__header__metaInfo">
+							<p className="profile__header__username profile__header__username--withBackButton">
+								{activeSession.user.username}
+							</p>
+						</div>
+					</div>
+					<div className="profile__user">
+						<div className="profile__icon">
+							<PersonIcon
+								className="profile__icon--user"
+								title={translate('profile.data.profileIcon')}
+								aria-label={translate(
+									'profile.data.profileIcon'
+								)}
 							/>
-						</Link>
-						<h3 className="profile__header__title profile__header__title--withBackButton">
-							{translate('profile.header.title')}
-						</h3>
+						</div>
+						<h2>{activeSession.user.username}</h2>
 					</div>
-					<div className="profile__header__metaInfo">
-						<p className="profile__header__username profile__header__username--withBackButton">
-							{activeSession.user.username}
-						</p>
-					</div>
-				</div>
-				<div className="profile__user">
-					<div className="profile__icon">
-						<PersonIcon
-							className="profile__icon--user"
-							title={translate('profile.data.profileIcon')}
-							aria-label={translate('profile.data.profileIcon')}
-						/>
-					</div>
-					<h2>{activeSession.user.username}</h2>
-				</div>
-				<div className="askerInfo__contentContainer">
-					<ProfileBox title="profile.profilInformation">
-						<ProfileDataItem
-							title="profile.age"
-							content={`${sessionData?.age}`}
-						/>
-						<ProfileDataItem
-							title="profile.gender.title"
-							content={translate(translateKeys.gender)}
-						/>
-						<ProfileDataItem
-							title="profile.status"
-							content={translate(translateKeys.counselling)}
-						/>
-						<ProfileDataItem
-							title="profile.postalCode"
-							content={sessionData?.postcode}
-						/>
-					</ProfileBox>
-
-					{tenant?.settings?.featureToolsEnabled && sessionData?.id && (
-						<ProfileBox title="profile.tools">
-							<AskerInfoTools />
-						</ProfileBox>
-					)}
-
-					<ProfileBox title="profile.topic">
-						{sessionData?.mainTopic && (
+					<div className="askerInfo__contentContainer">
+						<ProfileBox title="profile.profilInformation">
 							<ProfileDataItem
-								title="profile.mainTopic"
-								content={sessionData?.mainTopic.name}
+								title="profile.age"
+								content={`${sessionData?.age}`}
 							/>
-						)}
-					</ProfileBox>
+							<ProfileDataItem
+								title="profile.gender.title"
+								content={translate(translateKeys.gender)}
+							/>
+							<ProfileDataItem
+								title="profile.status"
+								content={translate(translateKeys.counselling)}
+							/>
+							<ProfileDataItem
+								title="profile.postalCode"
+								content={sessionData?.postcode}
+							/>
+						</ProfileBox>
 
-					{sessionData?.topics?.length > 0 && (
-						<ProfileDataItem
-							title="profile.selectedTopics"
-							content={sessionData?.topics
-								.map(({ name }) => name)
-								.join(', ')}
-						/>
-					)}
+						{tenant?.settings?.featureToolsEnabled &&
+							sessionData?.id && (
+								<ProfileBox title="profile.tools">
+									<AskerInfoTools />
+								</ProfileBox>
+							)}
 
-					{activeSession.item.monitoring &&
-						(type === SESSION_LIST_TYPES.MY_SESSION ||
-							type === SESSION_LIST_TYPES.TEAMSESSION) && (
-							<ProfileBox title="userProfile.monitoring.title">
-								<AskerInfoMonitoring />
+						<ProfileBox title="profile.topic">
+							{sessionData?.mainTopic && (
+								<ProfileDataItem
+									title="profile.mainTopic"
+									content={sessionData?.mainTopic.name}
+								/>
+							)}
+
+							{sessionData?.topics?.length > 0 && (
+								<ProfileDataItem
+									title="profile.selectedTopics"
+									content={sessionData?.topics
+										.map(({ name }) => name)
+										.join(', ')}
+								/>
+							)}
+						</ProfileBox>
+
+						{activeSession.item.monitoring &&
+							(type === SESSION_LIST_TYPES.MY_SESSION ||
+								type === SESSION_LIST_TYPES.TEAMSESSION) && (
+								<ProfileBox title="userProfile.monitoring.title">
+									<AskerInfoMonitoring />
+								</ProfileBox>
+							)}
+
+						{isSessionAssignAvailable() && (
+							<ProfileBox title="userProfile.reassign.title">
+								<AskerInfoAssign />
 							</ProfileBox>
 						)}
-
-					{isSessionAssignAvailable() && (
-						<ProfileBox title="userProfile.reassign.title">
-							<AskerInfoAssign />
-						</ProfileBox>
-					)}
+					</div>
 				</div>
-			</div>
+			</RocketChatUsersOfRoomProvider>
 		</ActiveSessionContext.Provider>
 	);
 };
