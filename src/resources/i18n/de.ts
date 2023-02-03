@@ -1943,7 +1943,7 @@ export const de = {
 					'Ziehen Sie die Datei in das Feld, um sie hochzuladen.'
 			},
 			restrictions:
-				'.jpg, .png, .pdf, .docx, .xlsx bis maximal {{attachment_filesize}}'
+				'.jpg, .png, .pdf, .docx, .xlsx bis maximal {{attachment_filesize}} MB'
 		},
 		'reassign': {
 			system: {
