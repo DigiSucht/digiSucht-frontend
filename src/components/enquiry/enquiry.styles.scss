@@ -14,7 +14,7 @@ $background-circle-size: 1800px !default;
 
 		@include breakpoint($fromLarge) {
 			min-height: calc(100vh - #{$grid-base-twelve});
-			padding-bottom: 128px;
+			padding-bottom: 280px;
 
 			&::after {
 				content: '';
@@ -61,7 +61,7 @@ $background-circle-size: 1800px !default;
 	}
 
 	&__contentWrapper {
-		padding: $grid-base-six $grid-base-two $grid-base-twelve;
+		padding: $grid-base-six $grid-base-two $grid-base-twelve + 49px;
 		overflow: auto;
 		margin-top: $header-height;
 		margin-bottom: $message-wrapper-height;
