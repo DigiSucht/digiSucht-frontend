@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.10.0 (2023-02-27)
+
+
+### Features
+
+* reverting tenant resolver for this release ([c40cafc](https://github.com/onlineberatung/onlineberatung-frontend/commit/c40cafc3f350059181d194c8bf5c2f4fc946d8fb))
+
 ### 2.9.17 (2023-02-22)
 
 ### 2.9.16 (2023-02-16)
