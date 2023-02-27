@@ -253,7 +253,13 @@ const useTenantTheming = () => {
 			return;
 		}
 
-		apiGetTenantTheming()
+		apiGetTenantTheming({
+			subdomain,
+			useMultiTenancyWithSingleDomain:
+				settings?.multitenancyWithSingleDomainEnabled,
+			mainTenantSubdomainForSingleDomain:
+				settings.mainTenantSubdomainForSingleDomainMultitenancy
+		})
 			.then(onTenantServiceResponse)
 			.catch((error) => {
 				console.log('Theme could not be loaded', error);
