@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.10.2 (2023-03-01)
+
+
+### Bug Fixes
+
+* translation when deleting a chat ([22ff5fb](https://github.com/onlineberatung/onlineberatung-frontend/commit/22ff5fbfd9c82e933a4dcb70170b9e1d81d512ec))
+
 ### 2.10.1 (2023-03-01)
 
 
