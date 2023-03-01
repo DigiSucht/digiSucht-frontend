@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.10.1 (2023-03-01)
+
+
+### Bug Fixes
+
+* assignment issue VIC-2597 ([1a1bc90](https://github.com/onlineberatung/onlineberatung-frontend/commit/1a1bc9076faf0acfc5c1ff2fd6da12718c925de8))
+
 ## 2.10.0 (2023-02-27)
 
 
