@@ -1326,6 +1326,7 @@ export const de = {
 	notifications: {
 		'message.new': 'Sie haben eine neue Nachricht!',
 		'enquiry.new': 'Sie haben eine neue Livechat Anfrage!',
+		'initialRequest.new': 'Sie haben eine neue Erstanfrage!',
 		'warning': 'Warnung',
 		'error': 'Fehlgeschlagen',
 		'success': 'Erfolgreich',
@@ -1507,7 +1508,7 @@ export const de = {
 		'header.title': 'Profil',
 		'noContent': 'Keine Angabe',
 		'notifications': {
-			'title': 'E-mail-Benachrichtigungen',
+			'title': 'E-Mail-Benachrichtigungen',
 			'subtitle':
 				'Wir informieren Sie per E-Mail, wenn Sie eine neue Nachricht erhalten haben.',
 			'follow.up.email.label':
@@ -1539,8 +1540,8 @@ export const de = {
 					'Leider können wir Ihre Einstellungen momentan nicht aktualisieren. Bitte versuchen Sie es später noch einmal.'
 			},
 			'noEmail': {
-				info: 'Sie haben noch keine E-mail Adresse hinzugefügt.',
-				button: 'E-mail Adresse hinzufügen',
+				info: 'Sie haben noch keine E-Mail-Adresse hinzugefügt.',
+				button: 'E-Mail-Adresse hinzufügen',
 				modal: {
 					title: 'E-Mail-Adresse hinzufügen',
 					description:
@@ -1576,6 +1577,12 @@ export const de = {
 				message:
 					'Sie haben den Empfang von Benachrichtigungen für diesen Browser abgelehnt. Um Push-Benachrichtigungen zu aktivieren, müssen Sie diese zuerst in Ihren Browsereinstellungen zulassen.'
 			}
+		},
+		'documentation': {
+			title: 'Handbuch zur Beratungsplattform',
+			description:
+				'Haben Sie Fragen? Im Handbuch finden Sie detaillierte Informationen zu den wichtigsten Funktionen der Online-Beratungsplattform.',
+			link: 'Zum Handbuch'
 		},
 		'liveChat': {
 			title: 'Meine Live-Chat Verfügbarkeit',
