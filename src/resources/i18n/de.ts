@@ -1509,7 +1509,8 @@ export const de = {
 		'noContent': 'Keine Angabe',
 		'notifications': {
 			'title': 'E-Mail-Benachrichtigungen',
-			'subtitle':
+			'subtitle': 'Wir benachrichtigen Sie, wenn Sie:',
+			'description':
 				'Wir informieren Sie per E-Mail, wenn Sie eine neue Nachricht erhalten haben.',
 			'follow.up.email.label':
 				'eine Nachricht von angenommenen Ratsuchenden erhalten haben.',
@@ -1533,6 +1534,11 @@ export const de = {
 				title: 'Beraterwechsel',
 				description:
 					'Ihr_e Berater_in hat um Erlaubnis gebeten, Sie einem neuen Berater zuzuweisen.'
+			},
+			'appointmentNotificationEnabled': {
+				title: 'Termine',
+				description:
+					'Ein Termin wurde angesetzt, verschoben oder abgesagt'
 			},
 			'error': {
 				title: 'Etwas ist schief gelaufen.',
@@ -2090,7 +2096,11 @@ export const de = {
 		'empty': {
 			anonymous:
 				'Aktuell warten keine anonymen Ratsuchenden auf einen Live-Chat',
-			known: 'Aktuell liegen keine Erstanfragen vor'
+			known: 'Aktuell liegen keine Erstanfragen vor',
+			mySessions: 'Sie haben zur Zeit keine aktiven Beratungen',
+			teamSessions: 'Ihr Team hat keine aktiven Beratungen',
+			peersessions: 'Sie haben zur Zeit keine aktiven Peer-Beratungen',
+			archived: 'Es sind noch keine Beratungen archiviert'
 		},
 		'unavailable': {
 			description:

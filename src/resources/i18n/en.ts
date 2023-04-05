@@ -1566,6 +1566,8 @@ export const en = {
 		'notifications': {
 			'title': 'E-mail notification',
 			'subtitle': 'We will notify you when you:',
+			'description':
+				'We will inform you by e-mail when you have received a new message.',
 			'follow.up.email.label':
 				'Have received a message from an accepted advice seeker.',
 			'mainEmail': {
@@ -1588,6 +1590,11 @@ export const en = {
 				title: 'Change of counsellor',
 				description:
 					'Your counsellor has asked for permission to reassign you to a new counsellor'
+			},
+			'appointmentNotificationEnabled': {
+				title: 'Appointments',
+				description:
+					'An appointment was scheduled, postponed or cancelled'
 			},
 			'error': {
 				title: 'Something went wrong.',
@@ -1614,7 +1621,7 @@ export const en = {
 				}
 			}
 		},
-		'browserNotification': {
+		'browserNotifications': {
 			title: 'Browser Notifications',
 			description:
 				"If you're online, we'll notify you in this browser when you've got a new message.",
@@ -2005,7 +2012,11 @@ export const en = {
 		'empty': {
 			known: 'There are no requests at the moment',
 			anonymous:
-				'Currently, no anonymous advice seekers are waiting for a live chat'
+				'Currently, no anonymous advice seekers are waiting for a live chat',
+			mySessions: 'You currently have no active consultations',
+			teamSessions: 'Your team has no active consultations',
+			peersessions: 'You currently have no active peer counselling',
+			archived: 'There are no consultations in the archive yet'
 		},
 		'unavailable': {
 			description:
