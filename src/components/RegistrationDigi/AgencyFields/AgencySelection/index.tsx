@@ -6,7 +6,7 @@ import { ConsultingTypeBasicInterface } from '../../../../globalState';
 import { AgencyDataInterface } from '../../../../globalState/interfaces/UserDataInterface';
 import { PinIcon } from '../../../../resources/img/icons';
 import { VALID_POSTCODE_LENGTH } from '../../../agencySelection/agencySelectionHelpers';
-import { PreselectedAgency } from '../../../agencySelection/PreselectedAgency';
+import { PreselectedAgency } from '../../../../containers/registration/components/PreSelectedAgency/PreselectedAgency';
 import { Loading } from '../../../app/Loading';
 import { InputField } from '../../../inputField/InputField';
 import { Text } from '../../../text/Text';
