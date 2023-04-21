@@ -102,7 +102,7 @@ export const AgencySelection = ({
 			setIsLoading(true);
 			apiAgencySelection({
 				postcode: postCode,
-				consultingType: consultingType.id,
+				consultingType: consultingType?.id,
 				topicId: mainTopicId,
 				age: age,
 				gender: gender
@@ -134,7 +134,7 @@ export const AgencySelection = ({
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [
-		consultingType.id,
+		consultingType?.id,
 		mainTopicId,
 		age,
 		gender,
