@@ -167,15 +167,6 @@ export const deInformal = {
 			headline: 'Der Schutz Deiner Daten ist uns wichtig',
 			infoText:
 				'Sichere Dein Konto vor einem möglichen unbefugten Zugriff. Nutze einen zweiten Faktor (App oder E-Mail) für die Anmeldung in der Online-Beratung.'
-		},
-		'voluntaryInfo': {
-			headline: 'Wir wollen Dich bestmöglichst beraten',
-			infoText:
-				'Dabei hilft es uns, wenn Du weitere freiwillige Angaben zu Dir und Deinem Anliegen machst.',
-			overlay: {
-				'success.headline':
-					'Vielen Dank. Deine freiwilligen Angaben wurden erfolgreich gespeichert.'
-			}
 		}
 	},
 	groupChat: {
@@ -209,32 +200,43 @@ export const deInformal = {
 	help: {
 		videoCall: {
 			asker: {
-				intro: 'Um Ende-zu Ende verschlüsselt zu telefonieren, befolge die folgenden Schritte:',
+				headline: 'Video-Call',
+				intro: 'Damit Du an Video-Calls teilnehmen kannst, musst Du Dich über einen der unterstützten Browser anmelden. Die Chat-Beratung funktioniert weiterhin mit Firefox.',
 				steps: {
-					'headline': {
-						'2': 'Hast Du bereits Google Chrome oder Microsoft Edge?'
+					'1.1': 'Folge dem Link zu ',
+					'1.2': ' oder ',
+					'1.3': ' (nur für macOS und iOS verfügbar).',
+					'2': 'Lade einen der unterstützten Browser herunter.',
+					'3': 'Installiere diesen auf Deinem PC/Laptop/Tablet/Smartphone.',
+					'4': {
+						'1': 'Öffne nun mit diesem Browser die Online-Beratung.',
+						'2': 'Öffne die Online-Beratung mit einem dieser Browser.'
 					},
-					'1': 'Öffne den Link zu Google Chrome oder Microsoft Edge.',
-					'2': 'Lade Dir sich Chrome oder Edge herunter.',
-					'3': 'Installiere Chrome oder Edge auf Deinem PC/Laptop/Tablet/Smartphone.',
-					'4': 'Öffne nun über Chrome oder Edge die Online-Beratung.',
-					'5': 'Melde dich bei der Online-Beratung an.',
-					'6': 'Bitte Deine_n Berater_in dich nochmals anzurufen.'
+					'5': 'Melde Dich bei der Online-Beratung an.',
+					'6': 'Bitte Deine_n Berater_in dich nochmals anzurufen.',
+					'headline': {
+						'2': 'Du hast bereits Google Chrome, Microsoft Edge oder Safari?'
+					}
 				}
 			},
 			consultant: {
-				intro: 'Um einen Video-Call starten zu können, musst Du Dich über Google Chrome oder Microsoft Edge bei der Online-Beratung anmelden. Somit kann der Video-Call Ende-zu-Ende verschlüsselt werden und Du kannst starten.',
+				headline: 'Video-Call',
+				intro: 'Um einen Video-Call durchführen zu können, musst Du Dich über einen der unterstützten Browser anmelden. Die Chat-Beratung funktioniert weiterhin mit Firefox.',
 				steps: {
-					'headline': {
-						'1': 'So geht&#39;s',
-						'2': 'Hast Du bereits Google Chrome oder Microsoft Edge?'
-					},
 					'1.1': 'Folge dem Link zu ',
-					'2': 'Lade Chrome oder Edge herunter. Dafür brauchst Du möglicherweise die Unterstützung Deiner EDV.',
-					'3': 'Installiere Chrome oder Edge auf Deinem PC/Laptop/Tablet/Smartphone.',
-					'4': 'Öffne nun über Chrome oder Edge die Online-Beratung.',
+					'1.2': ' oder ',
+					'1.3': ' (nur für macOS und iOS verfügbar).',
+					'2': 'Lade einen der unterstützten Browser herunter. Dafür brauchst Du möglicherweise die Unterstützung Deiner EDV.',
+					'3': 'Installiere diesen auf Deinem PC/Laptop/Tablet/Smartphone.',
+					'4': {
+						'1': 'Öffne nun mit diesem Browser die Online-Beratung.',
+						'2': 'Öffne die Online-Beratung mit einem dieser Browser.'
+					},
 					'5': 'Melde Dich bei der Online-Beratung an.',
-					'6': 'Starte den Video-Call.'
+					'6': 'Starte den Video-Call.',
+					'headline': {
+						'2': 'Du hast bereits Google Chrome, Microsoft Edge oder Safari?'
+					}
 				}
 			}
 		}
@@ -363,7 +365,46 @@ export const deInformal = {
 		notifications: {
 			'subtitle': 'Wir benachrichtigen Dich, wenn Du:',
 			'follow.up.email.label':
-				'eine Nachricht von angenommenen Ratsuchenden erhalten hast.'
+				'eine Nachricht von angenommenen Ratsuchenden erhalten hast.',
+			'description':
+				'Wir informieren dich per E-Mail, wenn du eine neue Nachricht erhalten hast.',
+			'reassignmentAdviceSeeker': {
+				description:
+					'Dein_e Berater_in hat um Erlaubnis gebeten, dich einem neuen Berater zuzuweisen.'
+			},
+			'newMessage': {
+				description:
+					'Einer der dir zugewiesenen Ratsuchenden hat dir geantwortet'
+			},
+			'reassignmentConsultant': {
+				description:
+					'Kollege_in hat dir eine_n Ratsuchende_n zugewiesen.'
+			},
+			'toggleError': {
+				description:
+					'Leider können wir deine Benachrichtigungen zur Zeit nicht aktivieren. Bitte versuche es später noch einmal.'
+			},
+			'noEmail': {
+				info: 'Du hast noch keine E-mail-Adresse hinzugefügt.',
+				modal: {
+					description:
+						'Die Angabe deiner E-Mail-Adresse ist freiwillig und wird ausschließlich verwendet, um dich über neue Antworten deines_r Berater_in zu informieren. Deine E-Mail-Adresse ist für Berater_innen nicht sichtbar.',
+					errorMessage:
+						'Leider können wir Ihre E-mail-Adresse momentan nicht speichern. Bitte versuchen Sie es später noch einmal oder kontaktieren Sie unseren Support.'
+				}
+			}
+		},
+		browserNotifications: {
+			description:
+				'Wenn du online bist, informieren wir dich in diesem Browser, wenn du eine neue Nachricht erhalten hast.',
+			newMessage: {
+				description:
+					'Einer der dir zugewiesenen Ratsuchenden hat dir geantwortet'
+			},
+			denied: {
+				message:
+					'Du hast den Empfang von Benachrichtigungen für diesen Browser abgelehnt. Um Push-Benachrichtigungen zu aktivieren, musst du diese zuerst in deinen Browsereinstellungen zulassen.'
+			}
 		},
 		spokenLanguages: {
 			info: 'Wähle die Sprache(n) aus, in der Du die Ratsuchenden beraten kannst. Deutsch ist als Standardsprache vorausgewählt und kann nicht entfernt werden.'

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { Link, useParams, useHistory } from 'react-router-dom';
-import { AskerInfoMonitoring } from './AskerInfoMonitoring';
 import {
 	SESSION_LIST_TAB,
 	SESSION_LIST_TYPES
@@ -35,6 +34,8 @@ import { apiGetUserDataBySessionId } from '../../api/apiGetUserDataBySessionId';
 import { ConsultingSessionDataInterface } from '../../globalState/interfaces/ConsultingSessionDataInterface';
 import { PersonIcon } from '../../resources/img/icons';
 import { RocketChatUsersOfRoomProvider } from '../../globalState/provider/RocketChatUsersOfRoomProvider';
+import { Box } from '../box/Box';
+import { AskerInfoData } from './AskerInfoData';
 
 export const AskerInfo = () => {
 	const { t: translate } = useTranslation();
@@ -150,15 +151,37 @@ export const AskerInfo = () => {
 							</p>
 						</div>
 					</div>
-					<div className="profile__user">
-						<div className="profile__icon">
-							<PersonIcon
-								className="profile__icon--user"
-								title={translate('profile.data.profileIcon')}
-								aria-label={translate(
-									'profile.data.profileIcon'
-								)}
-							/>
+					<div className="profile__innerWrapper">
+						<div className="profile__user">
+							<div className="profile__icon">
+								<PersonIcon
+									className="profile__icon--user"
+									title={translate(
+										'profile.data.profileIcon'
+									)}
+									aria-label={translate(
+										'profile.data.profileIcon'
+									)}
+								/>
+							</div>
+							<h2>{activeSession.user.username}</h2>
+						</div>
+						<div className="profile__content askerInfo__content">
+							<Box>
+								<AskerInfoData />
+							</Box>
+							{tenant?.settings?.featureToolsEnabled && (
+								<Box>
+									<AskerInfoTools />
+								</Box>
+							)}
+							{isSessionAssignAvailable() && (
+								<Box>
+									<div className="askerInfo__assign">
+										<AskerInfoAssign />
+									</div>
+								</Box>
+							)}
 						</div>
 						<h2>{activeSession.user.username}</h2>
 					</div>
@@ -206,14 +229,6 @@ export const AskerInfo = () => {
 								/>
 							)}
 						</ProfileBox>
-
-						{activeSession.item.monitoring &&
-							(type === SESSION_LIST_TYPES.MY_SESSION ||
-								type === SESSION_LIST_TYPES.TEAMSESSION) && (
-								<ProfileBox title="userProfile.monitoring.title">
-									<AskerInfoMonitoring />
-								</ProfileBox>
-							)}
 
 						{isSessionAssignAvailable() && (
 							<ProfileBox title="userProfile.reassign.title">
