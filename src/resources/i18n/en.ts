@@ -1844,7 +1844,8 @@ export const en = {
 			anonymous:
 				'Currently, no anonymous advice seekers are waiting for a live chat',
 			mySessions: 'You currently have no active consultations',
-			teamSessions: 'Your team has no active consultations',
+			teamSessions:
+				'There are no active team consultations. To start a team consultation, you will need to assign your client to another advisor. Once the advice seeker has agreed to this, both advisors will be able to chat here with the customer at the same time.',
 			peersessions: 'You currently have no active peer counselling',
 			archived: 'There are no consultations in the archive yet'
 		},
@@ -2101,18 +2102,6 @@ export const en = {
 				'0': 'Female',
 				'1': 'Male',
 				'2': 'Divers'
-			},
-			addictiveDrugs: {
-				'headline': 'Narcotics',
-				'0': 'Alcohol',
-				'1': 'Drugs',
-				'2': 'Legal highs',
-				'3': 'Tobacco',
-				'4': 'Medication',
-				'5': 'Gambling',
-				'6': 'Internet/Computer',
-				'7': 'Eating disorders',
-				'8': 'Other'
 			}
 		},
 		userU25: {
@@ -2204,7 +2193,6 @@ export const en = {
 			resort: 'Department',
 			postcode: 'Postal code',
 			relation: 'Background',
-			addictiveDrugs: 'Narcotics',
 			age: 'Age',
 			gender: 'Gender',
 			state: 'State'

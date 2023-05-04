@@ -1927,7 +1927,8 @@ export const de = {
 				'Aktuell warten keine anonymen Ratsuchenden auf einen Live-Chat',
 			known: 'Aktuell liegen keine Erstanfragen vor',
 			mySessions: 'Sie haben zur Zeit keine aktiven Beratungen',
-			teamSessions: 'Ihr Team hat keine aktiven Beratungen',
+			teamSessions:
+				'Es gibt keine aktiven Teamberatungen. Um eine Teamberatung zu starten, müssen Sie Ihren Kunden einem anderen Berater zuweisen. Sobald der Kunde einverstanden ist, können beide Berater gleichzeitig mit dem Kunden chatten.',
 			peersessions: 'Sie haben zur Zeit keine aktiven Peer-Beratungen',
 			archived: 'Es sind noch keine Beratungen archiviert'
 		},
@@ -2176,18 +2177,6 @@ export const de = {
 				'5': '60+',
 				'null': 'Keine Angabe'
 			},
-			addictiveDrugs: {
-				'headline': 'Suchtmittel',
-				'0': 'Alkohol',
-				'1': 'Drogen',
-				'2': 'Legal Highs',
-				'3': 'Tabak',
-				'4': 'Medikamente',
-				'5': 'Glücksspiel',
-				'6': 'Internet/Computer',
-				'7': 'Essstörungen',
-				'8': 'Andere'
-			},
 			gender: {
 				'headline': 'Geschlecht',
 				'0': 'Weiblich',
@@ -2286,9 +2275,7 @@ export const de = {
 			}
 		},
 		data: {
-			addictiveDrugs: 'Suchtmittel',
 			age: 'Alter',
-			gender: 'Geschlecht',
 			postcode: 'Postleitzahl',
 			relation: 'Hintergrund',
 			resort: 'Fachbereich',
