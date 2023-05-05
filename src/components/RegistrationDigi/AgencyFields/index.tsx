@@ -22,7 +22,7 @@ export const AgencySelectionFormField = ({
 
 	return (
 		<>
-			{(mainTopicId && gender && age) ||
+			{!!(Number(mainTopicId) >= 0 && gender && age) ||
 			preselectedAgencies.length > 0 ? (
 				<AgencySelection
 					consultingType={consultingType}
