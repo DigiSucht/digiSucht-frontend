@@ -14,6 +14,7 @@ import { AgencyRadioButtonForm } from '../Agency';
 import { NoAgencyFound } from '../NoAgencyFound';
 import './agencySelection.styles.scss';
 import { useTranslation } from 'react-i18next';
+import { setValueInCookie } from '../../../sessionCookie/accessSessionCookie';
 
 interface AgencySelectionFormFieldProps {
 	preselectedAgencies?: AgencyDataInterface[];
@@ -66,6 +67,12 @@ const AgencyRadioInput = ({
 					value={value}
 					onChange={(e) => {
 						onChange(e);
+
+						setValueInCookie(
+							'tenantId',
+							agency?.tenantId ? `${agency?.tenantId}` : '0'
+						);
+
 						field.setFieldValue(
 							'consultingTypeId',
 							agency.consultingType
@@ -90,7 +97,7 @@ export const AgencySelection = ({
 	const { mainTopicId, gender, age, postCode } = field.getFieldsValue();
 	const isValidToRequestData =
 		!preselectedAgencies?.length &&
-		mainTopicId &&
+		Number(mainTopicId) >= 0 &&
 		age &&
 		gender &&
 		!!postCode?.match(REGEX_POSTCODE);
@@ -110,15 +117,20 @@ export const AgencySelection = ({
 				.then((response) => {
 					setAgencies(response);
 					if (response.length === 1) {
+						const agency = response[0];
 						field.setFieldValue(
 							'consultingTypeId',
-							response[0].consultingType
+							agency.consultingType
 						);
 						field.getInternalHooks(HOOK_MARK).dispatch({
 							type: 'updateValue',
 							namePath: ['agencyId'],
-							value: response[0].id
+							value: agency.id
 						});
+						setValueInCookie(
+							'tenantId',
+							agency?.tenantId ? `${agency?.tenantId}` : '0'
+						);
 					}
 				})
 				.catch((err) => {
