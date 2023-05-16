@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.9.20 (2023-05-16)
+
+
+### Bug Fixes
+
+* overview available to AS OB-4851 ([15f97f1](https://github.com/onlineberatung/onlineberatung-frontend/commit/15f97f1c972ee26b70ac13a1561078e986ea55b6))
+
 ### 2.9.19 (2023-05-05)
 
 ### 2.9.18 (2023-05-04)
