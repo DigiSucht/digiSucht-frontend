@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.9.21 (2023-05-17)
+
+
+### Bug Fixes
+
+* revert team beratung descriptions OB-4646 ([bc11377](https://github.com/onlineberatung/onlineberatung-frontend/commit/bc11377a521edd7287b2231121c821519133cbf3))
+
 ### 2.9.20 (2023-05-16)
 
 
