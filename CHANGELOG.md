@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.10.0 (2023-05-19)
+
+
+### Features
+
+* adding the informal language for terms and conditions OB-4869 ([f7215d9](https://github.com/onlineberatung/onlineberatung-frontend/commit/f7215d94772b9cc66dad4d31a4f8ab6a0565389a))
+
 ### 2.9.21 (2023-05-17)
 
 
