@@ -50,6 +50,7 @@ export const EmailNotification = () => {
 								<EmailToggle
 									name="settings.initialEnquiryNotificationEnabled"
 									titleKey="profile.notifications.initialEnquiry.title"
+									descriptionKey="profile.notifications.initialEnquiry.description"
 								/>
 							)}
 							<EmailToggle

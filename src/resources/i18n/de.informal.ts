@@ -217,7 +217,7 @@ export const deInformal = {
 					text: 'Damit Du an Video-Calls teilnehmen kannst, verwende bitte Google Chrome, Microsoft Edge oder Safari.'
 				},
 				subline1:
-					'Hast du noch keinen Google Chrome, Microsoft Edge oder Safari?',
+					'Hast Du noch keinen Google Chrome, Microsoft Edge oder Safari?',
 				text1: 'Lade einen der Browser herunter.',
 				subline2:
 					'Du hast bereits Google Chrome, Microsoft Edge oder Safari?',
@@ -399,7 +399,7 @@ export const deInformal = {
 				'Wir informieren Dich per E-Mail, wenn Du eine neue Nachricht erhalten hast.',
 			'initialEnquiry': {
 				description:
-					'Wir informieren Dich auch, wenn Du im System angemeldet bist.'
+					'Wir informieren dich auch, wenn du im System angemeldet bist.'
 			},
 			'reassignmentAdviceSeeker': {
 				description:
