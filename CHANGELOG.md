@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.11.0 (2023-05-22)
+
+
+### Features
+
+* adding the new descriptions OB-4989 and new translations provided by Niklas ([a808ec4](https://github.com/onlineberatung/onlineberatung-frontend/commit/a808ec4430eebdb9adca2c647841e7728f18d174))
+
 ## 2.10.0 (2023-05-19)
 
 
