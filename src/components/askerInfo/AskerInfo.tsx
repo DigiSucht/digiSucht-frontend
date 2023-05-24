@@ -151,7 +151,7 @@ export const AskerInfo = () => {
 							</p>
 						</div>
 					</div>
-					<div className="profile__innerWrapper">
+					<div className="profile__innerWrapper__digi">
 						<div className="profile__user">
 							<div className="profile__icon">
 								<PersonIcon
@@ -166,24 +166,6 @@ export const AskerInfo = () => {
 							</div>
 							<h2>{activeSession.user.username}</h2>
 						</div>
-						<div className="profile__content askerInfo__content">
-							<Box>
-								<AskerInfoData />
-							</Box>
-							{tenant?.settings?.featureToolsEnabled && (
-								<Box>
-									<AskerInfoTools />
-								</Box>
-							)}
-							{isSessionAssignAvailable() && (
-								<Box>
-									<div className="askerInfo__assign">
-										<AskerInfoAssign />
-									</div>
-								</Box>
-							)}
-						</div>
-						<h2>{activeSession.user.username}</h2>
 					</div>
 					<div className="askerInfo__contentContainer">
 						<ProfileBox title="profile.profilInformation">
