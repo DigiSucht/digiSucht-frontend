@@ -1366,9 +1366,7 @@ export const de = {
 				title: 'E-Mail-Benachrichtigungen zulassen'
 			},
 			'initialEnquiry': {
-				title: 'Eine neue Erstanfrage ist eingegangen',
-				description:
-					'Wir informieren Sie auch, wenn Sie im System angemeldet sind.'
+				title: 'Eine neue Erstanfrage ist eingegangen'
 			},
 			'newMessageAdviceSeeker': {
 				title: 'Neue Chat-Nachricht',
