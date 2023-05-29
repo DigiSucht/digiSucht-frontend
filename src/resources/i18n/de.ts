@@ -1140,7 +1140,14 @@ export const de = {
 		'sent': 'zugestellt',
 		'groupChat': 'Gruppenchat',
 		'liveChat': 'Live-Chat',
-		'newEnquiry': 'Neue Anfrage'
+		'newEnquiry': 'Neue Anfrage',
+		'video': {
+			moderatorStartedTitle:
+				'Moderator:in {{name}} hat eine Videokonferenz gestartet',
+			callActive: 'Videokonferenz läuft',
+			description: 'Sie können jetzt an der Videokonferenz teilnehmen',
+			join: 'Beitreten'
+		}
 	},
 	navigation: {
 		'appointments': 'Video - Termine',
