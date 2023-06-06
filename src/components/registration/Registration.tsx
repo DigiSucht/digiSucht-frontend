@@ -1,5 +1,6 @@
 import '../../polyfill';
 import * as React from 'react';
+import unionBy from 'lodash/unionBy';
 import { useParams } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { getUrlParameter } from '../../utils/getUrlParameter';
@@ -8,10 +9,10 @@ import { InformalContext } from '../../globalState';
 import '../../resources/styles/styles';
 import { StageLayout } from '../stageLayout/StageLayout';
 import useIsFirstVisit from '../../utils/useIsFirstVisit';
-import useUrlParamsLoader from '../../utils/useUrlParamsLoader';
 import { RegistrationFormDigi } from '../RegistrationDigi/RegistrationFormDigi';
 import { useTranslation } from 'react-i18next';
 import { GlobalComponentContext } from '../../globalState/provider/GlobalComponentContext';
+import { UrlParamsContext } from '../../globalState/provider/UrlParamsProvider';
 
 interface RegistrationProps {
 	handleUnmatchConsultingType: Function;
@@ -57,7 +58,7 @@ export const Registration = ({
 	};
 
 	const { agency, consultingType, consultant, loaded, topic } =
-		useUrlParamsLoader();
+		useContext(UrlParamsContext);
 
 	useEffect(() => {
 		if (!loaded) {
@@ -88,15 +89,7 @@ export const Registration = ({
 
 				// If consultant has only one consulting type set document title
 				const hasUniqueConsultingType =
-					consultant.agencies.reduce(
-						(acc: number[], { consultingType }) => {
-							if (acc.indexOf(consultingType) < 0) {
-								acc.push(consultingType);
-							}
-							return acc;
-						},
-						[]
-					).length > 1;
+					unionBy(consultant.agencies, 'consultingType').length > 1;
 
 				if (hasUniqueConsultingType) {
 					document.title = `${translate(
