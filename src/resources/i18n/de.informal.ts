@@ -732,7 +732,8 @@ export const deInformal = {
 	videoCall: {
 		incomingCall: {
 			unsupported: {
-				hint: 'Durch die technischen Vorraussetzungen ist der Video-Call nicht Ende-zu-Ende verschlüsselt. Jedoch ist der Video-Call transportverschlüsselt. Bitte folge der Hilfe, um Ende-zu-Ende verschlüsselt zu telefonieren.'
+				description: '{{username}} versucht Dich anzurufen',
+				hint: 'Dein Browser erfüllt nicht die notwendigen Sicherheitsanforderungen. Bitte verwende einen anderen Browser, damit Du an Video-Calls teilnehmen kannst.'
 			},
 			ignored: 'hat versucht Dich zu erreichen.',
 			rejected: {
