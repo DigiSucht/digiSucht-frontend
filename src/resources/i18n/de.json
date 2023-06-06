@@ -1700,6 +1700,29 @@
 				"button": "Ok",
 				"headline": "Sie haben Ihre E-Mail-Adresse erfolgreich gelöscht."
 			}
+		},
+		"age": "Alter",
+		"status": "Selbst Betroffen",
+		"postalCode": "Postleitzahl",
+		"mainTopic": "Hauptthema",
+		"selectedTopics": "Ausgewählte Themen",
+		"profilInformation": "Profil Informationen",
+		"tools": "Tools",
+		"topic": "Themen",
+		"counsellingRelation": {
+			"options": {
+				"self_counselling": "Betroffene",
+				"relative_counselling": "Angehöriger"
+			}
+		},
+		"gender": {
+			"title": "Geschlecht",
+			"options": {
+				"female": "Weiblich",
+				"male": "Männlich",
+				"diverse": "Divers",
+				"not_provided": "Keine Angabe"
+			}
 		}
 	},
 	"qrCode": {
@@ -1916,6 +1939,79 @@
 				"helperText": "Noch nicht registriert?"
 			},
 			"subline": "Wie läuft die Beratung & Hilfe der Caritas ab?"
+		}
+	},
+	"registrationDigi": {
+		"headline": "Registrierung",
+		"overline": "Herzlich willkommen",
+		"teaser": {
+			"consultant": "Bitte registrieren Sie sich, um mit Ihrer Beraterin / Ihrem Berater in Kontakt zu kommen"
+		},
+		"accordion": {
+			"step1": {
+				"title": "Ihr Beratungsanliegen"
+			},
+			"step2": {
+				"title": "Ihre Beratungsstelle in der Nähe"
+			},
+			"step3": {
+				"title": "Ihr Account"
+			}
+		},
+		"age": {
+			"headline": "Wie alt sind Sie?",
+			"label": "Jahre"
+		},
+		"ageAndGender": {
+			"step": {
+				"title": "Bitte machen Sie Angaben über sich"
+			}
+		},
+		"gender": {
+			"headline": "Was ist Ihr Geschlecht?",
+			"options": {
+				"female": "Weiblich",
+				"male": "Männlich",
+				"diverse": "Divers",
+				"not_provided": "Keine Angabe"
+			}
+		},
+		"counsellingRelation": {
+			"step": {
+				"title": "Was ist der Grund für Ihr Anliegen?"
+			},
+			"options": {
+				"self_counselling": "Ich bin selbst von Suchtproblemen betroffen.",
+				"relative_counselling": "Ich bin Angehörige/r von Jemanden mit Suchtproblemen."
+			}
+		},
+		"topics": {
+			"step": {
+				"title": "Welche Probleme liegen Ihrer Meinung nach vor?"
+			}
+		},
+		"mainTopics": {
+			"step": {
+				"title": "Welches dieser Problemfelder ist für Sie aktuell am Wichtigsten?"
+			},
+			"selectAtLestOneTopic": "Bisher haben Sie keine Problemfelder ausgewählt. Um ihre Registrierung zu vervollständigen, müssen sie mindestens ein Problem ausgewählt haben."
+		},
+		"username": {
+			"step": {
+				"title": "Bitte wählen Sie Ihren Benutzernamen"
+			}
+		},
+		"password": {
+			"step": {
+				"title": "Bitte wählen Sie Ihr Passwort"
+			}
+		},
+		"agency": {
+			"fullFillAllFields": "Leider konnten wir keine Beratungsstelle in Ihrer Nähe finden. Sie können auch eine Postleitzahl in der Nähe Ihres Wohnortes angeben.",
+			"noAgencyFound": "Leider können wir dir derzeit keine passende Online-Beratungsstelle in deiner Nähe anbieten.",
+			"error": {
+				"title": "Keine Beratungsstelle in der Nähe gefunden"
+			}
 		}
 	},
 	"releaseNote": {
