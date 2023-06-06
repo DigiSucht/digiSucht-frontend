@@ -18,8 +18,17 @@ export interface AppConfigInterface extends AppSettingsInterface {
 	i18n: InitOptions;
 	overlays?: OverlaysConfigInterface;
 	releaseToggles?: ReleaseToggles;
+	requestCollector?: {
+		limit?: number;
+		showCorrelationId?: {
+			consultant?: boolean;
+			user?: boolean;
+			other?: boolean;
+		};
+	};
 }
 
 interface ReleaseToggles {
 	enableNewNotifications?: boolean;
+	featureVideoGroupChatsEnabled?: boolean;
 }

@@ -3,13 +3,16 @@ import { fetchData, FETCH_METHODS, FETCH_ERRORS } from './fetchData';
 import { VALID_POSTCODE_LENGTH } from '../components/agencySelection/agencySelectionHelpers';
 import { AgencyDataInterface } from '../globalState';
 
-export const apiAgencySelection = async (params: {
-	postcode: string;
-	consultingType: number | undefined;
-	topicId?: number;
-	age?: number;
-	gender?: string;
-}): Promise<Array<AgencyDataInterface> | null> => {
+export const apiAgencySelection = async (
+	params: {
+		postcode: string;
+		consultingType: number | undefined;
+		topicId?: number;
+		age?: number;
+		gender?: string;
+	},
+	signal?: AbortSignal
+): Promise<Array<AgencyDataInterface> | null> => {
 	let queryStr = Object.keys(params)
 		.filter((key) => params[key] !== undefined)
 		.map((key) => key + '=' + params[key])
@@ -21,7 +24,8 @@ export const apiAgencySelection = async (params: {
 			url: url,
 			method: FETCH_METHODS.GET,
 			skipAuth: true,
-			responseHandling: [FETCH_ERRORS.EMPTY]
+			responseHandling: [FETCH_ERRORS.EMPTY],
+			...(signal && { signal: signal })
 		}).then((result) => {
 			if (result) {
 				// External agencies should only be returned
