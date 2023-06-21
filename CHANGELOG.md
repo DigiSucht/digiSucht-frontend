@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.12.1 (2023-06-21)
+
+
+### Bug Fixes
+
+* remove leave chat if user is banned OB-5219 ([9c6d9e2](https://github.com/onlineberatung/onlineberatung-frontend/commit/9c6d9e2e494f88a942859d19134f5cb9a192dc59))
+
 ## 2.12.0 (2023-06-21)
 
 
