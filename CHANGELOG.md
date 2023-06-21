@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.12.0 (2023-06-21)
+
+
+### Features
+
+* remove unused code ([f73c16c](https://github.com/onlineberatung/onlineberatung-frontend/commit/f73c16cc38d5475ec48db269691af4ee5c989a8e))
+
 ### 2.11.1 (2023-05-22)
 
 
