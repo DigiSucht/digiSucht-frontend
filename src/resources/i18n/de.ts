@@ -705,8 +705,15 @@ export const de = {
 				headline: 'Der Chat wurde bereits beendet.'
 			},
 			'content.headline': '"Spielregeln" des Chats',
-			'warning.message':
-				'Ihr Berater_in/Moderator_in hat den Chat noch nicht gestartet. Sobald Ihr Berater_in/Moderator_in den Chat gestartet hat, können Sie mit uns chatten. Bitte haben Sie noch etwas Geduld.'
+
+			'warning': {
+				consultant: {
+					message:
+						'Ihr Moderator_in hat den Chat noch nicht gestartet. Sobald Ihr Moderator_in den Chat gestartet hat, können Sie mit uns chatten. Bitte haben Sie noch etwas Geduld.'
+				},
+				message:
+					'Ihr Berater_in/Moderator_in hat den Chat noch nicht gestartet. Sobald Ihr Berater_in/Moderator_in den Chat gestartet hat, können Sie mit uns chatten. Bitte haben Sie noch etwas Geduld.'
+			}
 		},
 		'joinError': {
 			overlay: {

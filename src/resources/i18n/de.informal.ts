@@ -191,8 +191,14 @@ export const deInformal = {
 				'Es ist ein Fehler aufgetreten. Bitte versuche es erneut.'
 		},
 		join: {
-			'warning.message':
-				'Dein_e Berater_in/Moderator_in hat den Chat noch nicht gestartet. Sobald Dein_e Berater_in/Moderator_in den Chat gestartet hat, kannst Du mit uns chatten. Bitte habe noch etwas Geduld.'
+			consultant: {
+				message:
+					'Dein_e Moderator_in hat den Chat noch nicht gestartet. Sobald Dein_e Moderator_in den Chat gestartet hat, kannst Du mit uns chatten. Bitte habe noch etwas Geduld.'
+			},
+			warning: {
+				message:
+					'Dein_e Berater_in/Moderator_in hat den Chat noch nicht gestartet. Sobald Dein_e Berater_in/Moderator_in den Chat gestartet hat, kannst Du mit uns chatten. Bitte habe noch etwas Geduld.'
+			}
 		},
 		listItem: {
 			subjectEmpty: {

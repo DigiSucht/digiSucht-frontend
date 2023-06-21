@@ -666,8 +666,14 @@ export const en = {
 			'button.label.join': 'Join',
 			'button.label.start': 'Start chat',
 			'content.headline': 'Rules of the chat',
-			'warning.message':
-				'Your advisor/moderator has not started the chat yet. As soon as your consultant/moderator has started the chat, you can chat with us. Please be patient a little longer.',
+			'warning': {
+				consultant: {
+					message:
+						'Your moderator has not started the chat yet. As soon as your moderator has started the chat, you can chat with us. Please be patient a little longer.'
+				},
+				message:
+					'Your advisor/moderator has not started the chat yet. As soon as your consultant/moderator has started the chat, you can chat with us. Please be patient a little longer.'
+			},
 			'chatClosedOverlay': {
 				headline: 'The chat has already ended.',
 				button1Label: 'To the overview',
