@@ -191,6 +191,7 @@ export const SessionHeaderComponent = (props: SessionHeaderProps) => {
 						props.hasUserInitiatedStopOrLeaveRequest
 					}
 					isAskerInfoAvailable={isAskerInfoAvailable()}
+					bannedUsers={props.bannedUsers}
 				/>
 			</div>
 
