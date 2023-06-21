@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.12.2 (2023-06-21)
+
+
+### Bug Fixes
+
+* adding the digital and live OB-5221 ([8f9376a](https://github.com/onlineberatung/onlineberatung-frontend/commit/8f9376aa958d5b0fd5e665cbd2a69b4eb8f00bc6))
+
 ### 2.12.1 (2023-06-21)
 
 
