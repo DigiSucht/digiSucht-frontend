@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.13.0 (2023-06-22)
+
+
+### Features
+
+* adding the OB-5223 ([eda96f2](https://github.com/onlineberatung/onlineberatung-frontend/commit/eda96f2906e46b639d27774e1419de08f9607a4a))
+
 ### 2.12.2 (2023-06-21)
 
 
