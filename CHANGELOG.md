@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.13.1 (2023-06-26)
+
+
+### Bug Fixes
+
+* when group chat is first position OB-5233 ([b8fb517](https://github.com/onlineberatung/onlineberatung-frontend/commit/b8fb51743f033719aea3bd8eaf00fad862e341bf))
+
 ## 2.13.0 (2023-06-22)
 
 
