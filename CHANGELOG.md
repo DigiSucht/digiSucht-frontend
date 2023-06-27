@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.13.2 (2023-06-27)
+
+
+### Bug Fixes
+
+* change to use agency instead of consultant ([a287580](https://github.com/onlineberatung/onlineberatung-frontend/commit/a287580425bc7bcbadd91e5e9a12dd30a3c7a22e))
+
 ### 2.13.1 (2023-06-26)
 
 
