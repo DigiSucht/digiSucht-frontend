@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.13.3 (2023-07-12)
+
+
+### Bug Fixes
+
+* **ban user:** dont close overlay on state change ([01dc7a3](https://github.com/onlineberatung/onlineberatung-frontend/commit/01dc7a349ad6a8a7d41acd28b4dc633f54dcf662))
+
 ### 2.13.2 (2023-06-27)
 
 
