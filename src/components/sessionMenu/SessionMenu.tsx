@@ -113,30 +113,29 @@ export const SessionMenu = (props: SessionMenuProps) => {
 		if (
 			!flyoutOpen &&
 			activeSession.isGroup &&
-			hasUserAuthority(AUTHORITIES.CONSULTANT_DEFAULT, userData)
+			hasUserAuthority(AUTHORITIES.CONSULTANT_DEFAULT, userData) &&
+			activeSession.item.active
 		) {
-			if (activeSession.item.active) {
-				apiGetGroupMembers(activeSession.item.id)
-					.then((response) => {
-						const subscribers = response.members.map((member) => ({
-							isModerator: isUserModerator({
-								chatItem: activeSession.item,
-								rcUserId: member._id
-							}),
-							...member
-						}));
-						setIsLastConsultant(
-							subscribers.filter(
-								(subscriber) => subscriber.isModerator
-							).length === 1
-						);
-						setFlyoutOpen(!flyoutOpen);
-					})
-					.catch((error) => {
-						console.log('error', error);
-						setFlyoutOpen(!flyoutOpen);
-					});
-			}
+			apiGetGroupMembers(activeSession.item.id)
+				.then((response) => {
+					const subscribers = response.members.map((member) => ({
+						isModerator: isUserModerator({
+							chatItem: activeSession.item,
+							rcUserId: member._id
+						}),
+						...member
+					}));
+					setIsLastConsultant(
+						subscribers.filter(
+							(subscriber) => subscriber.isModerator
+						).length === 1
+					);
+					setFlyoutOpen(!flyoutOpen);
+				})
+				.catch((error) => {
+					console.log('error', error);
+					setFlyoutOpen(!flyoutOpen);
+				});
 		} else {
 			setFlyoutOpen(!flyoutOpen);
 		}
