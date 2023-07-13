@@ -130,11 +130,13 @@ export const SessionMenu = (props: SessionMenuProps) => {
 							(subscriber) => subscriber.isModerator
 						).length === 1
 					);
-					setFlyoutOpen(!flyoutOpen);
 				})
 				.catch((error) => {
-					setFlyoutOpen(!flyoutOpen);
-				});
+					// TODO: handle error
+				})
+				.finally(() => {
+					setFlyoutOpen(true);
+				})
 		} else {
 			setFlyoutOpen(!flyoutOpen);
 		}
