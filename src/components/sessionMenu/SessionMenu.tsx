@@ -21,7 +21,8 @@ import {
 import {
 	SESSION_LIST_TAB,
 	SESSION_LIST_TAB_ARCHIVE,
-	SESSION_LIST_TYPES
+	SESSION_LIST_TYPES,
+	isUserModerator
 } from '../session/sessionHelpers';
 import { Overlay, OVERLAY_FUNCTIONS } from '../overlay/Overlay';
 import {
@@ -36,6 +37,7 @@ import {
 } from './sessionMenuHelpers';
 import {
 	apiFinishAnonymousConversation,
+	apiGetGroupMembers,
 	apiPutArchive,
 	apiPutDearchive,
 	apiPutGroupChat,
@@ -99,13 +101,46 @@ export const SessionMenu = (props: SessionMenuProps) => {
 	const [overlayItem, setOverlayItem] = useState(null);
 	const [flyoutOpen, setFlyoutOpen] = useState(null);
 	const [overlayActive, setOverlayActive] = useState(false);
+	const [isLastConsultant, setIsLastConsultant] = useState<boolean>(true);
 	const [redirectToSessionsList, setRedirectToSessionsList] = useState(false);
 	const [isRequestInProgress, setIsRequestInProgress] = useState(false);
 
 	const sessionListTab = useSearchParam<SESSION_LIST_TAB>('sessionListTab');
 	const getSessionListTab = () =>
 		`${sessionListTab ? `?sessionListTab=${sessionListTab}` : ''}`;
-
+	const handleFlyoutToggle = () => {
+		// check if consultant is last one in group chat
+		if (
+			!flyoutOpen &&
+			activeSession.isGroup &&
+			hasUserAuthority(AUTHORITIES.CONSULTANT_DEFAULT, userData)
+		) {
+			if (activeSession.item.active) {
+				apiGetGroupMembers(activeSession.item.id)
+					.then((response) => {
+						const subscribers = response.members.map((member) => ({
+							isModerator: isUserModerator({
+								chatItem: activeSession.item,
+								rcUserId: member._id
+							}),
+							...member
+						}));
+						setIsLastConsultant(
+							subscribers.filter(
+								(subscriber) => subscriber.isModerator
+							).length === 1
+						);
+						setFlyoutOpen(!flyoutOpen);
+					})
+					.catch((error) => {
+						console.log('error', error);
+						setFlyoutOpen(!flyoutOpen);
+					});
+			}
+		} else {
+			setFlyoutOpen(!flyoutOpen);
+		}
+	};
 	const handleClick = useCallback(
 		(e) => {
 			const menuIconH = document.getElementById('iconH');
@@ -469,7 +504,7 @@ export const SessionMenu = (props: SessionMenuProps) => {
 
 			<span
 				id="iconH"
-				onClick={() => setFlyoutOpen(!flyoutOpen)}
+				onClick={handleFlyoutToggle}
 				className="sessionMenu__icon sessionMenu__icon--desktop"
 			>
 				<MenuHorizontalIcon
@@ -479,7 +514,7 @@ export const SessionMenu = (props: SessionMenuProps) => {
 			</span>
 			<span
 				id="iconV"
-				onClick={() => setFlyoutOpen(!flyoutOpen)}
+				onClick={handleFlyoutToggle}
 				className="sessionMenu__icon sessionMenu__icon--mobile"
 			>
 				<MenuVerticalIcon
@@ -590,6 +625,7 @@ export const SessionMenu = (props: SessionMenuProps) => {
 						handleLeaveGroupChat={handleLeaveGroupChat}
 						handleStopGroupChat={handleStopGroupChat}
 						bannedUsers={props.bannedUsers}
+						isLastConsultant={isLastConsultant}
 					/>
 				)}
 
@@ -625,7 +661,8 @@ const SessionMenuFlyoutGroup = ({
 	editGroupChatSettingsLink,
 	handleLeaveGroupChat,
 	handleStopGroupChat,
-	bannedUsers
+	bannedUsers,
+	isLastConsultant = false
 }: {
 	activeSession: ExtendedSessionInterface;
 	groupChatInfoLink: string;
@@ -633,6 +670,7 @@ const SessionMenuFlyoutGroup = ({
 	handleStopGroupChat: MouseEventHandler;
 	handleLeaveGroupChat: MouseEventHandler;
 	bannedUsers: string[];
+	isLastConsultant?: boolean;
 }) => {
 	const { t: translate } = useTranslation();
 	const { userData } = useContext(UserDataContext);
@@ -640,7 +678,8 @@ const SessionMenuFlyoutGroup = ({
 	return (
 		<>
 			{activeSession.item.subscribed &&
-				!bannedUsers?.includes(userData.userName) && (
+				!bannedUsers?.includes(userData.userName) &&
+				!isLastConsultant && (
 					<div
 						onClick={handleLeaveGroupChat}
 						className="sessionMenu__item sessionMenu__button"
