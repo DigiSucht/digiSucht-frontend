@@ -133,7 +133,6 @@ export const SessionMenu = (props: SessionMenuProps) => {
 					setFlyoutOpen(!flyoutOpen);
 				})
 				.catch((error) => {
-					console.log('error', error);
 					setFlyoutOpen(!flyoutOpen);
 				});
 		} else {
