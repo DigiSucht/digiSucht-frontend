@@ -136,7 +136,7 @@ export const SessionMenu = (props: SessionMenuProps) => {
 				})
 				.finally(() => {
 					setFlyoutOpen(true);
-				})
+				});
 		} else {
 			setFlyoutOpen(!flyoutOpen);
 		}
