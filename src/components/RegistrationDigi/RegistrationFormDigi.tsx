@@ -155,7 +155,7 @@ export const RegistrationFormDigi = ({
 					}
 				});
 		},
-		[consultant, form, settings, tenant]
+		[consultant, form, settings, tenant, urlQuery]
 	);
 
 	// When some topic id is selected we need to change the list of main topics
