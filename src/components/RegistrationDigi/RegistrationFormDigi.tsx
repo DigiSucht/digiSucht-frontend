@@ -24,7 +24,7 @@ import { InputFormField } from './InputFormField';
 import { CheckboxFormField } from './CheckboxFormField';
 import { RegistrationSuccessOverlay } from './RegistrationSuccessOverlay';
 import { AgencyInfo } from '../agencySelection/AgencyInfo';
-import { useContext } from 'react';
+import { useContext, useMemo } from 'react';
 import { useAppConfig } from '../../hooks/useAppConfig';
 import { getTenantSettings } from '../../utils/tenantSettingsHelper';
 import { budibaseLogout } from '../budibase/budibaseLogout';
@@ -32,6 +32,7 @@ import { LegalLinksContext } from '../../globalState/provider/LegalLinksProvider
 import { useTranslation } from 'react-i18next';
 import { endpoints } from '../../resources/scripts/endpoints';
 import { isNumber } from '../../utils/isNumber';
+import { useLocation } from 'react-router-dom';
 
 interface RegistrationFormProps {
 	consultingType?: ConsultingTypeInterface;
@@ -107,6 +108,12 @@ export const RegistrationFormDigi = ({
 		}
 	}, [topics, currentValues]); // eslint-disable-line react-hooks/exhaustive-deps
 
+	const useQuery = () => {
+		const { search } = useLocation();
+		return useMemo(() => new URLSearchParams(search), [search]);
+	};
+	const urlQuery: URLSearchParams = useQuery();
+
 	// When the form is submitted we send the data to the API
 	const onSubmit = React.useCallback(
 		(formValues) => {
@@ -122,7 +129,8 @@ export const RegistrationFormDigi = ({
 				topicIds: formValues['topicIds[]'].map(Number),
 				counsellingRelation: formValues.counsellingRelation,
 				consultingType: formValues.consultingTypeId,
-				...(consultant && { consultantId: consultant.consultantId })
+				...(consultant && { consultantId: consultant.consultantId }),
+				referer: urlQuery.get('ref')
 			};
 			apiPostRegistration(
 				endpoints.registerAsker,
@@ -147,7 +155,7 @@ export const RegistrationFormDigi = ({
 					}
 				});
 		},
-		[consultant, form, settings, tenant]
+		[consultant, form, settings, tenant, urlQuery]
 	);
 
 	// When some topic id is selected we need to change the list of main topics

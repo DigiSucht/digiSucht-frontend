@@ -34,8 +34,6 @@ import { apiGetUserDataBySessionId } from '../../api/apiGetUserDataBySessionId';
 import { ConsultingSessionDataInterface } from '../../globalState/interfaces/ConsultingSessionDataInterface';
 import { PersonIcon } from '../../resources/img/icons';
 import { RocketChatUsersOfRoomProvider } from '../../globalState/provider/RocketChatUsersOfRoomProvider';
-import { Box } from '../box/Box';
-import { AskerInfoData } from './AskerInfoData';
 
 export const AskerInfo = () => {
 	const { t: translate } = useTranslation();
