@@ -101,7 +101,7 @@ export const SessionMenu = (props: SessionMenuProps) => {
 	const [overlayItem, setOverlayItem] = useState(null);
 	const [flyoutOpen, setFlyoutOpen] = useState(null);
 	const [overlayActive, setOverlayActive] = useState(false);
-	const [isLastConsultant, setIsLastConsultant] = useState<boolean>(true);
+	const [isLastConsultant, setIsLastConsultant] = useState<boolean>(false);
 	const [redirectToSessionsList, setRedirectToSessionsList] = useState(false);
 	const [isRequestInProgress, setIsRequestInProgress] = useState(false);
 
