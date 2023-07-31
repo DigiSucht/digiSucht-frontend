@@ -1726,7 +1726,8 @@
 		"counsellingRelation": {
 			"options": {
 				"self_counselling": "Betroffene",
-				"relative_counselling": "Angehöriger"
+				"relative_counselling": "Angehöriger",
+				"parental_counselling": "Elternteil"
 			}
 		},
 		"gender": {
@@ -2002,7 +2003,8 @@
 			},
 			"options": {
 				"self_counselling": "Ich bin selbst von Suchtproblemen betroffen.",
-				"relative_counselling": "Ich bin Angehörige/r von Jemanden mit Suchtproblemen."
+				"relative_counselling": "Ich bin Angehörige/r von Jemanden mit Suchtproblemen.",
+				"parental_counselling": "Ich bin Elternteil von jemandem mit Suchtproblemen."
 			}
 		},
 		"topics": {
