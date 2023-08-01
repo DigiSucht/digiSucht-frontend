@@ -22,6 +22,8 @@ const registrationDigi = {
 		'Ich bin selbst von Suchtproblemen betroffen.',
 	[`counsellingRelation.options.${CounsellingRelation.Relative.toLowerCase()}`]:
 		'Ich bin Angehörige/r von Jemanden mit Suchtproblemen.',
+	[`counsellingRelation.options.${CounsellingRelation.Parental.toLowerCase()}`]:
+		'Ich bin Elternteil von jemandem mit Suchtproblemen.',
 	'topics.step.title': 'Welche Probleme liegen Ihrer Meinung nach vor?',
 	'mainTopics.step.title':
 		'Welches dieser Problemfelder ist für Sie aktuell am Wichtigsten?',
