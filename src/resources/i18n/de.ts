@@ -1,4 +1,4 @@
-import { CounsellingRelation } from '../../enums/ConsellingRelation';
+import { CounsellingRelation } from '../../enums/CounsellingRelation';
 import { Gender } from '../../enums/Gender';
 
 export const de = {
