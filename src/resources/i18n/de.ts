@@ -1225,7 +1225,7 @@ export const de = {
 			'Heute stehen keine Termine an, Verabrede Dich mit Ratsuchenden um das zu ändern',
 		emptyAppointmentsMobile:
 			'Keine Termine derzeit, Verabrede Dich mit Ratsuchenden um das zu ändern',
-		viewAll: 'Alle Anzeigen',
+		viewAll: 'Alle anzeigen',
 		myMessagesEmpty:
 			'Du hast alles im Blick, alle Nachrichten sind gelesen!',
 		initialInquiriesEmpty: 'Sehr gut, alle Erstanfragen sind bearbeitet!',
