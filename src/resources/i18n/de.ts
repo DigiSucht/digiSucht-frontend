@@ -1564,7 +1564,7 @@ export const de = {
 			}
 		},
 		'age': 'Alter',
-		'status': 'Selbst Betroffen',
+		'status': 'Selbst betroffen',
 		'postalCode': 'Postleitzahl',
 		'mainTopic': 'Hauptthema',
 		'selectedTopics': 'Ausgewählte Themen',
@@ -1572,9 +1572,9 @@ export const de = {
 		'tools': 'Tools',
 		'topic': 'Themen',
 		[`counsellingRelation.${CounsellingRelation.Self.toLowerCase()}`]:
-			'Betroffene',
+			'Betroffene_r',
 		[`counsellingRelation.${CounsellingRelation.Relative.toLowerCase()}`]:
-			'Angehöriger',
+			'Angehörige_r',
 		[`gender.options.${Gender.Female.toLowerCase()}`]: 'Weiblich',
 		[`gender.options.${Gender.Male.toLowerCase()}`]: 'Männlich',
 		[`gender.options.${Gender.Diverse.toLowerCase()}`]: 'Divers',
