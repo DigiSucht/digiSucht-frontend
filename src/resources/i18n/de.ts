@@ -1225,7 +1225,7 @@ export const de = {
 			'Heute stehen keine Termine an, Verabrede Dich mit Ratsuchenden um das zu ändern',
 		emptyAppointmentsMobile:
 			'Keine Termine derzeit, Verabrede Dich mit Ratsuchenden um das zu ändern',
-		viewAll: 'Alle Anzeigen',
+		viewAll: 'Alle anzeigen',
 		myMessagesEmpty:
 			'Du hast alles im Blick, alle Nachrichten sind gelesen!',
 		initialInquiriesEmpty: 'Sehr gut, alle Erstanfragen sind bearbeitet!',
@@ -1282,7 +1282,7 @@ export const de = {
 			lastName: 'Nachname',
 			email: 'E-Mail-Adresse',
 			emailInfo:
-				'Die Angabe Ihrer E-Mail ist freiwillig und wird ausschließlich verwendet, um Sie über neue Antworten Ihrer_r Berater_in zu informieren. Ihre E-Mail-Adresse ist für Berater_innen nicht sichtbar.',
+				'Die Angabe Ihrer E-Mail ist freiwillig und wird ausschließlich verwendet, um Sie über neue Antworten Ihrer Beraterin / Ihres Beraters zu informieren. Ihre E-Mail-Adresse ist für Berater_innen nicht sichtbar.',
 			personal: {
 				registrationLink: {
 					notification: {
@@ -1435,7 +1435,7 @@ export const de = {
 				modal: {
 					title: 'E-Mail-Adresse hinzufügen',
 					description:
-						'Die Angabe Ihrer E-Mail-Adresse ist freiwillig und wird ausschließlich verwendet, um Sie über neue Antworten Ihrer_r Berater_in zu informieren. Ihre E-Mail-Adresse ist für Berater_innen nicht sichtbar.',
+						'Die Angabe Ihrer E-Mail-Adresse ist freiwillig und wird ausschließlich verwendet, um Sie über neue Antworten Ihrer Beraterin / Ihres Beraters zu informieren. Ihre E-Mail-Adresse ist für Berater_innen nicht sichtbar.',
 					confirm: 'Hinzufügen',
 					emailInput: {
 						label: 'E-Mail',
@@ -1564,7 +1564,7 @@ export const de = {
 			}
 		},
 		'age': 'Alter',
-		'status': 'Selbst Betroffen',
+		'status': 'Selbst betroffen',
 		'postalCode': 'Postleitzahl',
 		'mainTopic': 'Hauptthema',
 		'selectedTopics': 'Ausgewählte Themen',
@@ -1572,9 +1572,9 @@ export const de = {
 		'tools': 'Tools',
 		'topic': 'Themen',
 		[`counsellingRelation.${CounsellingRelation.Self.toLowerCase()}`]:
-			'Betroffene',
+			'Betroffene_r',
 		[`counsellingRelation.${CounsellingRelation.Relative.toLowerCase()}`]:
-			'Angehöriger',
+			'Angehörige_r',
 		[`gender.options.${Gender.Female.toLowerCase()}`]: 'Weiblich',
 		[`gender.options.${Gender.Male.toLowerCase()}`]: 'Männlich',
 		[`gender.options.${Gender.Diverse.toLowerCase()}`]: 'Divers',
@@ -1799,7 +1799,7 @@ export const de = {
 		[`counsellingRelation.options.${CounsellingRelation.Self.toLowerCase()}`]:
 			'Ich bin selbst von Suchtproblemen betroffen.',
 		[`counsellingRelation.options.${CounsellingRelation.Relative.toLowerCase()}`]:
-			'Ich bin Angehörige/r von Jemanden mit Suchtproblemen.',
+			'Ich bin Angehörige/r von jemanden mit Suchtproblemen.',
 		[`counsellingRelation.options.${CounsellingRelation.Parental.toLowerCase()}`]:
 			'Ich bin Elternteil von jemandem mit Suchtproblemen.',
 		'topics.step.title': 'Welche Probleme liegen Ihrer Meinung nach vor?',
