@@ -1282,7 +1282,7 @@ export const de = {
 			lastName: 'Nachname',
 			email: 'E-Mail-Adresse',
 			emailInfo:
-				'Die Angabe Ihrer E-Mail ist freiwillig und wird ausschließlich verwendet, um Sie über neue Antworten Ihrer_r Berater_in zu informieren. Ihre E-Mail-Adresse ist für Berater_innen nicht sichtbar.',
+				'Die Angabe Ihrer E-Mail ist freiwillig und wird ausschließlich verwendet, um Sie über neue Antworten Ihrer Beraterin / Ihres Beraters zu informieren. Ihre E-Mail-Adresse ist für Berater_innen nicht sichtbar.',
 			personal: {
 				registrationLink: {
 					notification: {
@@ -1435,7 +1435,7 @@ export const de = {
 				modal: {
 					title: 'E-Mail-Adresse hinzufügen',
 					description:
-						'Die Angabe Ihrer E-Mail-Adresse ist freiwillig und wird ausschließlich verwendet, um Sie über neue Antworten Ihrer_r Berater_in zu informieren. Ihre E-Mail-Adresse ist für Berater_innen nicht sichtbar.',
+						'Die Angabe Ihrer E-Mail-Adresse ist freiwillig und wird ausschließlich verwendet, um Sie über neue Antworten Ihrer Beraterin / Ihres Beraters zu informieren. Ihre E-Mail-Adresse ist für Berater_innen nicht sichtbar.',
 					confirm: 'Hinzufügen',
 					emailInput: {
 						label: 'E-Mail',
