@@ -19,7 +19,7 @@ import { FETCH_ERRORS, X_REASON } from '../../api';
 import { UsernameFormField } from './UsernameFormField';
 import { AgencySelectionFormField } from './AgencyFields';
 import { Gender } from '../../enums/Gender';
-import { CounsellingRelation } from '../../enums/ConsellingRelation';
+import { CounsellingRelation } from '../../enums/CounsellingRelation';
 import { InputFormField } from './InputFormField';
 import { CheckboxFormField } from './CheckboxFormField';
 import { RegistrationSuccessOverlay } from './RegistrationSuccessOverlay';
