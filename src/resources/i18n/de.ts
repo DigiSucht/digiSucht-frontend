@@ -444,8 +444,8 @@ export const de = {
 		confirmOverlay: {
 			'button.confirm': 'Ja',
 			'button.deny': 'Nein',
-			'copy': 'Möchten Sie den Chat wirklich löschen?',
-			'headline': 'Chat löschen'
+			'copy': 'Wenn Sie die Beratung löschen, wird das Konto der ratsuchenden Person gelöscht und sie kann sich nicht mehr auf der Beratungsplattform anmelden.',
+			'headline': 'Beratung löschen'
 		},
 		errorOverlay: {
 			button: 'Ok',
@@ -1799,7 +1799,7 @@ export const de = {
 		[`counsellingRelation.options.${CounsellingRelation.Self.toLowerCase()}`]:
 			'Ich bin selbst von Suchtproblemen betroffen.',
 		[`counsellingRelation.options.${CounsellingRelation.Relative.toLowerCase()}`]:
-			'Ich bin Angehörige/r von jemanden mit Suchtproblemen.',
+			'Ich bin Angehörige/r von jemandem mit Suchtproblemen.',
 		[`counsellingRelation.options.${CounsellingRelation.Parental.toLowerCase()}`]:
 			'Ich bin Elternteil von jemandem mit Suchtproblemen.',
 		'topics.step.title': 'Welche Probleme liegen Ihrer Meinung nach vor?',
