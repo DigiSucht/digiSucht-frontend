@@ -444,8 +444,8 @@ export const de = {
 		confirmOverlay: {
 			'button.confirm': 'Ja',
 			'button.deny': 'Nein',
-			'copy': 'Möchten Sie den Chat wirklich löschen?',
-			'headline': 'Chat löschen'
+			'copy': 'Wenn Sie die Beratung löschen, wird das Konto der ratsuchenden Person gelöscht und sie kann sich nicht mehr auf der Beratungsplattform anmelden.',
+			'headline': 'Beratung löschen'
 		},
 		errorOverlay: {
 			button: 'Ok',
