@@ -101,8 +101,7 @@ export const deInformal = {
 	},
 	deleteSession: {
 		confirmOverlay: {
-			copy: 'Möchtest Du den Chat wirklich löschen?',
-			headline: 'Chat löschen'
+			copy: 'Wenn Du die Beratung löschst, wird das Konto der ratsuchenden Person gelöscht und sie kann sich nicht mehr auf der Beratungsplattform anmelden.'
 		},
 		errorOverlay: {
 			headline:
