@@ -426,8 +426,8 @@ export const en = {
 	},
 	deleteSession: {
 		confirmOverlay: {
-			'headline': 'Delete chat',
-			'copy': 'Do you really want to delete the chat?',
+			'headline': 'Delete consultation?',
+			'copy': 'If you delete the consultation, the account of the person seeking advice will be deleted and he or she will no longer be able to log in to the consultation platform.',
 			'button.confirm': 'yes',
 			'button.deny': 'no'
 		},

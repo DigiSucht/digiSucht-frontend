@@ -445,7 +445,7 @@ export const de = {
 			'button.confirm': 'Ja',
 			'button.deny': 'Nein',
 			'copy': 'Wenn Sie die Beratung löschen, wird das Konto der ratsuchenden Person gelöscht und sie kann sich nicht mehr auf der Beratungsplattform anmelden.',
-			'headline': 'Beratung löschen'
+			'headline': 'Beratung löschen?'
 		},
 		errorOverlay: {
 			button: 'Ok',
