@@ -131,6 +131,8 @@ export const RegistrationFormDigi = ({
 				consultingType: formValues.consultingTypeId,
 				...(consultant && { consultantId: consultant.consultantId }),
 				referer: urlQuery.get('ref')
+					? encodeURI(urlQuery.get('ref'))
+					: null
 			};
 			apiPostRegistration(
 				endpoints.registerAsker,
