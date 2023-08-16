@@ -432,12 +432,12 @@ export const en = {
 			'button.deny': 'no'
 		},
 		successOverlay: {
-			headline: 'You have deleted the chat successfully.',
+			headline: 'You have deleted the consultation successfully.',
 			button: 'ok'
 		},
 		errorOverlay: {
 			headline:
-				'Oops! We could not delete the chat right now. Please try again.',
+				'Oops! We could not delete the consultation right now. Please try again.',
 			button: 'ok'
 		}
 	},
@@ -1696,7 +1696,7 @@ export const en = {
 			},
 			info4: {
 				title: 'Anonymous and free of charge',
-				text: 'You remain anonymous and receive free advice and assistance'
+				text: 'You remain anonymous if you wish and are advised free of charge'
 			},
 			register: {
 				helperText: 'Not registered yet?',

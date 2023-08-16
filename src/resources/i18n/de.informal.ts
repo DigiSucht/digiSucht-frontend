@@ -96,7 +96,7 @@ export const deInformal = {
 		},
 		successOverlay: {
 			headline:
-				'Du hast Deinen Account bei der Caritas Beratung & Hilfe erfolgreich gelöscht.'
+				'Du hast Deinen Account bei der DigiSucht Beratung & Hilfe erfolgreich gelöscht.'
 		}
 	},
 	deleteSession: {
@@ -105,7 +105,7 @@ export const deInformal = {
 		},
 		errorOverlay: {
 			headline:
-				'Ups! Wir konnten den Chat gerade nicht löschen. Bitte versuche es erneut.'
+				'Ups! Wir konnten die Beratung gerade nicht löschen. Bitte versuche es erneut.'
 		}
 	},
 	e2ee: {
