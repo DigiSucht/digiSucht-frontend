@@ -114,6 +114,12 @@ export const RegistrationFormDigi = ({
 	};
 	const urlQuery: URLSearchParams = useQuery();
 
+	// Only max. 8 alphanumeric characters are allowed in the ref parameter
+	const getValidRef = (ref: string) => {
+		const validRef = ref.replace(/[^a-zA-Z0-9]/g, '').substring(0, 8);
+		return validRef;
+	};
+
 	// When the form is submitted we send the data to the API
 	const onSubmit = React.useCallback(
 		(formValues) => {
@@ -131,7 +137,7 @@ export const RegistrationFormDigi = ({
 				consultingType: formValues.consultingTypeId,
 				...(consultant && { consultantId: consultant.consultantId }),
 				referer: urlQuery.get('ref')
-					? encodeURI(urlQuery.get('ref'))
+					? getValidRef(urlQuery.get('ref'))
 					: null
 			};
 			apiPostRegistration(

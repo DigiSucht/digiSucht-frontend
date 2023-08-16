@@ -450,11 +450,11 @@ export const de = {
 		errorOverlay: {
 			button: 'Ok',
 			headline:
-				'Ups! Wir konnten den Chat gerade nicht löschen. Bitte versuchen Sie es noch einmal.'
+				'Ups! Wir konnten die Beratung gerade nicht löschen. Bitte versuchen Sie es noch einmal.'
 		},
 		successOverlay: {
 			button: 'Ok',
-			headline: 'Sie haben den Chat erfolgreich gelöscht.'
+			headline: 'Sie haben die Beratung erfolgreich gelöscht.'
 		}
 	},
 	e2ee: {
@@ -1769,7 +1769,7 @@ export const de = {
 				title: 'Persönliche und professionelle Beratung'
 			},
 			info4: {
-				text: 'Sie bleiben anonym und erhalten kostenfreie Beratung und Hilfe',
+				text: 'Sie bleiben auf Wunsch anonym und werden kostenfrei beraten',
 				title: 'Anonym und kostenfrei'
 			},
 			register: {
