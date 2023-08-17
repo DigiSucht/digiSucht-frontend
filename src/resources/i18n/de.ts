@@ -1564,7 +1564,7 @@ export const de = {
 			}
 		},
 		'age': 'Alter',
-		'status': 'Selbst betroffen',
+		'status': 'Grund des Anliegens',
 		'postalCode': 'Postleitzahl',
 		'mainTopic': 'Hauptthema',
 		'selectedTopics': 'Ausgewählte Themen',
