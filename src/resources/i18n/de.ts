@@ -1575,6 +1575,8 @@ export const de = {
 			'Betroffene_r',
 		[`counsellingRelation.${CounsellingRelation.Relative.toLowerCase()}`]:
 			'Angehörige_r',
+		[`counsellingRelation.${CounsellingRelation.Parental.toLowerCase()}`]:
+			'Elternteil',
 		[`gender.options.${Gender.Female.toLowerCase()}`]: 'Weiblich',
 		[`gender.options.${Gender.Male.toLowerCase()}`]: 'Männlich',
 		[`gender.options.${Gender.Diverse.toLowerCase()}`]: 'Divers',
