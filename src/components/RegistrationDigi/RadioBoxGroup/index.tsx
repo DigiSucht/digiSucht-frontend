@@ -6,6 +6,7 @@ import { NamePath } from 'rc-field-form/es/interface';
 interface RadioBoxGroupProps {
 	name: string | number | any;
 	options: Array<{ label: string; value: string }>;
+	preset?: string;
 }
 
 const RadioBox = ({
@@ -68,6 +69,7 @@ export const RadioBoxGroup = ({
 			name={name}
 			rules={[{ required: true }]}
 			dependencies={dependencies}
+			initialValue={props.preset}
 		>
 			<LocalRadioBox {...props} name={name} />
 		</Field>

@@ -120,6 +120,22 @@ export const RegistrationFormDigi = ({
 		return validRef;
 	};
 
+	// Get the counselling relation from the query parameter
+	const getCounsellingRelation = (): string | null => {
+		const queryRelation = urlQuery.get('counsellingRelation');
+
+		if (!queryRelation) return null;
+
+		const fullRelation = `${queryRelation.toUpperCase()}_COUNSELLING`;
+		const allRelations: string[] = Object.values(CounsellingRelation);
+
+		if (allRelations.includes(fullRelation)) {
+			return fullRelation;
+		}
+
+		return null;
+	};
+
 	// When the form is submitted we send the data to the API
 	const onSubmit = React.useCallback(
 		(formValues) => {
@@ -312,6 +328,7 @@ export const RegistrationFormDigi = ({
 										),
 										value
 									}))}
+									preset={getCounsellingRelation()}
 								/>
 							</FormAccordion.Item>
 
