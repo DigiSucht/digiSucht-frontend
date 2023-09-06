@@ -1569,7 +1569,10 @@ export const de = {
 		'mainTopic': 'Hauptthema',
 		'selectedTopics': 'Ausgewählte Themen',
 		'profilInformation': 'Profil Informationen',
-		'tools': 'Tools',
+		'tools': {
+			tools: 'Tools',
+			documentation: 'Dokumentation'
+		},
 		'topic': 'Themen',
 		[`counsellingRelation.${CounsellingRelation.Self.toLowerCase()}`]:
 			'Betroffene_r',
@@ -2329,6 +2332,11 @@ export const de = {
 				description:
 					'Wählen Sie die Tools aus, die Sie dem_der Ratsuchenden zur Verfügung stellen möchten.',
 				title: 'Tool für die Ratsuchenden'
+			},
+			documentation: {
+				text: 'Dokumentieren Sie Ihre Beratungsvorgänge',
+				info: 'Nur zugewiesene Berater_innen können die Inhalte der Ratsuchenden einsehen. Wenn Sie aus der Teamberatung auf die Inhalte zugreifen, sind die Ratsuchenden nicht vorausgewählt.',
+				btn: 'zur Dokumentation'
 			}
 		},
 		data: {

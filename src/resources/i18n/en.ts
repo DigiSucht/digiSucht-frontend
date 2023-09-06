@@ -1511,6 +1511,9 @@ export const en = {
 		'appLanguage': {
 			title: 'Language',
 			info: 'Set the language of the application here.'
+		},
+		'tools': {
+			documentation: 'Documentation'
 		}
 	},
 	qrCode: {
@@ -2211,6 +2214,11 @@ export const en = {
 				description:
 					'Select the tools you want to make available to the counselee.',
 				title: 'Tool for those seeking advice'
+			},
+			documentation: {
+				text: 'Document your sessions',
+				info: 'Only assigned counselors can view the content of those seeking advice. If you access the content from the team consultation, the advice seekers are not preselected.',
+				btn: 'To documentation'
 			}
 		},
 		data: {
