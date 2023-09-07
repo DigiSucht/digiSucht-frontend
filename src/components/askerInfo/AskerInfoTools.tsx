@@ -13,7 +13,7 @@ import { useTranslation } from 'react-i18next';
 export const AskerInfoTools = () => {
 	const { t: translate } = useTranslation();
 	const { activeSession } = useContext(ActiveSessionContext);
-	const [askerItemID, setAskerItemId] = useState<String>();
+	const [askerItemID, setAskerItemId] = useState<string>();
 
 	const openToolsLink = () => {
 		refreshKeycloakAccessToken().then((resp) => {
@@ -38,14 +38,14 @@ export const AskerInfoTools = () => {
 		<>
 			<AskerInfoToolsOptions askerId={askerItemID} />
 			<Text
-				className="asker-info-tools__share-title"
+				className="askerInfoTools__share-title"
 				text={translate('userProfile.tools.share.title')}
 				type="divider"
 			/>
 			<button
 				title={translate('userProfile.tools.share.info')}
 				type="button"
-				className="asker-info-tools__button text--tertiary primary button-as-link"
+				className="askerInfoTools__button text--tertiary primary button-as-link"
 				onClick={openToolsLink}
 				aria-label={translate('userProfile.tools.share.info')}
 			>
