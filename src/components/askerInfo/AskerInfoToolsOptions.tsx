@@ -17,7 +17,7 @@ import { apiPutTools } from '../../api/apiPutTools';
 import { useTranslation } from 'react-i18next';
 
 interface AskerInfoToolsOptionsInterface {
-	askerId: String;
+	askerId: string;
 }
 
 export const AskerInfoToolsOptions = (
@@ -104,7 +104,7 @@ export const AskerInfoToolsOptions = (
 				activeTools = selected.map((tool) => tool.value);
 				updateSharedToolsModal(activeTools, false);
 			}
-			apiPutTools(`${props.askerId}`, activeTools).catch(() => {
+			apiPutTools(props.askerId, activeTools).catch(() => {
 				setHasError(true);
 				setSelectedTools([]);
 				const resetTools = infoAboutToolsModal.map((tool) => {
@@ -238,23 +238,21 @@ export const AskerInfoToolsOptions = (
 
 	useEffect(() => {
 		if (props.askerId) {
-			apiGetTools(`${props.askerId}`).then(
-				(resp: APIToolsInterface[]) => {
-					setAvailableToolsOptions(resp);
-				}
-			);
+			apiGetTools(props.askerId).then((resp: APIToolsInterface[]) => {
+				setAvailableToolsOptions(resp);
+			});
 		}
 	}, [props.askerId]); // eslint-disable-line react-hooks/exhaustive-deps
 
 	return (
-		<div className="asker-info-tools-options">
+		<div className="askerInfoToolsOptions">
 			<Text
 				text={translate('userProfile.tools.description')}
 				type="infoSmall"
 			/>
 			<button
 				type="button"
-				className="asker-info-tools-options__button text--tertiary primary button-as-link"
+				className="askerInfoToolsOptions__button text--tertiary primary button-as-link"
 				onClick={() => setShowModal(true)}
 			>
 				<Info />
@@ -279,7 +277,7 @@ export const AskerInfoToolsOptions = (
 			/>
 			{showModal && overlayContent && (
 				<Overlay
-					className="asker-info-tools-options__overlay"
+					className="askerInfoToolsOptions__overlay"
 					item={overlayContent}
 					handleOverlayClose={() => resetToolsAfterCloseModal()}
 					handleOverlay={handleOverlayAction}
