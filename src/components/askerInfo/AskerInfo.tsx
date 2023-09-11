@@ -34,6 +34,7 @@ import { apiGetUserDataBySessionId } from '../../api/apiGetUserDataBySessionId';
 import { ConsultingSessionDataInterface } from '../../globalState/interfaces/ConsultingSessionDataInterface';
 import { PersonIcon } from '../../resources/img/icons';
 import { RocketChatUsersOfRoomProvider } from '../../globalState/provider/RocketChatUsersOfRoomProvider';
+import { AskerInfoDocumentation } from './AskerInfoDocumentation';
 
 export const AskerInfo = () => {
 	const { t: translate } = useTranslation();
@@ -187,8 +188,8 @@ export const AskerInfo = () => {
 
 						{tenant?.settings?.featureToolsEnabled &&
 							sessionData?.id && (
-								<ProfileBox title="profile.tools">
-									<AskerInfoTools />
+								<ProfileBox title="profile.tools.documentation">
+									<AskerInfoDocumentation />
 								</ProfileBox>
 							)}
 
@@ -209,6 +210,13 @@ export const AskerInfo = () => {
 								/>
 							)}
 						</ProfileBox>
+
+						{tenant?.settings?.featureToolsEnabled &&
+							sessionData?.id && (
+								<ProfileBox title="profile.tools.tools">
+									<AskerInfoTools />
+								</ProfileBox>
+							)}
 
 						{isSessionAssignAvailable() && (
 							<ProfileBox title="userProfile.reassign.title">

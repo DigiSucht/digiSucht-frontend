@@ -7,13 +7,13 @@ import { endpoints } from '../../resources/scripts/endpoints';
 import { refreshKeycloakAccessToken } from '../sessionCookie/refreshKeycloakAccessToken';
 import { Text } from '../text/Text';
 import './askerInfoTools.styles';
-import { AskerInfoToolsOptions } from './AskerInfoToolsOptions';
 import { useTranslation } from 'react-i18next';
 
-export const AskerInfoTools = () => {
+export const AskerInfoDocumentation = () => {
 	const { t: translate } = useTranslation();
 	const { activeSession } = useContext(ActiveSessionContext);
 	const [askerItemID, setAskerItemId] = useState<String>();
+
 	const openToolsLink = () => {
 		refreshKeycloakAccessToken().then((resp) => {
 			const accessToken = resp.access_token;
@@ -35,21 +35,19 @@ export const AskerInfoTools = () => {
 
 	return (
 		<>
-			<AskerInfoToolsOptions askerId={askerItemID} />
 			<Text
-				className="asker-info-tools__share-title"
-				text={translate('userProfile.tools.share.title')}
-				type="divider"
+				text={translate('userProfile.tools.documentation.text')}
+				type="infoSmall"
 			/>
 			<button
-				title={translate('userProfile.tools.share.info')}
+				title={translate('userProfile.tools.documentation.info')}
 				type="button"
 				className="asker-info-tools__button text--tertiary primary button-as-link"
 				onClick={openToolsLink}
-				aria-label={translate('userProfile.tools.share.info')}
+				aria-label={translate('userProfile.tools.documentation.info')}
 			>
 				<NewWindow />
-				{translate('userProfile.tools.share.sharedContent')}
+				{translate('userProfile.tools.documentation.btn')}
 			</button>
 		</>
 	);
