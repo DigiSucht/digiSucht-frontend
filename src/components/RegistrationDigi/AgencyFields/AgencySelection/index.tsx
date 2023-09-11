@@ -94,13 +94,20 @@ export const AgencySelection = ({
 	const [agencies, setAgencies] = useState<AgencyDataInterface[]>([
 		...(preselectedAgencies || [])
 	]);
-	const { mainTopicId, gender, age, postCode } = field.getFieldsValue();
+	const {
+		mainTopicId,
+		gender,
+		age,
+		postCode: postcode,
+		counsellingRelation
+	} = field.getFieldsValue();
 	const isValidToRequestData =
 		!preselectedAgencies?.length &&
 		Number(mainTopicId) >= 0 &&
 		age &&
 		gender &&
-		!!postCode?.match(REGEX_POSTCODE);
+		counsellingRelation &&
+		!!postcode?.match(REGEX_POSTCODE);
 
 	const { t: translate } = useTranslation();
 	// Only runs when no preselected agencies are provided
@@ -108,11 +115,12 @@ export const AgencySelection = ({
 		if (isValidToRequestData) {
 			setIsLoading(true);
 			apiAgencySelection({
-				postcode: postCode,
+				postcode,
 				consultingType: consultingType?.id,
 				topicId: mainTopicId,
-				age: age,
-				gender: gender
+				age,
+				gender,
+				counsellingRelation
 			})
 				.then((response) => {
 					setAgencies(response);
@@ -150,7 +158,7 @@ export const AgencySelection = ({
 		mainTopicId,
 		age,
 		gender,
-		postCode,
+		postcode,
 		isValidToRequestData
 	]);
 
@@ -228,7 +236,7 @@ export const AgencySelection = ({
 								{translate(
 									'registration.agencySelection.title.start'
 								)}{' '}
-								{postCode}
+								{postcode}
 								{translate(
 									'registration.agencySelection.title.end'
 								)}

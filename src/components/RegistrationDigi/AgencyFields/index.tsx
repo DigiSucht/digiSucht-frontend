@@ -18,12 +18,17 @@ export const AgencySelectionFormField = ({
 }: AgencySelectionFormFieldProps) => {
 	const field = React.useContext(FieldContext);
 	const { t: translate } = useTranslation();
-	const { mainTopicId, gender, age } = field.getFieldsValue();
+	const { mainTopicId, gender, age, counsellingRelation } =
+		field.getFieldsValue();
 
 	return (
 		<>
-			{!!(Number(mainTopicId) >= 0 && gender && age) ||
-			preselectedAgencies.length > 0 ? (
+			{!!(
+				Number(mainTopicId) >= 0 &&
+				gender &&
+				age &&
+				counsellingRelation
+			) || preselectedAgencies.length > 0 ? (
 				<AgencySelection
 					consultingType={consultingType}
 					preselectedAgencies={preselectedAgencies}
