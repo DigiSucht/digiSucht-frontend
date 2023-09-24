@@ -10,6 +10,7 @@
 
 		@include breakpoint($fromLarge) {
 			align-items: center;
+			padding-bottom: 100px;
 		}
 
 		iframe {

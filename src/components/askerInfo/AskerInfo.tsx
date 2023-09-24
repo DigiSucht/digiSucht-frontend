@@ -150,7 +150,7 @@ export const AskerInfo = () => {
 							</p>
 						</div>
 					</div>
-					<div className="askerInfo__innerWrapper__digi">
+					<div className="askerInfo__innerWrapper askerInfo__innerWrapper__digi">
 						<div className="askerInfo__user">
 							<div className="askerInfo__icon">
 								<PersonIcon

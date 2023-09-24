@@ -7,9 +7,6 @@ $inputSpacing: 32px;
 		flex-direction: column;
 		background-color: $background-light;
 		width: 100vw;
-		align-items: stretch;
-		height: 100%;
-		justify-content: stretch;
 
 		@include breakpoint($fromLarge) {
 			width: 100%;

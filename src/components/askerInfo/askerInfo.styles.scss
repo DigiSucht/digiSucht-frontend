@@ -144,7 +144,7 @@ $profile-footer-justify-content: center !default;
 	&__content {
 		display: flex;
 		flex-direction: column;
-		padding: 12.5px;
+		padding: 0 $grid-base-two $grid-base-ten;
 		height: auto;
 		max-width: 600px;
 		width: 100%;
@@ -154,6 +154,14 @@ $profile-footer-justify-content: center !default;
 			display: block;
 			content: '';
 			clear: both;
+		}
+
+		@include breakpoint($fromMedium) {
+			padding: 0 $grid-base-three $grid-base-ten;
+		}
+
+		@include breakpoint($fromLarge) {
+			padding: 0 $grid-base-three $grid-base-eight;
 		}
 
 		& > div {
