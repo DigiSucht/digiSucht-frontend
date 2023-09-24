@@ -7,8 +7,9 @@ import { Overlay, OVERLAY_FUNCTIONS, OverlayItem } from '../overlay/Overlay';
 import { redirectToApp } from './autoLogin';
 import {
 	AgencyDataInterface,
-	ConsultantDataInterface,
 	ConsultingTypeInterface,
+	NOTIFICATION_TYPE_ERROR,
+	NotificationsContext,
 	TenantContext,
 	useLocaleData
 } from '../../globalState';
@@ -20,43 +21,55 @@ import {
 	redirectToErrorPage
 } from '../error/errorHandling';
 import { useTranslation } from 'react-i18next';
-import { TopicsDataInterface } from '../../globalState/interfaces/TopicsDataInterface';
 import { LegalLinksContext } from '../../globalState/provider/LegalLinksProvider';
 import { useAppConfig } from '../../hooks/useAppConfig';
 import { getTenantSettings } from '../../utils/tenantSettingsHelper';
 import { budibaseLogout } from '../budibase/budibaseLogout';
+import { getUrlParameter } from '../../utils/getUrlParameter';
+import { UrlParamsContext } from '../../globalState/provider/UrlParamsProvider';
+import { TopicsDataInterface } from '../../globalState/interfaces/TopicsDataInterface';
+import { ConsultingTypeRegistrationDefaults } from '../../containers/registration/components/ProposedAgencies/ProposedAgencies';
+import { apiPostError, ERROR_LEVEL_ERROR } from '../../api/apiPostError';
 
-interface RegistrationFormProps {
-	consultingType?: ConsultingTypeInterface;
-	agency?: AgencyDataInterface;
-	consultant?: ConsultantDataInterface;
-	topic?: TopicsDataInterface;
-}
-
-interface FormAccordionData {
+export interface FormAccordionData {
 	username?: string;
 	password?: string;
-	agencyId?: number;
-	mainTopicId?: number;
+	agency?: AgencyDataInterface;
+	consultingType?: ConsultingTypeInterface;
+	mainTopic?: TopicsDataInterface;
 	postcode?: string;
 	state?: string;
 	age?: string;
-	consultingTypeId?: number;
-	mainTopic?: string;
 }
 
-export const RegistrationForm = ({
-	consultingType,
-	agency,
-	topic,
-	consultant
-}: RegistrationFormProps) => {
+export const RegistrationForm = () => {
 	const { t: translate } = useTranslation(['common', 'consultingTypes']);
 	const legalLinks = useContext(LegalLinksContext);
+	const { addNotification } = useContext(NotificationsContext);
 	const { locale } = useLocaleData();
 	const settings = useAppConfig();
+	const postcode = getUrlParameter('postcode');
+	const { agency, consultingType, consultant, topic } =
+		useContext(UrlParamsContext);
+
 	const [formAccordionData, setFormAccordionData] =
-		useState<FormAccordionData>({});
+		useState<FormAccordionData>(() => {
+			const initData = {
+				agency: agency || null,
+				consultingType: consultingType || null,
+				mainTopic: topic || null,
+				postcode: postcode || null
+			};
+
+			const { autoSelectPostcode } =
+				consultingType?.registration ||
+				ConsultingTypeRegistrationDefaults;
+			if (consultingType && agency && !postcode && autoSelectPostcode) {
+				initData.postcode = agency.postcode;
+			}
+
+			return initData;
+		});
 	const [formAccordionValid, setFormAccordionValid] = useState(false);
 	const [isUsernameAlreadyInUse, setIsUsernameAlreadyInUse] =
 		useState<boolean>(false);
@@ -64,6 +77,9 @@ export const RegistrationForm = ({
 		useState(false);
 	const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
 	const [overlayActive, setOverlayActive] = useState(false);
+	const [missingFieldsErrorPosted, setMissingFieldsErrorPosted] = useState<
+		string[]
+	>([]);
 
 	const { tenant } = useContext(TenantContext);
 	const { featureToolsEnabled } = getTenantSettings();
@@ -72,15 +88,6 @@ export const RegistrationForm = ({
 	useEffect(() => {
 		featureToolsEnabled && budibaseLogout();
 	}, [featureToolsEnabled]);
-
-	useEffect(() => {
-		if (consultingType) {
-			setFormAccordionData({
-				...formAccordionData,
-				consultingTypeId: consultingType.id
-			});
-		}
-	}, [consultingType]); // eslint-disable-line react-hooks/exhaustive-deps
 
 	useEffect(() => {
 		setIsSubmitButtonDisabled(
@@ -114,16 +121,66 @@ export const RegistrationForm = ({
 		const registrationData = {
 			username: formAccordionData.username,
 			password: encodeURIComponent(formAccordionData.password),
-			agencyId: formAccordionData.agencyId?.toString(),
-			mainTopicId: formAccordionData.mainTopicId?.toString(),
 			postcode: formAccordionData.postcode,
-			consultingType: formAccordionData.consultingTypeId?.toString(),
+			agencyId: formAccordionData?.agency.id.toString(),
 			termsAccepted: isDataProtectionSelected.toString(),
+			consultingType: formAccordionData.consultingType?.id?.toString(),
+			mainTopicId: formAccordionData.mainTopic?.id?.toString(),
 			preferredLanguage: locale,
 			...(formAccordionData.state && { state: formAccordionData.state }),
 			...(formAccordionData.age && { age: formAccordionData.age }),
 			...(consultant && { consultantId: consultant.consultantId })
 		};
+
+		const missingFields = [
+			'username',
+			'password',
+			'postcode',
+			'agencyId',
+			'termsAccepted',
+			'consultingType'
+		].filter(
+			(required) =>
+				!registrationData[required] || registrationData[required] === ''
+		);
+		if (missingFields.length > 0) {
+			addNotification({
+				notificationType: NOTIFICATION_TYPE_ERROR,
+				title: translate(
+					'registration.error.required_field_missing.title'
+				),
+				text: translate(
+					'registration.error.required_field_missing.text'
+				)
+			});
+
+			// prevent sending error multiple times with the same fields.
+			if (
+				missingFields
+					.filter((x) => !missingFieldsErrorPosted.includes(x))
+					.concat(
+						missingFieldsErrorPosted.filter(
+							(x) => !missingFields.includes(x)
+						)
+					).length > 0
+			) {
+				const { agencyId, consultingType } = registrationData;
+				void apiPostError(
+					{
+						name: `REGISTRATION_MISSING_FIELDS`,
+						message: `User got error while trying to register (consultingTypeId: "${consultingType}", agencyId: "${agencyId}") because there where some fields (${missingFields.join(
+							', '
+						)}) missing.`,
+						level: ERROR_LEVEL_ERROR
+					},
+					null
+				);
+			}
+
+			setMissingFieldsErrorPosted(missingFields);
+			setIsSubmitButtonDisabled(false);
+			return;
+		}
 
 		apiPostRegistration(
 			endpoints.registerAsker,
@@ -150,7 +207,7 @@ export const RegistrationForm = ({
 	};
 
 	const handleChange = useCallback(
-		(data) => {
+		(data: Partial<FormAccordionData>) => {
 			setFormAccordionData({
 				...formAccordionData,
 				...data
@@ -186,16 +243,12 @@ export const RegistrationForm = ({
 
 				{(consultingType || consultant) && (
 					<FormAccordion
-						consultingType={consultingType}
+						formAccordionData={formAccordionData}
 						isUsernameAlreadyInUse={isUsernameAlreadyInUse}
-						preselectedAgencyData={agency}
 						onChange={handleChange}
 						additionalStepsData={consultingType?.requiredComponents}
 						registrationNotes={consultingType?.registration.notes}
-						consultant={consultant}
 						onValidation={setFormAccordionValid}
-						mainTopicId={topic?.id || formAccordionData.mainTopicId}
-						preselectedTopic={topic?.id}
 						legalLinks={legalLinks}
 						handleSubmitButtonClick={handleSubmitButtonClick}
 						isSubmitButtonDisabled={isSubmitButtonDisabled}

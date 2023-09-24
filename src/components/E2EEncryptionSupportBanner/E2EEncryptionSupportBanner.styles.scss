@@ -1,6 +1,7 @@
 .encryption-banner {
 	background-color: #f7d9d9;
 	display: flex;
+	position: fixed;
 	justify-content: center;
 	padding: $grid-base-two $grid-base-three;
 	@include breakpoint($fromLarge) {

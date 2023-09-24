@@ -1,7 +1,7 @@
 import '../../polyfill';
 import * as React from 'react';
 import { useHistory } from 'react-router-dom';
-import { ComponentType, useState, lazy, Suspense } from 'react';
+import { ComponentType, useState, lazy, Suspense, useContext } from 'react';
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -22,6 +22,7 @@ import {
 	InformalProvider,
 	LegalLinkInterface,
 	LocaleProvider,
+	NotificationsContext,
 	TenantProvider
 } from '../../globalState';
 import { LegalLinksProvider } from '../../globalState/provider/LegalLinksProvider';
@@ -30,6 +31,8 @@ import { DevToolbarWrapper } from '../devToolbar/DevToolbar';
 import { PreConditions, preConditionsMet } from './PreConditions';
 import { Loading } from './Loading';
 import { GlobalComponentContext } from '../../globalState/provider/GlobalComponentContext';
+import { UrlParamsProvider } from '../../globalState/provider/UrlParamsProvider';
+import { Notifications } from '../notifications/Notifications';
 
 const Login = lazy(() =>
 	import('../login/Login').then((m) => ({ default: m.Login }))
@@ -168,14 +171,16 @@ const RouterWrapper = ({ extraRoutes, entryPoint }: RouterWrapperProps) => {
 										'/:consultingTypeSlug/registration'
 									]}
 								>
-									<Registration
-										handleUnmatchConsultingType={() =>
-											history.push('/login')
-										}
-										handleUnmatchConsultant={() =>
-											history.push('/login')
-										}
-									/>
+									<UrlParamsProvider>
+										<Registration
+											handleUnmatchConsultingType={() =>
+												history.push('/login')
+											}
+											handleUnmatchConsultant={() =>
+												history.push('/login')
+											}
+										/>
+									</UrlParamsProvider>
 								</Route>
 
 								<Route path="/:consultingTypeSlug/warteraum">
@@ -190,7 +195,9 @@ const RouterWrapper = ({ extraRoutes, entryPoint }: RouterWrapperProps) => {
 								</Route>
 
 								<Route path="/login" exact>
-									<Login />
+									<UrlParamsProvider>
+										<Login />
+									</UrlParamsProvider>
 								</Route>
 								<Route
 									path={settings.urls.videoConference}
@@ -208,10 +215,20 @@ const RouterWrapper = ({ extraRoutes, entryPoint }: RouterWrapperProps) => {
 									}
 								/>
 							</Switch>
+							<NotificationsContainer />
 						</Suspense>
 					</ContextProvider>
 				</Route>
 			</Switch>
 		</Router>
+	);
+};
+
+const NotificationsContainer = () => {
+	const { notifications } = useContext(NotificationsContext);
+	return (
+		notifications.length > 0 && (
+			<Notifications notifications={notifications} />
+		)
 	);
 };

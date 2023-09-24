@@ -1,5 +1,5 @@
-import { deConsultingTypes } from '../i18n/de.consultingTypes';
-import { deAgency } from '../i18n/de.agency';
+import deAgency from '../i18n/de.agency.json';
+import deConsultingTypes from '../i18n/de.consultingTypes.json';
 import { AppConfigInterface } from '../../globalState/interfaces/AppConfig/AppConfigInterface';
 import {
 	OVERLAY_RELEASE_NOTE,
@@ -23,6 +23,14 @@ export const config: AppConfigInterface = {
 	mainTenantSubdomainForSingleDomainMultitenancy: 'app',
 	attachmentEncryption: true, // Feature flag for attachment end to end encryption - e2e must also be enabled in rocket.chat
 
+	requestCollector: {
+		limit: 10,
+		showCorrelationId: {
+			consultant: true,
+			user: false,
+			other: false
+		}
+	},
 	urls: {
 		chatScheduleUrl: 'https://www.caritas.de/onlineberatung',
 		consultantVideoConference:
