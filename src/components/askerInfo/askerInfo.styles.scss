@@ -178,6 +178,10 @@ $profile-footer-justify-content: center !default;
 		&Digi {
 			flex-basis: 50%;
 			height: auto !important;
+
+			& > * {
+				max-width: none;
+			}
 		}
 
 		&Container {
