@@ -42,7 +42,7 @@ export const AskerInfoDocumentation = () => {
 			<button
 				title={translate('userProfile.tools.documentation.info')}
 				type="button"
-				className="asker-info-tools__button text--tertiary primary button-as-link"
+				className="askerInfoTools__button text--tertiary primary button-as-link mt--2"
 				onClick={openToolsLink}
 				aria-label={translate('userProfile.tools.documentation.info')}
 			>
