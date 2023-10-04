@@ -188,8 +188,8 @@ export const AskerInfo = () => {
 
 						{tenant?.settings?.featureToolsEnabled &&
 							sessionData?.id && (
-								<ProfileBox title="profile.tools.documentation">
-									<AskerInfoDocumentation />
+								<ProfileBox title="profile.tools.tools">
+									<AskerInfoTools />
 								</ProfileBox>
 							)}
 
@@ -213,8 +213,8 @@ export const AskerInfo = () => {
 
 						{tenant?.settings?.featureToolsEnabled &&
 							sessionData?.id && (
-								<ProfileBox title="profile.tools.tools">
-									<AskerInfoTools />
+								<ProfileBox title="profile.tools.documentation">
+									<AskerInfoDocumentation />
 								</ProfileBox>
 							)}
 
