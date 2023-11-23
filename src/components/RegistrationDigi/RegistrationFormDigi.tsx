@@ -24,7 +24,7 @@ import { InputFormField } from './InputFormField';
 import { CheckboxFormField } from './CheckboxFormField';
 import { RegistrationSuccessOverlay } from './RegistrationSuccessOverlay';
 import { AgencyInfo } from '../agencySelection/AgencyInfo';
-import { useContext, useMemo } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { useAppConfig } from '../../hooks/useAppConfig';
 import { getTenantSettings } from '../../utils/tenantSettingsHelper';
 import { budibaseLogout } from '../budibase/budibaseLogout';
@@ -44,23 +44,23 @@ interface RegistrationFormProps {
 export const RegistrationFormDigi = ({
 	agency: preselectedAgency,
 	consultingType,
-	consultant
+	consultant,
+	topic
 }: RegistrationFormProps) => {
 	const { tenant } = useContext(TenantContext);
 	const settings = useAppConfig();
 	const [form] = Form.useForm();
 
-	const [topics, setTopics] = React.useState([] as TopicsDataInterface[]);
-	const [formErrors, setFormErrors] = React.useState([]); // This needs to be an array to trigger the changes on accordion
+	const [topics, setTopics] = useState([] as TopicsDataInterface[]);
+	const [formErrors, setFormErrors] = useState([]); // This needs to be an array to trigger the changes on accordion
 	const [registrationWithSuccess, setRegistrationWithSuccess] =
-		React.useState(false);
-	const [isUsernameAlreadyInUse, setIsUsernameAlreadyInUse] =
-		React.useState(false);
+		useState(false);
+	const [isUsernameAlreadyInUse, setIsUsernameAlreadyInUse] = useState(false);
 	const { featureToolsEnabled } = getTenantSettings();
 	const { t: translate } = useTranslation();
 	const legalLinks = useContext(LegalLinksContext);
 
-	const [currentValues, setValues] = React.useState({
+	const [currentValues, setValues] = useState({
 		'age': '',
 		'agencyId':
 			consultant?.agencies?.length === 1
@@ -78,24 +78,36 @@ export const RegistrationFormDigi = ({
 	} as any);
 
 	// Logout from budibase
-	React.useEffect(() => {
+	useEffect(() => {
 		featureToolsEnabled && budibaseLogout();
 	}, [featureToolsEnabled]);
 
 	// When some that changes we check if the form is valid to enable/disable the submit button
-	React.useEffect(() => {
+	useEffect(() => {
 		form.validateFields()
 			.then(() => setFormErrors([]))
 			.catch(({ errorFields }) => setFormErrors([...errorFields]));
 	}, [currentValues, form]);
 
 	// Request the topics data
-	React.useEffect(() => {
-		apiGetTopicsData().then((data) => setTopics(data));
-	}, []); // eslint-disable-line react-hooks/exhaustive-deps
+	useEffect(() => {
+		(async () => {
+			const topics = await apiGetTopicsData();
+			setTopics(topics);
+			if (!topic || !topics.find((t) => t.id === topic.id)) return;
+
+			form.setFieldValue('mainTopicId', topic.id);
+			form.setFieldValue('topicIds[]', [topic.id]);
+			setValues((v) => ({
+				...v,
+				'topicIds[]': [topic.id],
+				'mainTopicId': topic.id
+			}));
+		})();
+	}, [form, topic]);
 
 	// Request the topics data
-	React.useEffect(() => {
+	useEffect(() => {
 		if (
 			currentValues['topicIds[]']?.length === 1 &&
 			currentValues.mainTopicId !== currentValues['topicIds[]'][0]
@@ -106,7 +118,7 @@ export const RegistrationFormDigi = ({
 				mainTopicId: currentValues['topicIds[]'][0]
 			});
 		}
-	}, [topics, currentValues]); // eslint-disable-line react-hooks/exhaustive-deps
+	}, [topics, currentValues, form]);
 
 	const useQuery = () => {
 		const { search } = useLocation();
@@ -115,10 +127,8 @@ export const RegistrationFormDigi = ({
 	const urlQuery: URLSearchParams = useQuery();
 
 	// Only max. 8 alphanumeric characters are allowed in the ref parameter
-	const getValidRef = (ref: string) => {
-		const validRef = ref.replace(/[^a-zA-Z0-9]/g, '').substring(0, 8);
-		return validRef;
-	};
+	const getValidRef = (ref: string) =>
+		ref.replace(/[^a-zA-Z0-9]/g, '').substring(0, 8);
 
 	// Get the counselling relation from the query parameter
 	const getCounsellingRelation = (): string | null => {
@@ -137,7 +147,7 @@ export const RegistrationFormDigi = ({
 	};
 
 	// When the form is submitted we send the data to the API
-	const onSubmit = React.useCallback(
+	const onSubmit = useCallback(
 		(formValues) => {
 			const finalValues = {
 				username: formValues.username,
@@ -183,14 +193,11 @@ export const RegistrationFormDigi = ({
 	);
 
 	// When some topic id is selected we need to change the list of main topics
-	const mainTopicOptions = React.useMemo(
+	const mainTopicOptions = useMemo(
 		() =>
 			topics
-				?.filter(
-					(topic) =>
-						(currentValues['topicIds[]'] || []).indexOf(
-							topic.id
-						) !== -1
+				?.filter((topic) =>
+					(currentValues['topicIds[]'] || []).includes(topic.id)
 				)
 				.map(({ id, name }) => ({ label: name, value: id + '' })),
 		[currentValues, topics]
