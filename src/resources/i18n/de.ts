@@ -277,31 +277,33 @@ export const de = {
 			'synchronised.calendars': 'Synchronisierte Kalender'
 		},
 		'event': {
-			'asker': 'Ratsuchende_r',
-			'booking': {
+			asker: 'Ratsuchende_r',
+			booking: {
 				cancel: 'Absagen',
 				reschedule: 'Verschieben'
 			},
-			'copy': {
+			copy: {
 				'link.notification.title': 'Link kopiert',
 				'link.notification.text':
 					'Einlandungslink zum Video-Call in Zwischenablage kopiert!'
 			},
-			'description': 'Ihre Nachricht zum Termin',
-			'show': {
+			description: 'Ihre Nachricht zum Termin',
+			show: {
 				more: 'Mehr anzeigen',
 				less: 'Weniger anzeigen'
 			},
-			'tab': {
+			tab: {
 				booked: 'Gebuchte Termine',
 				canceled: 'Storniert',
 				expired: 'Vergangen',
 				settings: 'Einstellungen'
 			},
-			'your.counselor': 'Ihr Berater',
-			'linkVideo': 'Link zum Video-Call',
-			'appointmentType': 'Gewünschte Terminart',
-			'location': {
+			your: {
+				counselor: 'Ihr Berater'
+			},
+			linkVideo: 'Link zum Video-Call',
+			appointmentType: 'Gewünschte Terminart',
+			location: {
 				IN_PERSON: 'In der Beratungsstelle',
 				PHONE_CALL: 'Telefon-Beratung',
 				USER_PHONE: 'Telefon-Beratung',
@@ -309,9 +311,9 @@ export const de = {
 				CHAT: 'Text-Chat',
 				LINK: 'Videoberatung'
 			},
-			'tooltip': {
+			tooltip: {
 				consultant:
-					'Falls Sie den Termin nicht in dem vom Ratsuchende gewählten Modus wahrnehmen können, generieren wir für Sie immer einen Link zum Video-Call als Alternative.',
+					'Falls Sie den Termin nicht in dem vom Ratsuchenden gewählten Modus wahrnehmen können, generieren wir für Sie immer einen Link zum Video-Call als Alternative.',
 				adviceSeeker:
 					'Falls Ihr:e Berater:in den Termin nicht in dem von Ihnen gewählten Modus wahrnehmen kann, generieren wir für Sie immer einen Link zum Video-Call als Alternative.'
 			}
@@ -1112,15 +1114,21 @@ export const de = {
 				}
 			}
 		},
-		'appointmentCancelled.title': 'Ihr Termin wurde abgesagt',
-		'appointmentRescheduled.title': 'Ihr Termin wurde verschoben',
+		'appointmentCancelled': {
+			title: 'Ihr Termin wurde abgesagt'
+		},
+		'appointmentRescheduled': {
+			title: 'Ihr Termin wurde verschoben'
+		},
 		'appointmentSet': {
-			'addToCalendar': 'Zum Kalender hinzufügen',
-			'and': 'und',
-			'between': 'zwischen',
-			'cancel': 'Termin absagen',
-			'info.video': 'Videoberatung',
-			'title': 'Ihr Termin wurde erstellt'
+			addToCalendar: 'Zum Kalender hinzufügen',
+			and: 'und',
+			between: 'zwischen',
+			cancel: 'Termin absagen',
+			info: {
+				video: 'Videoberatung'
+			},
+			title: 'Ihr Termin wurde erstellt'
 		},
 		'copy.title': 'Nachricht in Zwischenablage kopieren',
 		'dayBeforeYesterday': 'Vorgestern',
@@ -1198,13 +1206,19 @@ export const de = {
 		'tools': 'Meine Tools'
 	},
 	notifications: {
-		'message.new': 'Sie haben eine neue Nachricht!',
-		'enquiry.new': 'Sie haben eine neue Live-Chat Anfrage!',
-		'initialRequest.new': 'Sie haben eine neue Erstanfrage!',
-		'warning': 'Warnung',
-		'error': 'Fehlgeschlagen',
-		'success': 'Erfolgreich',
-		'info': 'Information'
+		message: {
+			new: 'Sie haben eine neue Nachricht!'
+		},
+		enquiry: {
+			new: 'Sie haben eine neue Live-Chat Anfrage!'
+		},
+		initialRequest: {
+			new: 'Sie haben eine neue Erstanfrage!'
+		},
+		warning: 'Warnung',
+		error: 'Fehlgeschlagen',
+		success: 'Erfolgreich',
+		info: 'Information'
 	},
 	overlay: {
 		'step.headline.prefix': '. Schritt | ',
@@ -1989,7 +2003,7 @@ export const de = {
 			known: 'Aktuell liegen keine Erstanfragen vor',
 			mySessions: 'Sie haben zurzeit keine aktiven Beratungen',
 			teamSessions: 'Ihr Team hat keine aktiven Beratungen',
-			peersessions: 'Sie haben zurzeit keine aktiven Peer-Beratungen',
+			peerSessions: 'Sie haben zurzeit keine aktiven Peer-Beratungen',
 			archived: 'Es sind noch keine Beratungen archiviert'
 		},
 		'unavailable': {
@@ -2048,15 +2062,9 @@ export const de = {
 		'calendar.button.label': 'Öffnen'
 	},
 	twoFactorAuth: {
+		subtitle:
+			'Nutzen Sie neben Ihrem Passwort einen zweiten Faktor für die Anmeldung. Dadurch wird Ihr Konto zusätzlich abgesichert.',
 		activate: {
-			step1: {
-				'app': 'Mit Authenticator Application',
-				'copy': 'Installieren Sie sich auf Ihrem Smartphone oder Tablet eine passende Authenticator-App. Alternativ können Sie auch Ihre E-Mail-Adresse als zweiten Faktor verwenden.',
-				'email': 'Per E-Mail',
-				'title': 'Zweiten Faktor wählen',
-				'visualisation.label': 'Auswahl',
-				'disable': 'Authentifizierung deaktivieren'
-			},
 			radio: {
 				label: {
 					app: 'App',
@@ -2066,6 +2074,14 @@ export const de = {
 					app: 'Installieren Sie sich die App. Die App generiert Ihnen einen Code den Sie bei der Anmeldung eingeben müssen.',
 					email: 'Sie erhalten bei der Anmeldung eine E-Mail mit einem Code. Diesen Code müssen Sie dann eingeben.'
 				}
+			},
+			step1: {
+				'app': 'Mit Authenticator Application',
+				'copy': 'Installieren Sie sich auf Ihrem Smartphone oder Tablet eine passende Authenticator-App. Alternativ können Sie auch Ihre E-Mail-Adresse als zweiten Faktor verwenden.',
+				'email': 'Per E-Mail',
+				'title': 'Zweiten Faktor wählen',
+				'visualisation.label': 'Auswahl',
+				'disable': 'Authentifizierung deaktivieren'
 			},
 			email: {
 				input: {
@@ -2202,8 +2218,6 @@ export const de = {
 			next: 'Weiter',
 			save: 'Speichern'
 		},
-		subtitle:
-			'Nutzen Sie neben Ihrem Passwort einen zweiten Faktor für die Anmeldung. Dadurch wird Ihr Konto zusätzlich abgesichert.',
 		switch: {
 			'active.label': 'Zwei-Faktor-Authentifizierung aktiviert',
 			'deactive.label': 'Zwei-Faktor-Authentifizierung deaktiviert',
@@ -2319,7 +2333,7 @@ export const de = {
 			title: 'Tools',
 			options: {
 				saveError:
-					'Beim Werkzeugwechsel ist ein Problem aufgetreten. Bitte versuche es erneut.'
+					'Beim Werkzeugwechsel ist ein Problem aufgetreten. Bitte versuchen Sie es erneut.'
 			},
 			share: {
 				sharedContent: 'Zu den geteilten Inhalten',
