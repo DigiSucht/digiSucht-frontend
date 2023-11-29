@@ -877,6 +877,10 @@ export const deInformal = {
 			modal: {
 				description:
 					'Wähle die Tools aus, die Du dem_der Ratsuchenden zur Verfügung stellen möchtest.'
+			},
+			documentation: {
+				text: 'Dokumentiere Deine Beratungsvorgänge',
+				info: 'Nur zugewiesene Berater_innen können die Inhalte der Ratsuchenden einsehen. Wenn Du aus der Teamberatung auf die Inhalte zugreifst, sind die Ratsuchenden nicht vorausgewählt.'
 			}
 		}
 	},
