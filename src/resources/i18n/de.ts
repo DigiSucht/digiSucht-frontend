@@ -1829,7 +1829,7 @@ export const de = {
 		'username.step.title': 'Bitte wählen Sie Ihren Benutzernamen',
 		'password.step.title': 'Bitte wählen Sie Ihr Passwort',
 		'agency.fullFillAllFields':
-			'Leider konnten wir keine Beratungsstelle in Ihrer Nähe finden. Sie können auch eine Postleitzahl in der Nähe Ihres Wohnortes angeben.',
+			'Leider konnten wir keine Beratungsstelle in Ihrer Nähe finden. Sie können auch eine Postleitzahl in der Nähe Ihres Wohnortes angeben.<br/><br/>Suchtberatung in ihrer Nähe finden Sie auch im Einrichtungsverzeichnis der Deutschen Hauptstelle für Suchtfragen (<a target="_blank" href="https://www.dhs.de/service/suchthilfeverzeichnis">https://www.dhs.de/service/suchthilfeverzeichnis</a>).',
 		'agency.noAgencyFound':
 			'Leider können wir dir derzeit keine passende Online-Beratungsstelle in deiner Nähe anbieten.',
 		'agency.error.title': 'Keine Beratungsstelle in der Nähe gefunden'
