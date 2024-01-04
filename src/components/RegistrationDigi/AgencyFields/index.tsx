@@ -5,6 +5,7 @@ import { InputFormField } from '../InputFormField';
 import { AgencySelection } from './AgencySelection';
 import { AgencyDataInterface } from '../../../globalState';
 import { useTranslation } from 'react-i18next';
+import { Text } from '../../text/Text';
 
 interface AgencySelectionFormFieldProps {
 	preselectedAgencies: AgencyDataInterface[];
@@ -35,7 +36,12 @@ export const AgencySelectionFormField = ({
 				/>
 			) : (
 				<div className="registrationFormDigi__AgencyMandatoryFields">
-					{translate('registrationDigi.agency.fullFillAllFields')}
+					<Text
+						type="standard"
+						text={translate(
+							'registrationDigi.agency.fullFillAllFields'
+						)}
+					/>
 				</div>
 			)}
 
