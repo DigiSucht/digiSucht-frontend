@@ -60,7 +60,9 @@ export const NoBookingsBooked: React.FC<NoBookings> = ({ sessions }) => {
                             ${sessions
 								?.filter((session) => session.agency !== null)
 								?.map(
-									({ consultant }) => consultant.displayName
+									({ consultant }) =>
+										consultant.displayName ||
+										consultant.username
 								)}</b>:`}
 							type="standard"
 						/>
