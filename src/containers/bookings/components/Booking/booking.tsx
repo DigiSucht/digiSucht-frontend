@@ -45,6 +45,8 @@ export const Booking = () => {
 		});
 	}, [userData]);
 
+	if (!session) return null;
+
 	return (
 		<React.Fragment>
 			{appointmentLink && settings.calcomUrl && (
