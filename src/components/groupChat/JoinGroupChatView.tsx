@@ -316,7 +316,7 @@ export const JoinGroupChatView = ({
 	let groupChatRules: string[] =
 		consultingType?.groupChat?.groupChatRules ?? [];
 	const transKey = `consultingType.${
-		consultingType?.id || 'noConsultingType'
+		consultingType?.id ?? 'noConsultingType'
 	}.groupChatRules`;
 	const translatedRules: { [key: string]: string } =
 		i18n.getResource(i18n.language, 'consultingTypes', transKey) || {};
