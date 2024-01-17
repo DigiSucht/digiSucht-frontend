@@ -1,5 +1,5 @@
 ARG DOCKER_MATRIX=ghcr.io
-FROM $DOCKER_MATRIX/onlineberatung/onlineberatung-nginx/onlineberatung-nginx:dockerimage.v.001-main
+FROM $DOCKER_MATRIX/onlineberatung/onlineberatung-nginx/onlineberatung-nginx:dockerimage.v.005-main
 COPY beratung-hilfe.html /usr/share/nginx/html/
 COPY error.401.html /usr/share/nginx/html/
 COPY error.404.html /usr/share/nginx/html/
