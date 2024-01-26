@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.13.31 (2024-01-26)
+
+
+### Bug Fixes
+
+* updated review comments ([b90b0a1](https://github.com/onlineberatung/onlineberatung-frontend/commit/b90b0a1ed92ea09cc6a16b586c72f1a8c0e703e7))
+
 ### 2.13.30 (2024-01-17)
 
 ### 2.13.29 (2024-01-16)
