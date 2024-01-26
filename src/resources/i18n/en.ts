@@ -616,6 +616,14 @@ export const en = {
 				option5: '2,5 hour',
 				option6: '3 hour'
 			},
+			'agencySelect': {
+				label: 'Agency'
+			},
+			'hintMessage': {
+				label: 'Note field',
+				explanation:
+					'Note: This information is visible to all administrators of the group chat.'
+			},
 			'repetitiveCheckbox.label': 'Repeat weekly',
 			'button.label': 'Create chat',
 			'listItem.label': 'New chat'
@@ -659,7 +667,9 @@ export const en = {
 					single: 'unique',
 					weekly: 'weekly'
 				},
-				edit: 'Edit'
+				edit: 'Edit',
+				agency: 'Agency',
+				hintMessage: 'Hint'
 			}
 		},
 		'join': {

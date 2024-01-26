@@ -643,6 +643,14 @@ export const de = {
 				option5: '2,5 Stunden',
 				option6: '3 Stunden'
 			},
+			'agencySelect': {
+				label: 'Beratungsstelle'
+			},
+			'hintMessage': {
+				label: 'Hinweisfeld',
+				explanation:
+					'Hinweis: Diese Informationen sind für alle Administrator:innen des Gruppenchats sichtbar.'
+			},
 			'listItem.label': 'Neuer Chat',
 			'repetitiveCheckbox.label': 'wöchentlich wiederholen',
 			'subtitle': 'Thema des Chats',
@@ -695,7 +703,9 @@ export const de = {
 				},
 				startDate: 'Datum',
 				startTime: 'Beginn',
-				topic: 'Thema des Chats'
+				topic: 'Thema des Chats',
+				agency: 'Beratungsstelle',
+				hintMessage: 'Hinweis'
 			}
 		},
 		'join': {
