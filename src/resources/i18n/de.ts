@@ -705,7 +705,9 @@ export const de = {
 				startTime: 'Beginn',
 				topic: 'Thema des Chats',
 				agency: 'Beratungsstelle',
-				hintMessage: 'Hinweis'
+				hintMessage: 'Hinweis',
+				creator: 'Ersteller',
+				createDate: 'Erstellungsdatum'
 			}
 		},
 		'join': {

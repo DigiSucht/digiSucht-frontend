@@ -669,7 +669,9 @@ export const en = {
 				},
 				edit: 'Edit',
 				agency: 'Agency',
-				hintMessage: 'Hint'
+				hintMessage: 'Hint',
+				creator: 'Creator',
+				createDate: 'Creation date'
 			}
 		},
 		'join': {

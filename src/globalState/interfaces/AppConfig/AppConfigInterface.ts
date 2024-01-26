@@ -6,6 +6,7 @@ import { AppSettingsInterface } from './AppSettingsInterface';
 import { LegalLinkInterface } from '../LegalLinkInterface';
 import { InitOptions } from 'i18next';
 import { OverlaysConfigInterface } from './OverlaysConfigInterface';
+import { GroupChatConfig } from '../GroupChatConfig';
 
 export interface AppConfigInterface extends AppSettingsInterface {
 	urls: AppConfigUrlsInterface;
@@ -18,6 +19,15 @@ export interface AppConfigInterface extends AppSettingsInterface {
 	i18n: InitOptions;
 	overlays?: OverlaysConfigInterface;
 	releaseToggles?: ReleaseToggles;
+	requestCollector?: {
+		limit?: number;
+		showCorrelationId?: {
+			consultant?: boolean;
+			user?: boolean;
+			other?: boolean;
+		};
+	};
+	groupChat?: GroupChatConfig;
 }
 
 interface ReleaseToggles {
