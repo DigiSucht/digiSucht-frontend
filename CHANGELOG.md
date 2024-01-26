@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 2.14.0 (2024-01-26)
+
+
+### Features
+
+* show group creator and date ([3f27e0d](https://github.com/onlineberatung/onlineberatung-frontend/commit/3f27e0d60227c94853457e7778537f18be3e6c62))
+
 ### 2.13.31 (2024-01-26)
 
 
