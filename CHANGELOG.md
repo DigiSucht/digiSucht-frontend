@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 2.14.1 (2024-01-27)
+
+
+### Bug Fixes
+
+* show start video call only if group chat was joined ([2b3c48a](https://github.com/onlineberatung/onlineberatung-frontend/commit/2b3c48a72ca551eb18635429483e1e4315de6b9f))
+
 ## 2.14.0 (2024-01-26)
 
 
