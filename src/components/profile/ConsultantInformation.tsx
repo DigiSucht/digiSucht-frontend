@@ -60,9 +60,7 @@ export const ConsultantInformation = () => {
 				addNotification({
 					notificationType: NOTIFICATION_TYPE_ERROR,
 					title: translate('profile.notifications.error.title'),
-					text: translate('profile.notifications.error.description'),
-					closeable: true,
-					timeout: 60000
+					text: translate('profile.notifications.error.description')
 				});
 				console.error('Error while patching consultant', error);
 			})
