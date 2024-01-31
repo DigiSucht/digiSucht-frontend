@@ -7,7 +7,8 @@ import {
 	hasUserAuthority,
 	NotificationsContext,
 	UserDataContext,
-	NOTIFICATION_TYPE_SUCCESS
+	NOTIFICATION_TYPE_SUCCESS,
+	NOTIFICATION_TYPE_ERROR
 } from '../../globalState';
 import { Headline } from '../headline/Headline';
 import { Text } from '../text/Text';
@@ -24,6 +25,7 @@ import { useAppConfig } from '../../hooks/useAppConfig';
 export const ConsultantInformation = () => {
 	const { t: translate } = useTranslation();
 	const { userData, reloadUserData } = useContext(UserDataContext);
+	const { addNotification } = useContext(NotificationsContext);
 	const [isEditEnabled, setIsEditEnabled] = useState(false);
 	const [isSaveDisabled, setIsSaveDisabled] = useState(false);
 	const [editedDisplayName, setEditedDisplayName] = useState('');
@@ -53,9 +55,16 @@ export const ConsultantInformation = () => {
 			.then(() => {
 				reloadUserData().catch(console.log);
 				setInitialDisplayName(editedDisplayName);
-				setIsEditEnabled(false);
 			})
-			.catch(() => {
+			.catch((error) => {
+				addNotification({
+					notificationType: NOTIFICATION_TYPE_ERROR,
+					title: translate('profile.notifications.error.title'),
+					text: translate('profile.notifications.error.description')
+				});
+				console.error('Error while patching consultant', error);
+			})
+			.finally(() => {
 				setIsEditEnabled(false);
 			});
 	};
