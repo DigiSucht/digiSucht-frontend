@@ -52,6 +52,7 @@ export const RegistrationFormDigi = ({
 	const [form] = Form.useForm();
 
 	const [topics, setTopics] = useState([] as TopicsDataInterface[]);
+	const [submitting, setSubmitting] = useState(false);
 	const [formErrors, setFormErrors] = useState([]); // This needs to be an array to trigger the changes on accordion
 	const [registrationWithSuccess, setRegistrationWithSuccess] =
 		useState(false);
@@ -149,6 +150,8 @@ export const RegistrationFormDigi = ({
 	// When the form is submitted we send the data to the API
 	const onSubmit = useCallback(
 		(formValues) => {
+			setSubmitting(true);
+
 			const finalValues = {
 				username: formValues.username,
 				password: encodeURIComponent(formValues.password),
@@ -187,7 +190,8 @@ export const RegistrationFormDigi = ({
 						]);
 						setIsUsernameAlreadyInUse(true);
 					}
-				});
+				})
+				.finally(() => setSubmitting(false));
 		},
 		[consultant, form, settings, tenant, urlQuery]
 	);
@@ -493,7 +497,7 @@ export const RegistrationFormDigi = ({
 				</div>
 
 				<Button
-					disabled={formErrors.length > 0}
+					disabled={formErrors.length > 0 || submitting}
 					className="registrationFormDigi__Submit"
 					buttonHandle={() => form.submit()}
 					item={buttonItemSubmit}
