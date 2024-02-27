@@ -5,9 +5,9 @@ import {
 	AUTHORITIES,
 	hasUserAuthority,
 	SessionTypeContext,
-	TenantContext,
 	UserDataContext,
-	ActiveSessionContext
+	ActiveSessionContext,
+	useTenant
 } from '../../../globalState';
 import {
 	ConsultingSessionDataInterface,
@@ -25,7 +25,7 @@ import { Box, BoxTypes } from '../../../components/box/Box';
 
 export const AskerInfoContent = () => {
 	const { t: translate } = useTranslation();
-	const { tenant } = useContext(TenantContext);
+	const tenant = useTenant();
 	const { activeSession } = useContext(ActiveSessionContext);
 	const { userData } = useContext(UserDataContext);
 	const [sessionData, setSessionData] =

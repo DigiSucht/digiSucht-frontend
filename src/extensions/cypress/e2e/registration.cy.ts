@@ -8,15 +8,16 @@ import {
 
 describe('registration', () => {
 	before(() => {
+		Cypress.env('TENANT_ENABLED', '1');
 		startWebSocketServer();
 	});
 
 	after(() => {
 		closeWebSocketServer();
+		Cypress.env('TENANT_ENABLED', '0');
 	});
 
 	beforeEach(() => {
-		cy.mockApi();
 		mockWebSocket();
 
 		cy.fixture('service.agencies.json').then((data) => {
@@ -32,6 +33,20 @@ describe('registration', () => {
 				name: 'Alkohol'
 			}
 		]);
+
+		cy.willReturn('frontend.settings', {
+			useTenantService: true
+		});
+		cy.willReturn(
+			'settings',
+			{
+				useTenantService: {
+					value: true,
+					readOnly: true
+				}
+			},
+			true
+		);
 	});
 
 	describe('Counselling relation enabled', () => {

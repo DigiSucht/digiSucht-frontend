@@ -17,7 +17,7 @@ import { NoAgencyFound } from '../NoAgencyFound';
 import './agencySelection.styles.scss';
 import { useTranslation } from 'react-i18next';
 import { setValueInCookie } from '../../../../../components/sessionCookie/accessSessionCookie';
-import { TenantContext } from '../../../../../globalState';
+import { useTenant } from '../../../../../globalState';
 
 interface AgencySelectionFormFieldProps {
 	preselectedAgencies?: AgencyDataInterface[];
@@ -93,7 +93,7 @@ export const AgencySelection = ({
 	preselectedAgencies
 }: AgencySelectionFormFieldProps) => {
 	const field = useContext(FieldContext);
-	const { tenant } = useContext(TenantContext);
+	const tenant = useTenant();
 	const [isLoading, setIsLoading] = useState(false);
 	const [agencies, setAgencies] = useState<AgencyDataInterface[]>([
 		...(preselectedAgencies || [])

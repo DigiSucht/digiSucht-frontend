@@ -8,7 +8,7 @@ import { InputFormField } from '../InputFormField';
 import { AgencySelection } from './AgencySelection';
 import { useTranslation } from 'react-i18next';
 import { Text } from '../../../../components/text/Text';
-import { TenantContext } from '../../../../globalState';
+import { useTenant } from '../../../../globalState';
 
 interface AgencySelectionFormFieldProps {
 	preselectedAgencies: AgencyDataInterface[];
@@ -20,7 +20,7 @@ export const AgencySelectionFormField = ({
 	preselectedAgencies
 }: AgencySelectionFormFieldProps) => {
 	const field = useContext(FieldContext);
-	const { tenant } = useContext(TenantContext);
+	const tenant = useTenant();
 	const { t: translate } = useTranslation();
 	const { mainTopicId, gender, age, counsellingRelation } =
 		field.getFieldsValue();
