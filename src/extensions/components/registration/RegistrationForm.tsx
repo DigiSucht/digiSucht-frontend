@@ -31,12 +31,9 @@ import LegalLinks from '../../../components/legalLinks/LegalLinks';
 import { FormAccordion } from './FormAccordion/FormAccordion';
 import { FormAccordionItem } from './FormAccordion/FormAccordionItem';
 import { UrlParamsContext } from '../../../globalState/provider/UrlParamsProvider';
-
-enum CounsellingRelation {
-	Self = 'SELF_COUNSELLING',
-	Relative = 'RELATIVE_COUNSELLING',
-	Parental = 'PARENTAL_COUNSELLING'
-}
+import CounsellingRelation, {
+	COUNSELLING_RELATIONS
+} from './CounsellingRelation';
 
 enum Gender {
 	Male = 'MALE',
@@ -55,7 +52,7 @@ interface FormData {
 	'topicIds[]': number[];
 	'mainTopicId': number;
 	'gender': Gender;
-	'counsellingRelation': CounsellingRelation;
+	'counsellingRelation': COUNSELLING_RELATIONS;
 }
 
 export const RegistrationForm = () => {
@@ -141,22 +138,6 @@ export const RegistrationForm = () => {
 	const getValidRef = (ref: string) =>
 		ref.replace(/[^a-zA-Z0-9]/g, '').substring(0, 8);
 
-	// Get the counselling relation from the query parameter
-	const getCounsellingRelation = (): string | null => {
-		const queryRelation = urlQuery.get('counsellingRelation');
-
-		if (!queryRelation) return null;
-
-		const fullRelation = `${queryRelation.toUpperCase()}_COUNSELLING`;
-		const allRelations: string[] = Object.values(CounsellingRelation);
-
-		if (allRelations.includes(fullRelation)) {
-			return fullRelation;
-		}
-
-		return null;
-	};
-
 	const preselectedAgencies = useMemo(
 		() =>
 			agency
@@ -180,8 +161,10 @@ export const RegistrationForm = () => {
 				gender: formValues.gender,
 				age: Number(formValues.age),
 				topicIds: formValues['topicIds[]'].map(Number),
-				counsellingRelation: formValues.counsellingRelation,
 				consultingType: formValues.consultingTypeId,
+				...(tenant.settings.featureCounsellingRelationsEnabled && {
+					counsellingRelation: formValues.counsellingRelation
+				}),
 				...(consultant && { consultantId: consultant.consultantId }),
 				referer: urlQuery.get('ref')
 					? getValidRef(urlQuery.get('ref'))
@@ -352,37 +335,29 @@ export const RegistrationForm = () => {
 											/>
 										</div>
 									</FormAccordionItem>,
-									<FormAccordionItem
-										id={`step-counsellingRelation`}
-										key={`step-counsellingRelation`}
-										title={translate(
-											'registrationDigi.counsellingRelation.step.title'
-										)}
-										formFields={['counsellingRelation']}
-										errorOnTouchExtraFields={[
-											'counsellingRelation',
-											'topicIds[]',
-											'mainTopicId',
-											'agencyId',
-											'postCode',
-											'username',
-											'password'
-										]}
-										{...props}
-									>
-										<RadioBoxGroup
-											name="counsellingRelation"
-											options={Object.values(
-												CounsellingRelation
-											).map((value) => ({
-												label: translate(
-													`registrationDigi.counsellingRelation.options.${value.toLowerCase()}`
-												),
-												value
-											}))}
-											preset={getCounsellingRelation()}
-										/>
-									</FormAccordionItem>,
+									tenant.settings
+										.featureCounsellingRelationsEnabled && (
+										<FormAccordionItem
+											id={`step-counsellingRelation`}
+											key={`step-counsellingRelation`}
+											title={translate(
+												'registrationDigi.counsellingRelation.step.title'
+											)}
+											formFields={['counsellingRelation']}
+											errorOnTouchExtraFields={[
+												'counsellingRelation',
+												'topicIds[]',
+												'mainTopicId',
+												'agencyId',
+												'postCode',
+												'username',
+												'password'
+											]}
+											{...props}
+										>
+											<CounsellingRelation />
+										</FormAccordionItem>
+									),
 									<FormAccordionItem
 										id={`step-topics`}
 										key={`step-topics`}

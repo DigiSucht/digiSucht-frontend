@@ -67,11 +67,6 @@ export const AskerInfoContent = () => {
 		);
 	}, [activeSession, type, userData]);
 
-	const translateKeys = {
-		gender: `profile.gender.options.${sessionData?.gender?.toLowerCase()}`,
-		counselling: `profile.counsellingRelation.${sessionData?.counsellingRelation?.toLowerCase()}`
-	};
-
 	return (
 		<>
 			{!sessionData && (
@@ -88,12 +83,18 @@ export const AskerInfoContent = () => {
 						/>
 						<ProfileDataItem
 							title="profile.gender.title"
-							content={translate(translateKeys.gender)}
+							content={translate(
+								`profile.gender.options.${sessionData?.gender?.toLowerCase()}`
+							)}
 						/>
-						<ProfileDataItem
-							title="profile.status"
-							content={translate(translateKeys.counselling)}
-						/>
+						{tenant.settings.featureCounsellingRelationsEnabled && (
+							<ProfileDataItem
+								title="profile.status"
+								content={translate(
+									`profile.counsellingRelation.${sessionData?.counsellingRelation?.toLowerCase()}`
+								)}
+							/>
+						)}
 						<ProfileDataItem
 							title="profile.postalCode"
 							content={sessionData?.postcode}

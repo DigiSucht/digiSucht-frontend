@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FieldContext } from 'rc-field-form';
 import {
 	ConsultingTypeBasicInterface,
@@ -8,6 +8,7 @@ import { InputFormField } from '../InputFormField';
 import { AgencySelection } from './AgencySelection';
 import { useTranslation } from 'react-i18next';
 import { Text } from '../../../../components/text/Text';
+import { TenantContext } from '../../../../globalState';
 
 interface AgencySelectionFormFieldProps {
 	preselectedAgencies: AgencyDataInterface[];
@@ -18,7 +19,8 @@ export const AgencySelectionFormField = ({
 	consultingType,
 	preselectedAgencies
 }: AgencySelectionFormFieldProps) => {
-	const field = React.useContext(FieldContext);
+	const field = useContext(FieldContext);
+	const { tenant } = useContext(TenantContext);
 	const { t: translate } = useTranslation();
 	const { mainTopicId, gender, age, counsellingRelation } =
 		field.getFieldsValue();
@@ -29,7 +31,8 @@ export const AgencySelectionFormField = ({
 				Number(mainTopicId) >= 0 &&
 				gender &&
 				age &&
-				counsellingRelation
+				(!tenant.settings.featureCounsellingRelationsEnabled ||
+					counsellingRelation)
 			) || preselectedAgencies.length > 0 ? (
 				<AgencySelection
 					consultingType={consultingType}

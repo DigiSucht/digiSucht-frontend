@@ -25,16 +25,26 @@ describe('registration', () => {
 				data
 			).as('agencies');
 		});
+
+		cy.intercept(endpoints.topicsData, [
+			{
+				id: 1,
+				name: 'Alkohol'
+			}
+		]);
 	});
 
-	describe('addiction', () => {
+	describe('Counselling relation enabled', () => {
 		beforeEach(() => {
-			cy.intercept(endpoints.topicsData, [
+			cy.willReturn(
+				'service.tenant.public',
 				{
-					id: 1,
-					name: 'Alkohol'
-				}
-			]);
+					settings: {
+						featureCounsellingRelationsEnabled: true
+					}
+				},
+				true
+			);
 		});
 
 		it('should have all generic registration page elements', () => {
@@ -45,6 +55,37 @@ describe('registration', () => {
 			cy.get('.registrationFormDigi__Input').should('exist');
 			cy.get('input[name="gender"]').should('exist');
 			cy.get('input[name="counsellingRelation"]').should('exist');
+			cy.get(
+				'.registrationFormDigi__InputTopicIdsContainer input'
+			).should('exist');
+			cy.get('#username').should('exist');
+			cy.get('#passwordInput').should('exist');
+			cy.get('#passwordConfirmation').should('exist');
+			cy.get('.button__primary').should('exist');
+			cy.get('.stageLayout__toLogin').should('exist');
+		});
+	});
+	describe('Counselling relation disabled', () => {
+		beforeEach(() => {
+			cy.willReturn(
+				'service.tenant.public',
+				{
+					settings: {
+						featureCounsellingRelationsEnabled: false
+					}
+				},
+				true
+			);
+		});
+
+		it('should have all generic registration page elements', () => {
+			cy.visit('/suchtberatung/registration');
+			cy.wait('@consultingTypeServiceBySlugFull');
+			cy.get('[data-cy="close-welcome-screen"]').click();
+
+			cy.get('.registrationFormDigi__Input').should('exist');
+			cy.get('input[name="gender"]').should('exist');
+			cy.get('input[name="counsellingRelation"]').should('not.exist');
 			cy.get(
 				'.registrationFormDigi__InputTopicIdsContainer input'
 			).should('exist');
