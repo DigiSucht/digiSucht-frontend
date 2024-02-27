@@ -4,7 +4,7 @@ import {
 	ButtonItem,
 	BUTTON_TYPES
 } from '../../../components/button/Button';
-import { TenantContext } from '../../../globalState';
+import { useTenant } from '../../../globalState';
 import { TopicsDataInterface } from '../../../globalState/interfaces';
 import Form from 'rc-field-form';
 import './registrationForm.styles.scss';
@@ -31,12 +31,9 @@ import LegalLinks from '../../../components/legalLinks/LegalLinks';
 import { FormAccordion } from './FormAccordion/FormAccordion';
 import { FormAccordionItem } from './FormAccordion/FormAccordionItem';
 import { UrlParamsContext } from '../../../globalState/provider/UrlParamsProvider';
-
-enum CounsellingRelation {
-	Self = 'SELF_COUNSELLING',
-	Relative = 'RELATIVE_COUNSELLING',
-	Parental = 'PARENTAL_COUNSELLING'
-}
+import CounsellingRelation, {
+	COUNSELLING_RELATIONS
+} from './CounsellingRelation';
 
 enum Gender {
 	Male = 'MALE',
@@ -55,11 +52,11 @@ interface FormData {
 	'topicIds[]': number[];
 	'mainTopicId': number;
 	'gender': Gender;
-	'counsellingRelation': CounsellingRelation;
+	'counsellingRelation': COUNSELLING_RELATIONS;
 }
 
 export const RegistrationForm = () => {
-	const { tenant } = useContext(TenantContext);
+	const tenant = useTenant();
 	const settings = useAppConfig();
 	const [form] = Form.useForm();
 	const { agency, consultingType, consultant, topic } =
@@ -141,22 +138,6 @@ export const RegistrationForm = () => {
 	const getValidRef = (ref: string) =>
 		ref.replace(/[^a-zA-Z0-9]/g, '').substring(0, 8);
 
-	// Get the counselling relation from the query parameter
-	const getCounsellingRelation = (): string | null => {
-		const queryRelation = urlQuery.get('counsellingRelation');
-
-		if (!queryRelation) return null;
-
-		const fullRelation = `${queryRelation.toUpperCase()}_COUNSELLING`;
-		const allRelations: string[] = Object.values(CounsellingRelation);
-
-		if (allRelations.includes(fullRelation)) {
-			return fullRelation;
-		}
-
-		return null;
-	};
-
 	const preselectedAgencies = useMemo(
 		() =>
 			agency
@@ -180,8 +161,10 @@ export const RegistrationForm = () => {
 				gender: formValues.gender,
 				age: Number(formValues.age),
 				topicIds: formValues['topicIds[]'].map(Number),
-				counsellingRelation: formValues.counsellingRelation,
 				consultingType: formValues.consultingTypeId,
+				...(tenant?.settings?.featureCounsellingRelationsEnabled && {
+					counsellingRelation: formValues.counsellingRelation
+				}),
 				...(consultant && { consultantId: consultant.consultantId }),
 				referer: urlQuery.get('ref')
 					? getValidRef(urlQuery.get('ref'))
@@ -269,190 +252,189 @@ export const RegistrationForm = () => {
 							{...props}
 						>
 							<FormAccordion onComplete={props.handleNextStep}>
-								{(props) => [
-									<FormAccordionItem
-										id={`step-ageAndGender`}
-										key={`step-ageAndGender`}
-										title={translate(
-											'registrationDigi.ageAndGender.step.title'
-										)}
-										formFields={['age', 'gender']}
-										errorOnTouchExtraFields={[
-											'counsellingRelation',
-											'topicIds[]',
-											'mainTopicId',
-											'agencyId',
-											'postCode',
-											'username',
-											'password'
-										]}
-										{...props}
-									>
-										<div className="registrationFormDigi__AgeContainer">
-											<label className="registrationFormDigi__AgeContainerLabel">
-												{translate(
-													'registrationDigi.age.headline'
-												)}
-											</label>
-											<div className="registrationFormDigi__InputGroup">
-												<InputFormField
-													autoFocus
-													tabIndex={0}
-													placeholder="z.B. 25"
-													name="age"
-													normalize={(
-														value,
-														prevValue
-													) => {
-														if (
-															!value.match(
-																/^\d{0,3}$/
-															)
-														) {
-															return prevValue;
-														}
-														return value <= 100
-															? value
-															: 100;
-													}}
-													min={0}
-													max={100}
-													rule={{
-														pattern: /^\d{0,3}$/,
-														max: 100,
-														min: 0
-													}}
-													type="number"
-												/>
-												<div className="input-group__unit">
+								{(props) =>
+									[
+										<FormAccordionItem
+											id={`step-ageAndGender`}
+											key={`step-ageAndGender`}
+											title={translate(
+												'registrationDigi.ageAndGender.step.title'
+											)}
+											formFields={['age', 'gender']}
+											errorOnTouchExtraFields={[
+												'counsellingRelation',
+												'topicIds[]',
+												'mainTopicId',
+												'agencyId',
+												'postCode',
+												'username',
+												'password'
+											]}
+											{...props}
+										>
+											<div className="registrationFormDigi__AgeContainer">
+												<label className="registrationFormDigi__AgeContainerLabel">
 													{translate(
-														'registrationDigi.age.label'
+														'registrationDigi.age.headline'
 													)}
+												</label>
+												<div className="registrationFormDigi__InputGroup">
+													<InputFormField
+														autoFocus
+														tabIndex={0}
+														placeholder="z.B. 25"
+														name="age"
+														normalize={(
+															value,
+															prevValue
+														) => {
+															if (
+																!value.match(
+																	/^\d{0,3}$/
+																)
+															) {
+																return prevValue;
+															}
+															return value <= 100
+																? value
+																: 100;
+														}}
+														min={0}
+														max={100}
+														rule={{
+															pattern:
+																/^\d{0,3}$/,
+															max: 100,
+															min: 0
+														}}
+														type="number"
+													/>
+													<div className="input-group__unit">
+														{translate(
+															'registrationDigi.age.label'
+														)}
+													</div>
 												</div>
 											</div>
-										</div>
 
-										<div className="registrationFormDigi__GenderContainer">
-											<label className="registrationFormDigi__GenderContainerLabel">
-												{translate(
-													'registrationDigi.gender.headline'
+											<div className="registrationFormDigi__GenderContainer">
+												<label className="registrationFormDigi__GenderContainerLabel">
+													{translate(
+														'registrationDigi.gender.headline'
+													)}
+												</label>
+
+												<RadioBoxGroup
+													name="gender"
+													options={Object.values(
+														Gender
+													).map((value) => ({
+														label: translate(
+															`registrationDigi.gender.options.${value.toLowerCase()}`
+														),
+														value
+													}))}
+												/>
+											</div>
+										</FormAccordionItem>,
+										tenant?.settings
+											?.featureCounsellingRelationsEnabled && (
+											<FormAccordionItem
+												id={`step-counsellingRelation`}
+												key={`step-counsellingRelation`}
+												title={translate(
+													'registrationDigi.counsellingRelation.step.title'
 												)}
-											</label>
-
+												formFields={[
+													'counsellingRelation'
+												]}
+												errorOnTouchExtraFields={[
+													'counsellingRelation',
+													'topicIds[]',
+													'mainTopicId',
+													'agencyId',
+													'postCode',
+													'username',
+													'password'
+												]}
+												{...props}
+											>
+												<CounsellingRelation />
+											</FormAccordionItem>
+										),
+										<FormAccordionItem
+											id={`step-topics`}
+											key={`step-topics`}
+											title={translate(
+												'registrationDigi.topics.step.title'
+											)}
+											formFields={['topicIds[]']}
+											errorOnTouchExtraFields={[
+												'mainTopicId',
+												'agencyId',
+												'postCode',
+												'username',
+												'password'
+											]}
+											{...props}
+										>
+											<div className="registrationFormDigi__InputTopicIdsContainer">
+												{topics?.map((topic) => (
+													<div
+														className="registrationFormDigi__InputTopicIdsContainerGroup"
+														key={topic.id}
+													>
+														<CheckboxGroupFormField
+															label={topic.name}
+															name="topicIds[]"
+															localValue={
+																topic.id
+															}
+														/>
+														<InfoTooltip
+															translation={{
+																ns: 'topics',
+																prefix: 'topic'
+															}}
+															info={topic}
+														/>
+													</div>
+												))}
+											</div>
+										</FormAccordionItem>,
+										<FormAccordionItem
+											id={`step-mainTopics`}
+											key={`step-mainTopics`}
+											title={translate(
+												'registrationDigi.mainTopics.step.title'
+											)}
+											formFields={['mainTopicId']}
+											errorOnTouchExtraFields={[
+												'agencyId',
+												'postCode',
+												'username',
+												'password'
+											]}
+											{...props}
+										>
 											<RadioBoxGroup
-												name="gender"
-												options={Object.values(
-													Gender
-												).map((value) => ({
-													label: translate(
-														`registrationDigi.gender.options.${value.toLowerCase()}`
-													),
-													value
-												}))}
+												name="mainTopicId"
+												dependencies={['topicIds[]']}
+												normalize={(value) =>
+													parseInt(value)
+												}
+												options={mainTopicOptions}
 											/>
-										</div>
-									</FormAccordionItem>,
-									<FormAccordionItem
-										id={`step-counsellingRelation`}
-										key={`step-counsellingRelation`}
-										title={translate(
-											'registrationDigi.counsellingRelation.step.title'
-										)}
-										formFields={['counsellingRelation']}
-										errorOnTouchExtraFields={[
-											'counsellingRelation',
-											'topicIds[]',
-											'mainTopicId',
-											'agencyId',
-											'postCode',
-											'username',
-											'password'
-										]}
-										{...props}
-									>
-										<RadioBoxGroup
-											name="counsellingRelation"
-											options={Object.values(
-												CounsellingRelation
-											).map((value) => ({
-												label: translate(
-													`registrationDigi.counsellingRelation.options.${value.toLowerCase()}`
-												),
-												value
-											}))}
-											preset={getCounsellingRelation()}
-										/>
-									</FormAccordionItem>,
-									<FormAccordionItem
-										id={`step-topics`}
-										key={`step-topics`}
-										title={translate(
-											'registrationDigi.topics.step.title'
-										)}
-										formFields={['topicIds[]']}
-										errorOnTouchExtraFields={[
-											'mainTopicId',
-											'agencyId',
-											'postCode',
-											'username',
-											'password'
-										]}
-										{...props}
-									>
-										<div className="registrationFormDigi__InputTopicIdsContainer">
-											{topics?.map((topic) => (
-												<div
-													className="registrationFormDigi__InputTopicIdsContainerGroup"
-													key={topic.id}
-												>
-													<CheckboxGroupFormField
-														label={topic.name}
-														name="topicIds[]"
-														localValue={topic.id}
-													/>
-													<InfoTooltip
-														translation={{
-															ns: 'topics',
-															prefix: 'topic'
-														}}
-														info={topic}
-													/>
-												</div>
-											))}
-										</div>
-									</FormAccordionItem>,
-									<FormAccordionItem
-										id={`step-mainTopics`}
-										key={`step-mainTopics`}
-										title={translate(
-											'registrationDigi.mainTopics.step.title'
-										)}
-										formFields={['mainTopicId']}
-										errorOnTouchExtraFields={[
-											'agencyId',
-											'postCode',
-											'username',
-											'password'
-										]}
-										{...props}
-									>
-										<RadioBoxGroup
-											name="mainTopicId"
-											dependencies={['topicIds[]']}
-											normalize={(value) =>
-												parseInt(value)
-											}
-											options={mainTopicOptions}
-										/>
-										{mainTopicOptions.length === 0 && (
-											<p className="registrationFormDigi__NoTopics">
-												{translate(
-													'registrationDigi.mainTopics.selectAtLestOneTopic'
-												)}
-											</p>
-										)}
-									</FormAccordionItem>
-								]}
+											{mainTopicOptions.length === 0 && (
+												<p className="registrationFormDigi__NoTopics">
+													{translate(
+														'registrationDigi.mainTopics.selectAtLestOneTopic'
+													)}
+												</p>
+											)}
+										</FormAccordionItem>
+									].filter(Boolean)
+								}
 							</FormAccordion>
 						</FormAccordionItem>,
 						<FormAccordionItem

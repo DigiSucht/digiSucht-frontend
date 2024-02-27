@@ -1,6 +1,6 @@
 import { Field, FieldContext } from 'rc-field-form';
 import { HOOK_MARK } from 'rc-field-form/lib/FieldContext';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { apiAgencySelection, FETCH_ERRORS } from '../../../../../api';
 import {
 	ConsultingTypeBasicInterface,
@@ -17,6 +17,7 @@ import { NoAgencyFound } from '../NoAgencyFound';
 import './agencySelection.styles.scss';
 import { useTranslation } from 'react-i18next';
 import { setValueInCookie } from '../../../../../components/sessionCookie/accessSessionCookie';
+import { useTenant } from '../../../../../globalState';
 
 interface AgencySelectionFormFieldProps {
 	preselectedAgencies?: AgencyDataInterface[];
@@ -91,7 +92,8 @@ export const AgencySelection = ({
 	consultingType,
 	preselectedAgencies
 }: AgencySelectionFormFieldProps) => {
-	const field = React.useContext(FieldContext);
+	const field = useContext(FieldContext);
+	const tenant = useTenant();
 	const [isLoading, setIsLoading] = useState(false);
 	const [agencies, setAgencies] = useState<AgencyDataInterface[]>([
 		...(preselectedAgencies || [])
@@ -103,12 +105,14 @@ export const AgencySelection = ({
 		postCode: postcode,
 		counsellingRelation
 	} = field.getFieldsValue();
+
 	const isValidToRequestData =
 		preselectedAgencies.length === 0 &&
 		Number(mainTopicId) >= 0 &&
 		age &&
 		gender &&
-		counsellingRelation &&
+		(!tenant.settings.featureCounsellingRelationsEnabled ||
+			counsellingRelation) &&
 		!!postcode?.match(REGEX_POSTCODE);
 
 	const { t: translate } = useTranslation();
