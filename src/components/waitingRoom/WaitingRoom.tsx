@@ -314,7 +314,7 @@ export const WaitingRoom = (props: WaitingRoomProps) => {
 										className="button-as-link"
 										onClick={() => window.open(url)}
 									>
-										${label}
+										{label}
 									</button>
 								</span>
 							)}

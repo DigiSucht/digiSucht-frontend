@@ -31,6 +31,8 @@ const VideoCall = () => {
 	const [externalApi, setExternalApi] = useState<IJitsiMeetExternalApi>(null);
 	const [rejected, setRejected] = useState(false);
 	const [closed, setClosed] = useState(false);
+	const [joined, setJoined] = useState(false);
+	const [quitted, setQuitted] = useState(false);
 	const [ready, setReady] = useState(false);
 	const [e2eEnabled, setE2EEnabled] = useState(false);
 	const [videoCallJwtData, setVideoCallJwtData] =
@@ -93,6 +95,17 @@ const VideoCall = () => {
 		setClosed(true);
 	}, []);
 
+	const handleConferenceJoined = useCallback(() => {
+		setJoined(true);
+	}, []);
+
+	const handleConferenceLeft = useCallback(() => {
+		// User have to be joined before he can quit. Lobby already calls left event
+		if (joined) {
+			setQuitted(true);
+		}
+	}, [joined]);
+
 	const handleCustomE2EEToggled = useCallback((e) => {
 		setE2EEnabled(e.enabled);
 	}, []);
@@ -118,6 +131,8 @@ const VideoCall = () => {
 			}
 
 			externalApi.on('custom-e2ee-toggled', handleCustomE2EEToggled);
+			externalApi.on('videoConferenceJoined', handleConferenceJoined);
+			externalApi.on('videoConferenceLeft', handleConferenceLeft);
 		}
 
 		return () => {
@@ -128,7 +143,11 @@ const VideoCall = () => {
 				} else {
 					externalApi.off('errorOccurred', handleJitsiError);
 				}
-
+				externalApi.off(
+					'videoConferenceJoined',
+					handleConferenceJoined
+				);
+				externalApi.off('videoConferenceLeft', handleConferenceLeft);
 				externalApi.off('custom-e2ee-toggled', handleCustomE2EEToggled);
 			}
 		};
@@ -136,6 +155,8 @@ const VideoCall = () => {
 		externalApi,
 		handleClose,
 		handleCustomE2EEToggled,
+		handleConferenceJoined,
+		handleConferenceLeft,
 		handleJitsiError,
 		videoCallJwtData
 	]);
@@ -146,6 +167,10 @@ const VideoCall = () => {
 
 	if (!ready) {
 		return <Loading />;
+	}
+
+	if (quitted) {
+		return <StatusPage closed={quitted} />;
 	}
 
 	return (
