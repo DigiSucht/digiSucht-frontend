@@ -8,7 +8,6 @@ import {
 } from '../../../../../globalState/interfaces';
 import { PinIcon } from '../../../../../resources/img/icons';
 import { VALID_POSTCODE_LENGTH } from '../../../../../components/agencySelection/agencySelectionHelpers';
-import { PreselectedAgency } from '../../../../../containers/registration/components/PreSelectedAgency/PreselectedAgency';
 import { Loading } from '../../../../../components/app/Loading';
 import { InputField } from '../../../../../components/inputField/InputField';
 import { Text } from '../../../../../components/text/Text';
@@ -17,6 +16,7 @@ import { NoAgencyFound } from '../NoAgencyFound';
 import './agencySelection.styles.scss';
 import { useTranslation } from 'react-i18next';
 import { setValueInCookie } from '../../../../../components/sessionCookie/accessSessionCookie';
+import { AgencyRadioSelect } from '../../../../../components/agencyRadioSelect/AgencyRadioSelect';
 
 interface AgencySelectionFormFieldProps {
 	preselectedAgencies?: AgencyDataInterface[];
@@ -250,9 +250,11 @@ export const AgencySelection = ({
 				)}
 
 			{preselectedAgencies.length === 1 && (
-				<PreselectedAgency
+				<AgencyRadioSelect
+					agency={preselectedAgencies[0]}
+					checkedValue={preselectedAgencies[0].id.toString()}
 					prefix={translate('registration.agency.preselected.prefix')}
-					agencyData={preselectedAgencies[0]}
+					// showTooltipAbove={props.isProfileView}
 				/>
 			)}
 		</div>

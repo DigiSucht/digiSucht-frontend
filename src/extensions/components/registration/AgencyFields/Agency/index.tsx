@@ -1,8 +1,8 @@
 import React from 'react';
 import { AgencyDataInterface } from '../../../../../globalState/interfaces';
 import { InfoTooltip } from '../../../../../components/infoTooltip/InfoTooltip';
-import { AgencyLanguages } from '../../../../../components/agencySelection/AgencyLanguages';
 import { RadioButton } from '../../../../../components/radioButton/RadioButton';
+import { AgencyLanguages } from '../../../../../components/agencyRadioSelect/AgencyLanguages';
 
 interface AgencySelectionFormFieldProps {
 	onChange: (value: number) => void;
