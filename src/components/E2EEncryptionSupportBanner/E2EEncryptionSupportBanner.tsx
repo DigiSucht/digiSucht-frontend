@@ -15,7 +15,6 @@ import {
 	UserDataContext
 } from '../../globalState';
 import { STATUS_EMPTY } from '../../globalState/interfaces';
-import { Link } from 'react-router-dom';
 
 export const E2EEncryptionSupportBanner = () => {
 	const [showBanner, setShowBanner] = useState<boolean>(false);
@@ -25,18 +24,22 @@ export const E2EEncryptionSupportBanner = () => {
 	const { sessions } = useContext(SessionsDataContext);
 
 	useEffect(() => {
+		const isFirefox =
+			navigator.userAgent.toLowerCase().indexOf('firefox') > -1;
+
 		if (
-			hasVideoCallAbility(userData, consultingTypes) &&
-			// don't show banner when user enters first message
-			!(
-				hasUserAuthority(AUTHORITIES.ASKER_DEFAULT, userData) &&
-				(sessions.length === 0 ||
-					(sessions.length === 1 &&
-						sessions[0]?.session?.status === STATUS_EMPTY))
-			)
+			isFirefox ||
+			(hasVideoCallAbility(userData, consultingTypes) &&
+				// don't show banner when user enters first message
+				!(
+					hasUserAuthority(AUTHORITIES.ASKER_DEFAULT, userData) &&
+					(sessions.length === 0 ||
+						(sessions.length === 1 &&
+							sessions[0]?.session?.status === STATUS_EMPTY))
+				))
 		) {
 			setShowBanner(
-				!supportsE2EEncryptionVideoCall() &&
+				(isFirefox || !supportsE2EEncryptionVideoCall()) &&
 					!sessionStorage.getItem('hideEncryptionBanner')
 			);
 		}
@@ -71,12 +74,7 @@ export const E2EEncryptionSupportBanner = () => {
 					fill="black"
 				/>
 			</svg>
-			<p>
-				{translate('help.videoCall.banner.content')}{' '}
-				<Link to="/profile/hilfe/videoCall">
-					{translate('help.videoCall.banner.more')}
-				</Link>
-			</p>
+			<p>{translate('help.videoCall.banner.content')} </p>
 		</Banner>
 	);
 };
