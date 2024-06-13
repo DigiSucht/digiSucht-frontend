@@ -15,6 +15,7 @@ import {
 	UserDataContext
 } from '../../globalState';
 import { STATUS_EMPTY } from '../../globalState/interfaces';
+import { Link } from 'react-router-dom';
 
 export const E2EEncryptionSupportBanner = () => {
 	const [showBanner, setShowBanner] = useState<boolean>(false);
@@ -74,7 +75,12 @@ export const E2EEncryptionSupportBanner = () => {
 					fill="black"
 				/>
 			</svg>
-			<p>{translate('help.videoCall.banner.content')} </p>
+			<p>
+				{translate('help.videoCall.banner.content')}{' '}
+				<Link to="/profile/hilfe/videoCall">
+					{translate('help.videoCall.banner.more')}
+				</Link>
+			</p>
 		</Banner>
 	);
 };
