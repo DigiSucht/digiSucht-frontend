@@ -2189,7 +2189,8 @@
 		},
 		"contentLine2": {
 			"termsAndCondition": "Ich habe die Nutzungsbedingungen zur Kenntnis genommen.\n Damit erkläre ich mich einverstanden.",
-			"termsAndConditionAndPrivacy": "Ich habe die Nutzungsbedingungen und Datenschutzerklärung\n zur Kenntnis genommen. Damit erkläre ich mich einverstanden."
+			"termsAndConditionAndPrivacy": "Ich habe die Nutzungsbedingungen und Datenschutzerklärung\n zur Kenntnis genommen. Damit erkläre ich mich einverstanden.",
+			"privacy": "Ich habe die Datenschutzerklärung zur Kenntnis genommen.\n Damit erkläre ich mich einverstanden."
 		},
 		"labels": {
 			"here": "hier",
