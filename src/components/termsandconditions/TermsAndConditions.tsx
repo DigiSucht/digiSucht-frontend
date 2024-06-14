@@ -143,7 +143,9 @@ export const TermsAndConditions = () => {
 				mainText: transformText2DataPrivacyLink(
 					translate('termsAndConditionOverlay.contentLine1.privacy')
 				),
-				checkboxText: null,
+				checkboxText: translate(
+					'termsAndConditionOverlay.contentLine2.privacy'
+				),
 				showOverlay: true,
 				userConfirmed: viewState.userConfirmed,
 				buttons: dataPrivacyButtons

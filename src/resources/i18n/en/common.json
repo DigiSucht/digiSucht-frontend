@@ -2170,7 +2170,8 @@
 		},
 		"contentLine2": {
 			"termsAndCondition": "I have read the Terms of Use.\n I agree to this.",
-			"termsAndConditionAndPrivacy": "I have read the Terms of Use and Privacy Policy.\n I agree to this."
+			"termsAndConditionAndPrivacy": "I have read the Terms of Use and Privacy Policy.\n I agree to this.",
+			"privacy": "I have read the Privacy Policy.\n I agree to this."
 		},
 		"labels": {
 			"here": "here",
