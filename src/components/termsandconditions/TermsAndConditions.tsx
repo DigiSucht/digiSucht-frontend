@@ -86,7 +86,8 @@ export const TermsAndConditions = () => {
 	const dataPrivacyButtons = [
 		{
 			label: translate('termsAndConditionOverlay.buttons.continue'),
-			type: BUTTON_TYPES.PRIMARY
+			type: BUTTON_TYPES.PRIMARY,
+			disabled: !viewState.userConfirmed
 		}
 	];
 
