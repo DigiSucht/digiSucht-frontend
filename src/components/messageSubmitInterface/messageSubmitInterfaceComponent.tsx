@@ -412,23 +412,6 @@ export const MessageSubmitInterfaceComponent = ({
 		return getDefaultKeyBinding(event);
 	};
 
-	const handleEditorKeyCommand = useCallback(
-		(command) => {
-			const newState = RichUtils.handleKeyCommand(editorState, command);
-			if (command === 'shift-enter') {
-				handleButtonClick();
-				return 'handled';
-			}
-
-			if (newState) {
-				handleEditorChange(newState);
-				return 'handled';
-			}
-			return 'not-handled';
-		},
-		[editorState, handleEditorChange]
-	);
-
 	const resizeTextarea = useCallback(() => {
 		const textInput: any = textareaInputRef.current;
 		// default values
@@ -794,6 +777,23 @@ export const MessageSubmitInterfaceComponent = ({
 		uploadProgress,
 		userData
 	]);
+
+	const handleEditorKeyCommand = useCallback(
+		(command) => {
+			const newState = RichUtils.handleKeyCommand(editorState, command);
+			if (command === 'shift-enter') {
+				handleButtonClick();
+				return 'handled';
+			}
+
+			if (newState) {
+				handleEditorChange(newState);
+				return 'handled';
+			}
+			return 'not-handled';
+		},
+		[editorState, handleEditorChange, handleButtonClick]
+	);
 
 	const handleRequestFeedbackCheckbox = useCallback(() => {
 		setRequestFeedbackCheckboxChecked(
