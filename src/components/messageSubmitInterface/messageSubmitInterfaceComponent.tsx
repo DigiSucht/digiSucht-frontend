@@ -44,6 +44,7 @@ import {
 	convertToRaw,
 	DraftHandleValue,
 	EditorState,
+	getDefaultKeyBinding,
 	RichUtils
 } from 'draft-js';
 import { draftToMarkdown } from 'markdown-draft-js';
@@ -404,9 +405,21 @@ export const MessageSubmitInterfaceComponent = ({
 		]
 	);
 
+	const handleCustomKeyBinding = (event) => {
+		if (event.key === 'Enter' && event.shiftKey) {
+			return 'shift-enter';
+		}
+		return getDefaultKeyBinding(event);
+	};
+
 	const handleEditorKeyCommand = useCallback(
 		(command) => {
 			const newState = RichUtils.handleKeyCommand(editorState, command);
+			if (command === 'shift-enter') {
+				handleButtonClick();
+				return 'handled';
+			}
+
 			if (newState) {
 				handleEditorChange(newState);
 				return 'handled';
@@ -1026,6 +1039,7 @@ export const MessageSubmitInterfaceComponent = ({
 										handleKeyCommand={
 											handleEditorKeyCommand
 										}
+										keyBindingFn={handleCustomKeyBinding}
 										placeholder={
 											hasRequestFeedbackCheckbox &&
 											requestFeedbackCheckboxChecked
