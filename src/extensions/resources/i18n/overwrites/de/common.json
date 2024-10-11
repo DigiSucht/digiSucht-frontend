@@ -130,18 +130,18 @@
 		"overline": "Herzlich willkommen!",
 		"welcomeScreen": {
 			"info1": {
-				"text": "Finden Sie eine passende Beratungsstelle"
+				"text": "Finden Sie eine passende Beratungsstelle."
 			},
 			"info2": {
 				"title": "Nehmen Sie Kontakt auf",
-				"text": "Schreiben Sie eine Nachricht oder vereinbaren Sie einen Termin"
+				"text": "Schreiben Sie eine Nachricht oder vereinbaren Sie einen Termin."
 			},
 			"subline": "So funktioniert die Beratung auf der DigiSucht Plattform:",
 			"info3": {
-				"text": "Je nach Verfügbarkeit per Nachricht, im Textchat, im Videochat oder vor Ort"
+				"text": "Je nach Verfügbarkeit per Nachricht, im Textchat, im Videochat oder vor Ort."
 			},
 			"info4": {
-				"text": "Sie bleiben auf Wunsch anonym und werden kostenfrei beraten"
+				"text": "Sie bleiben auf Wunsch anonym und werden kostenfrei beraten."
 			}
 		},
 		"overlay": {
@@ -198,14 +198,14 @@
 		"username.step.title": "Bitte wählen Sie Ihren Benutzernamen",
 		"welcomeScreen": {
 			"info1": {
-				"text": "Finden Sie eine passende Beratungsstelle"
+				"text": "Finden Sie eine passende Beratungsstelle."
 			},
 			"info2": {
 				"title": "Nehmen Sie Kontakt auf",
-				"text": "Schreiben Sie eine Nachricht oder vereinbaren Sie einen Termin"
+				"text": "Schreiben Sie eine Nachricht oder vereinbaren Sie einen Termin."
 			},
 			"info4": {
-				"text": "Schreiben Sie eine Nachricht oder vereinbaren Sie einen Termin"
+				"text": "Sie bleiben auf Wunsch anonym und werden kostenfrei beraten."
 			}
 		},
 		"overlay": {

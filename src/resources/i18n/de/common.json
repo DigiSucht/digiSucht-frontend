@@ -1919,19 +1919,19 @@
 		},
 		"welcomeScreen": {
 			"info1": {
-				"text": "Für eine individuelle und geschützte Beratung",
+				"text": "Für eine individuelle und geschützte Beratung.",
 				"title": "Einfache Registrierung"
 			},
 			"info2": {
-				"text": "Sie schicken Ihre Nachricht an eine lokale Beratungsstelle",
+				"text": "Sie schicken Ihre Nachricht an eine lokale Beratungsstelle.",
 				"title": "Nachricht verfassen"
 			},
 			"info3": {
-				"text": "Innerhalb von 2 Werktagen bekommen Sie eine Antwort",
+				"text": "Innerhalb von 2 Werktagen bekommen Sie eine Antwort.",
 				"title": "Persönliche und professionelle Beratung"
 			},
 			"info4": {
-				"text": "Sie bleiben anonym und erhalten kostenfreie Beratung und Hilfe",
+				"text": "Sie bleiben anonym und erhalten kostenfreie Beratung und Hilfe.",
 				"title": "Anonym und kostenfrei",
 				"link": "https://www.suchtberatung.digital",
 				"linkText": "Mehr Informationen zum Angebot von DigiSucht finden Sie hier."

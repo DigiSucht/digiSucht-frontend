@@ -1896,19 +1896,19 @@
 		},
 		"welcomeScreen": {
 			"info1": {
-				"text": "For individual and protected consultation",
+				"text": "For individual and protected consultation.",
 				"title": "Simple registration"
 			},
 			"info2": {
-				"text": "You send your message to a local counseling center",
+				"text": "You send your message to a local counseling center.",
 				"title": "Compose message"
 			},
 			"info3": {
-				"text": "Within 2 working days you will get an answer",
+				"text": "Within 2 working days you will get an answer.",
 				"title": "Personal and professional advice"
 			},
 			"info4": {
-				"text": "You remain anonymous and receive free advice and assistance",
+				"text": "You remain anonymous and receive free advice and assistance.",
 				"title": "Anonymous and free of charge"
 			},
 			"register": {
