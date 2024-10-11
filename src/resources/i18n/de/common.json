@@ -1413,6 +1413,8 @@
 				}
 			},
 			"displayName": "Anzeigename",
+			"displayNameInfo": "Der Anzeigename wurde erfolgreich geändert. Es kann bis zu einer Stunde dauern, bis dieser angezeigt wird.",
+			"displayNameInfoClose": "Schließen",
 			"edit": {
 				"button": {
 					"cancel": "Abbrechen",
@@ -1930,7 +1932,9 @@
 			},
 			"info4": {
 				"text": "Sie bleiben anonym und erhalten kostenfreie Beratung und Hilfe",
-				"title": "Anonym und kostenfrei"
+				"title": "Anonym und kostenfrei",
+				"link": "https://www.suchtberatung.digital",
+				"linkText": "Mehr Informationen zum Angebot von DigiSucht finden Sie hier."
 			},
 			"register": {
 				"buttonLabel": "Registrieren",
