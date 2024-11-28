@@ -367,7 +367,8 @@
 		"imprint": "Imprint",
 		"leaveGroupChat": "Leave chat",
 		"remove": "Delete",
-		"stopGroupChat": "End chat"
+		"stopGroupChat": "End chat",
+		"toolsDocumentation": "Tools and documentation"
 	},
 	"consultant": {
 		"absent": {
