@@ -1399,7 +1399,7 @@
 				}
 			},
 			"displayName": "Display name",
-			"displayNameInfo": "The display name has been successfully changed. It may take up to an hour for this to be displayed.",
+			"displayNameInfo": "The display name has been successfully changed. It may take up to an hour for it to appear to those seeking advice and on your profile.",
 			"displayNameInfoClose": "Close",
 			"edit": {
 				"button": {
