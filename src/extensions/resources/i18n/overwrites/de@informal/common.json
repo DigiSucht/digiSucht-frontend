@@ -51,15 +51,15 @@
 		"overline": "Herzlich willkommen!",
 		"welcomeScreen": {
 			"info1": {
-				"text": "Finde eine passende Beratungsstelle"
+				"text": "Finde eine passende Beratungsstelle."
 			},
 			"info2": {
 				"title": "Nimm Kontakt auf",
-				"text": "Schreibe eine Nachricht oder vereinbare einen Termin"
+				"text": "Schreibe eine Nachricht oder vereinbare einen Termin."
 			},
 			"subline": "So funktioniert die Beratung auf der DigiSucht Plattform:",
 			"info3": {
-				"text": "Je nach Verfügbarkeit per Nachricht, im Textchat, im Videochat oder vor Ort"
+				"text": "Je nach Verfügbarkeit per Nachricht, im Textchat, im Videochat oder vor Ort."
 			},
 			"info4": {
 				"text": "Bleib auf Wunsch anonym und werde kostenfrei beraten!"
